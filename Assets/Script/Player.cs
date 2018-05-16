@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    private RigidbodyConstraints rbC;
+
     private Animator anim;
     private Rigidbody rb;
 
@@ -18,10 +20,10 @@ public class Player : MonoBehaviour
     private GameObject spreadBullet;
     private GameObject ghost;
 
+    public float dashForce;
     public float jumpForce = 200f;
-    public float dashVelocity;
-    public float dashDuration;
-    private float dashTimer;
+    public float dashLength;
+    public float dashTimer;
     private float velocity = 5;
     private float shootFrequency;
     private float shootTimer = 0;
@@ -236,17 +238,25 @@ public class Player : MonoBehaviour
 
         if (jumping)
         {
-            this.rb.AddForce(0, jumpForce, 0);
+            this.rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
             jumping = false;
         }
+
+
     }   //jump higher while holding button- fix
 
     private void Dash()
     {
-        if (Input.GetButtonDown("Dash_" + this.playerIndex))
+        if(Input.GetButtonDown("Dash_"+this.playerIndex))
         {
+            dashTimer += Time.deltaTime;
+            this.rb.useGravity = false;
 
+            transform.Translate(Vector3.right * dashForce);
+
+            if(dashTimer >= dashLength) this.rb.useGravity = true;
         }
+        
     }
 
     private IEnumerator InvincibleFrames()
