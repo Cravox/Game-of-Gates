@@ -5,13 +5,16 @@ using UnityEngine;
 public class SpreadBullet : MonoBehaviour
 {
 
+    public float range;
+    public int damage;
+
     void Start()
     {
-        Destroy(this.gameObject, 0.3f);
+        Destroy(this.gameObject, range);
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Enemy")) col.gameObject.GetComponent<Enemy>().hp -= 2;
+        if (col.gameObject.CompareTag("Enemy")) col.gameObject.GetComponent<Enemy>().hp -= damage;
     }
 }

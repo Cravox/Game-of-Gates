@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
 
         if(shotCounter < 0)
         {
-            //Shoot();
             shotCounter = shootFrequence;
         }
     }
@@ -43,7 +42,6 @@ public class Enemy : MonoBehaviour
     void Shoot()
     {
         Vector3 spawn = shotSpawnPosition.transform.position;
-        //GameObject bulletResource = (GameObject)Resources.Load("shot_enemy");
         GameObject bulletInstance = Object.Instantiate(bullet, spawn, transform.rotation);
     }
 

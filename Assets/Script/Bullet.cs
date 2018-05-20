@@ -4,28 +4,51 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Rigidbody rb;
+    public int normalDamage;
+    public float normalRange;
+    public int spreadDamage;
+    public float spreadRange;
 
-    void Awake()
-    {
-        rb = this.gameObject.GetComponent<Rigidbody>();
-    }
+    private int damage;
+    private float range;
 
     void Start()
     {
-        Destroy(this.gameObject, 4);
+        Destroy(this.gameObject, range);
     }
-
+    
     void Update()
     {
 
     }
 
+    public enum Type : int
+    {
+        NORMAL = 0,
+        SPREAD
+    }
+
+    public void Initialize(Type type){
+        switch (type)
+        {
+            case Type.NORMAL:
+                damage = normalDamage;
+                range = normalRange;
+                break;
+            case Type.SPREAD:
+                damage = spreadDamage;
+                range = spreadRange;
+                break;
+            default:
+                break;
+        }
+    }
+
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            col.gameObject.GetComponent<Enemy>().hp -= 2;
+            col.gameObject.GetComponent<Enemy>().hp -= damage;
             Destroy(this.gameObject);
         }
     }

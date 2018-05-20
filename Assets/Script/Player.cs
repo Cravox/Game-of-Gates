@@ -6,62 +6,44 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private RigidbodyConstraints rbC;
-
-    private Animator anim;
-    private Rigidbody rb;
-
-    private MeshRenderer ren;
-
-    public Transform shotSpawnPosition;
-
-    private GameObject playerHP;
-    private GameObject bullet;
-    private GameObject spreadBullet;
-    private GameObject ghost;
-
-    public float dashForce;
+    public GameObject playerHP;
+    public GameObject bullet;
+    public GameObject ghost;
+    public Animator anim;
+    public Rigidbody rb;
+    public MeshRenderer ren;
     public float jumpForce = 200f;
-    public float dashLength;
-    public float dashTimer;
-    private float velocity = 5;
-    private float shootFrequency;
-    private float shootTimer = 0;
-    
-    public bool canShoot;
-    private bool defaultFire = true;
+    public float dashVelocity;
+    public float dashDuration;
+    public int hp = 3;
+    public int playerIndex = 0;
+
+    private float dashTimer;
+    private float moveVelocity = 5;
     private bool jumping;
     private bool dashing;
     private bool grounded;
+
     private bool facingRight;
+    public bool FacingRight {
+        get {
+            return facingRight;
+        }
 
-    public int hp;
-    public int playerIndex = 0;
-
-    private void Awake()
-    {
-        hp = 3;
-        facingRight = true;
-
-        playerHP = GameObject.Find("HP_" + this.playerIndex); //Find HP-UI-Element
-
-        ren = this.gameObject.GetComponent<MeshRenderer>();
-        anim = this.gameObject.GetComponent<Animator>();
-        rb = this.gameObject.GetComponent<Rigidbody>();
+        set {
+            facingRight = value;
+        }
     }
 
     private void Start()
     {
-        bullet = (GameObject)Resources.Load("Player/Shot_p" + this.playerIndex);
-        spreadBullet = (GameObject)Resources.Load("Player/Spreadshot_p" + this.playerIndex);
-        ghost = (GameObject)Resources.Load("Player/dead_player");
     }
 
     private void Update()
     {
-        RotateCharacter();
-
-        Shoot();
+        RotateCharacter(); 
+        
+        Movement();
 
         Death();
 
@@ -97,7 +79,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
-
         if (col.gameObject.CompareTag("deadPlayer") && Input.GetButtonDown("Jump_" + this.playerIndex) && !grounded)
         {
 
@@ -135,62 +116,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Shoot()
-    {
-        if (Input.GetButtonDown("SwitchShot_" + this.playerIndex)) defaultFire = !defaultFire;
-
-        shootFrequency = 0.14f;
-
-        shootTimer += Time.deltaTime;
-        if (shootTimer > shootFrequency)
-        {
-
-            if (Input.GetButton("Fire_" + this.playerIndex))
-            {
-                if (defaultFire)
-                {
-                    Vector3 spawn = shotSpawnPosition.transform.position;
-
-                    //GameObject bulletResource = (GameObject)Resources.Load("Prefabs/shot_p" + this.playerIndex);
-                    GameObject bulletInstance = Object.Instantiate(bullet, spawn, new Quaternion(0, 0, 270, 0));
-
-                    if (facingRight) bulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * 250);
-                    else bulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * 250);
-                }
-                else
-                {
-                    Vector3 spawn = shotSpawnPosition.transform.position;
-
-                    GameObject spreadBulletInstance1 = Object.Instantiate(spreadBullet, spawn, new Quaternion(0, 0, 270, 0));
-                    GameObject spreadBulletInstance2 = Object.Instantiate(spreadBullet, spawn, new Quaternion(0, 0, 270, 0));
-                    GameObject spreadBulletInstance3 = Object.Instantiate(spreadBullet, spawn, new Quaternion(0, 0, 270, 0));
-
-                    if(facingRight)
-                    {
-                        spreadBulletInstance1.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0.3f, 0) * 250);
-                        spreadBulletInstance2.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * 250);
-                        spreadBulletInstance3.GetComponent<Rigidbody>().AddForce(new Vector3(1, -0.3f, 0) * 250);
-                    }else
-                    {
-                        spreadBulletInstance1.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0.3f, 0) * 250);
-                        spreadBulletInstance2.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * 250);
-                        spreadBulletInstance3.GetComponent<Rigidbody>().AddForce(new Vector3(-1, -0.3f, 0) * 250);
-                    }
-                }
-                shootTimer = 0;
-            }
-        }
-    }
-
     private void Death()
     {
-        //GameObject newPlayer = (GameObject)Resources.Load("Player_"+this.playerInde   x);
-        //GameObject spawnPlayer = Object.Instantiate(newPlayer, respawn, this.gameObject.transform.rotation);
-
-        //SceneManager.LoadScene("levelSelect");
         if (hp <= 0)
         {
-            Object.Instantiate(ghost, this.transform.position, this.transform.rotation);
+            Instantiate(ghost, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }
     }
@@ -198,12 +128,9 @@ public class Player : MonoBehaviour
     private void RotateCharacter()
     {
         //rotate character
-        if (this.facingRight)
-        {
-            this.transform.rotation = new Quaternion(0, 0, 0, 0);
-        }
-        else
-        {
+        if (facingRight) {
+            this.transform.rotation = Quaternion.identity;
+        } else {
             this.transform.rotation = new Quaternion(0, 180, 0, 0);
         }
     }
@@ -216,11 +143,11 @@ public class Player : MonoBehaviour
         if (moveY >= 0.75f && grounded)
         {
             anim.SetBool("Ducking", true);
-            this.velocity = 0;
+            this.moveVelocity = 0;
         }
         else
         {
-            this.velocity = 5;
+            this.moveVelocity = 5;
             anim.SetBool("Ducking", false);
         }
 
@@ -230,7 +157,7 @@ public class Player : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal_" + this.playerIndex); //use horizontal-axis for player-movement
 
-        if (hp > 0) this.rb.velocity = new Vector3(this.velocity * moveX, this.rb.velocity.y, 0);
+        if (hp > 0) this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
 
         if (moveX > 0.1f) facingRight = true;
         if (moveX < -0.1f) facingRight = false;
@@ -238,25 +165,17 @@ public class Player : MonoBehaviour
 
         if (jumping)
         {
-            this.rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            this.rb.AddForce(0, jumpForce, 0);
             jumping = false;
         }
-
-
     }   //jump higher while holding button- fix
 
     private void Dash()
     {
-        if(Input.GetButtonDown("Dash_"+this.playerIndex))
+        if (Input.GetButtonDown("Dash_" + this.playerIndex))
         {
-            dashTimer += Time.deltaTime;
-            this.rb.useGravity = false;
 
-            transform.Translate(Vector3.right * dashForce);
-
-            if(dashTimer >= dashLength) this.rb.useGravity = true;
         }
-        
     }
 
     private IEnumerator InvincibleFrames()

@@ -9,7 +9,6 @@ TagManager:
   - Bullet
   - bulletEnemy
   - deadPlayer
-  - Parry
   layers:
   - Default
   - TransparentFX
