@@ -10,17 +10,22 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public GameObject ghost;
     public Animator anim;
-    public Rigidbody rb;
     public MeshRenderer ren;
+    public Rigidbody rb;
     public float jumpForce = 200f;
     public float dashVelocity;
     public float dashDuration;
     public int hp = 3;
     public int playerIndex = 0;
 
+    private Vector3 dashStart;
+    private Vector3 dashDestination;
+    private float dashLimit;
+    private float completion = 0f;
     private float dashTimer;
     private float moveVelocity = 5;
     private bool jumping;
+    private bool canDash = true;
     private bool dashing;
     private bool grounded;
 
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
     }
 
     private void Update()
@@ -53,12 +59,20 @@ public class Player : MonoBehaviour
 
         playerHP.GetComponent<Text>().text = "HP:" + this.hp;
 
+        if(Input.GetButtonDown("Dash_"+this.playerIndex) && canDash)
+        {
+            int inv = facingRight ? 1 : -1;
+
+            completion = 0f;
+            dashing = true;
+            dashStart = this.transform.position;
+            dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
+        }
+
         if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
         {
             jumping = true;
         }
-
-        if (Input.GetButtonDown("Dash_" + this.playerIndex)) dashing = true;
     }
 
     private void FixedUpdate()
@@ -172,11 +186,17 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        if (Input.GetButtonDown("Dash_" + this.playerIndex))
+        if(dashing)
         {
-
+            transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
+            completion += Time.deltaTime * 5;
+            canDash = false;
+            if(completion >= 1)
+            {
+                dashing = false;
+            }
         }
-    }
+    } // BUUUUUGG
 
     private IEnumerator InvincibleFrames()
     {

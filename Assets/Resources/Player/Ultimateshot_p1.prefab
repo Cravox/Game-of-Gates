@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 33779174564074446}
   - component: {fileID: 136890187807445064}
   - component: {fileID: 23788558899300008}
-  - component: {fileID: 114854092712983446}
   - component: {fileID: 54976256053770782}
+  - component: {fileID: 114378386997435130}
   m_Layer: 9
-  m_Name: Shot_p0
+  m_Name: Ultimateshot_p1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1238129362583406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.08476, y: -23.917267, z: 0.503}
-  m_LocalScale: {x: 0.11817503, y: 0.11817503, z: 0.11817503}
+  m_LocalPosition: {x: -3.8644533, y: 0.15, z: -0.69830275}
+  m_LocalScale: {x: 0.20274839, y: 0.20274836, z: 0.20274836}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8236407e90d38a347a17d2c25c41394f, type: 2}
+  - {fileID: 2100000, guid: 8518629176f9329478e9ec248b26500f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1238129362583406}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54976256053770782
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &114854092712983446
+--- !u!114 &114378386997435130
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,15 +109,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1238129362583406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469dd19e1a9cadf4ca3be9d8b54e97f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d1155d475f3d2e45a33f076f0b1eed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalDamage: 4
-  normalRange: 4
-  normalUltiProfit: 0.02
-  spreadDamage: 2
-  spreadRange: 0.3
-  spreadUltiProfit: 0.02
+  normalDamage: 2
+  spreadDamage: 1
 --- !u!136 &136890187807445064
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4147293886187558}
   - component: {fileID: 33005892556195844}
   - component: {fileID: 23429206315589504}
+  - component: {fileID: 114795415241495348}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888005789432060}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.0473682, y: 0.40926343, z: 0}
+  m_LocalPosition: {x: -0, y: -0.98, z: 0}
   m_LocalScale: {x: 1.320205, y: 2.4937341, z: 2.4937353}
   m_Children: []
   m_Father: {fileID: 4147293886187558}
@@ -222,6 +223,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114795415241495348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188968654416322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3490aae0eb6aaca4aadde2a5cd197842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpawnPosition: {fileID: 4547306404210394}
+  bullet: {fileID: 1238129362583406, guid: 5146ae8bd40737d48a0bd3f3c4882888, type: 2}
+  bulletForce: 250
 --- !u!114 &114862502567073936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -242,7 +257,6 @@ MonoBehaviour:
   jumpForce: 200
   dashVelocity: 0
   dashDuration: 0
-  facingRight: 1
   hp: 3
   playerIndex: 0
 --- !u!136 &136919853641736698

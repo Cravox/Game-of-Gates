@@ -2,25 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class UltimateBullet : MonoBehaviour
 {
     public int normalDamage;
-    public float normalRange;
     public int spreadDamage;
-    public float spreadRange;
-
-    private int damage;
-    private float range;
-
-    void Start()
-    {
-        Destroy(this.gameObject, range);
-    }
     
-    void Update()
-    {
-
-    }
+    private int damage;
 
     public enum Type : int
     {
@@ -28,28 +15,37 @@ public class Bullet : MonoBehaviour
         SPREAD
     }
 
-    public void Initialize(Type type){
+    public void Initialize(Type type)
+    {
         switch (type)
         {
             case Type.NORMAL:
                 damage = normalDamage;
-                range = normalRange;
                 break;
             case Type.SPREAD:
                 damage = spreadDamage;
-                range = spreadRange;
                 break;
             default:
                 break;
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void Start()
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        Destroy(this.gameObject, 4f);
+    }
+
+    void Update()
+    {
+
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        if(col.gameObject.CompareTag("Enemy"))
         {
             col.gameObject.GetComponent<Enemy>().hp -= damage;
-            Destroy(this.gameObject);
+            print("hola");
         }
     }
 }
