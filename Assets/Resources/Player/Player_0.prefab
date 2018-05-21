@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1580077410079674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.65, y: -0.52, z: -0.0000000034065}
-  m_LocalScale: {x: 0.2015193, y: 0.2015192, z: 0.20151922}
+  m_LocalScale: {x: 0.2015193, y: 0.2015192, z: 0.2015192}
   m_Children:
   - {fileID: 4147293886187558}
   m_Father: {fileID: 0}
@@ -234,8 +234,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3490aae0eb6aaca4aadde2a5cd197842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ultiMeter: {fileID: 0}
   shotSpawnPosition: {fileID: 4547306404210394}
   bullet: {fileID: 1238129362583406, guid: 5146ae8bd40737d48a0bd3f3c4882888, type: 2}
+  ultimateBullet: {fileID: 1238129362583406, guid: a1a8457b7af31e748ad1acf0d20d810d,
+    type: 2}
+  spawnSpreadUltimate: {fileID: 4632352743935058}
+  spreadUltimateNumber: 8
   bulletForce: 250
 --- !u!114 &114862502567073936
 MonoBehaviour:
@@ -252,11 +257,11 @@ MonoBehaviour:
   bullet: {fileID: 1238129362583406, guid: 5146ae8bd40737d48a0bd3f3c4882888, type: 2}
   ghost: {fileID: 1580077410079674, guid: e027c2b619ed4ef46926950be0277390, type: 2}
   anim: {fileID: 95383348417942210}
-  rb: {fileID: 54205283078137832}
   ren: {fileID: 23486421709852040}
+  rb: {fileID: 54205283078137832}
   jumpForce: 200
-  dashVelocity: 0
-  dashDuration: 0
+  dashVelocity: 1
+  dashDuration: 1
   hp: 3
   playerIndex: 0
 --- !u!136 &136919853641736698

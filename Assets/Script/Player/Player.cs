@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private float dashTimer;
     private float moveVelocity = 5;
     private bool jumping;
-    private bool canDash = true;
+    //private bool canDash = true;
     private bool dashing;
     private bool grounded;
 
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
         playerHP.GetComponent<Text>().text = "HP:" + this.hp;
 
-        if(Input.GetButtonDown("Dash_"+this.playerIndex) && canDash)
+        if(Input.GetButtonDown("Dash_"+this.playerIndex))
         {
             int inv = facingRight ? 1 : -1;
 
@@ -190,13 +190,12 @@ public class Player : MonoBehaviour
         {
             transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
             completion += Time.deltaTime * 5;
-            canDash = false;
             if(completion >= 1)
             {
                 dashing = false;
             }
         }
-    } // BUUUUUGG
+    } //BUUUUUGG
 
     private IEnumerator InvincibleFrames()
     {

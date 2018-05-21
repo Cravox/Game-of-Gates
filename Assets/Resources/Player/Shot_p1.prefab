@@ -114,8 +114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalDamage: 4
   normalRange: 4
+  normalUltiProfit: 0.02
   spreadDamage: 2
   spreadRange: 0.3
+  spreadUltiProfit: 0.02
 --- !u!136 &136890187807445064
 CapsuleCollider:
   m_ObjectHideFlags: 1
