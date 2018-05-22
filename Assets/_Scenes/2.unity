@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 581838374}
   m_Layer: 0
   m_Name: FloorCollider
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -950,6 +950,11 @@ Prefab:
     - target: {fileID: 1188968654416322, guid: 147803ebc95b12b4681001dc8dd6ffa6, type: 2}
       propertyPath: m_Name
       value: Weapon_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862502567073936, guid: 147803ebc95b12b4681001dc8dd6ffa6,
+        type: 2}
+      propertyPath: moveVelocity
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 147803ebc95b12b4681001dc8dd6ffa6, type: 2}

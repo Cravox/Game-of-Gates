@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private float dashLimit;
     private float completion = 0f;
     private float dashTimer;
+    private bool isDucking;
     private bool jumping;
     private bool dashing;
     private bool grounded;
@@ -155,11 +156,11 @@ public class Player : MonoBehaviour
         if (moveY >= 0.75f && grounded)
         {
             anim.SetBool("Ducking", true);
-            this.moveVelocity = 0;
+            isDucking = true;
         }
-        else
+        else if(moveY <= 0.75f)
         {
-            this.moveVelocity = 5;
+            isDucking = false;
             anim.SetBool("Ducking", false);
         }
 
@@ -169,7 +170,14 @@ public class Player : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal_" + this.playerIndex); //use horizontal-axis for player-movement
 
-        if (hp > 0) this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
+        if (!isDucking)
+        {
+            this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
+        }
+        else
+        {
+            this.rb.velocity = new Vector3(0 , this.rb.velocity.y, 0);
+        }
 
         if (moveX > 0.1f) facingRight = true;
         if (moveX < -0.1f) facingRight = false;
