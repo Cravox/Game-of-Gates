@@ -8,6 +8,7 @@ public class Bullet_Enemy : MonoBehaviour
     private Animator anim;
 
     public float bulletTimer;
+    private int enemyDamage = 1;
 
 
     void Awake()
@@ -36,8 +37,7 @@ public class Bullet_Enemy : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            col.gameObject.GetComponent<Player>().hp -= 1;
-            //col.gameObject.GetComponent<Player>().GetHit();
+            col.gameObject.GetComponent<Player>().hp -= enemyDamage;
             Destroy(this.gameObject);
         }
     }

@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114862502567073936}
   - component: {fileID: 95383348417942210}
   m_Layer: 8
-  m_Name: Player_0
+  m_Name: Player_1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,8 +99,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580077410079674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.65, y: -0.52, z: -0.0000000034065}
-  m_LocalScale: {x: 0.2015193, y: 0.2015192, z: 0.2015192}
+  m_LocalPosition: {x: -3.591, y: -0.543, z: 0}
+  m_LocalScale: {x: 0.2015193, y: 0.2015192, z: 0.20151922}
   m_Children:
   - {fileID: 4147293886187558}
   m_Father: {fileID: 0}
@@ -121,7 +121,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 99cd5839793df2d47b9eb1080bc747dc, type: 2}
+  - {fileID: 2100000, guid: 97133ba9f5d06d04fb3122bf2e0db8e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 99cd5839793df2d47b9eb1080bc747dc, type: 2}
+  - {fileID: 2100000, guid: 97133ba9f5d06d04fb3122bf2e0db8e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ultiMeter: {fileID: 0}
   shotSpawnPosition: {fileID: 4547306404210394}
-  bullet: {fileID: 1238129362583406, guid: 5146ae8bd40737d48a0bd3f3c4882888, type: 2}
-  ultimateBullet: {fileID: 1238129362583406, guid: a1a8457b7af31e748ad1acf0d20d810d,
+  bullet: {fileID: 1238129362583406, guid: 82f30dfced4be0d40bd30022e747e758, type: 2}
+  ultimateBullet: {fileID: 1238129362583406, guid: 1fed3726d47b69d428b8011e6b88c82a,
     type: 2}
   spawnSpreadUltimate: {fileID: 4632352743935058}
   spreadUltimateNumber: 8
@@ -254,16 +254,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: {fileID: 0}
-  bullet: {fileID: 1238129362583406, guid: 5146ae8bd40737d48a0bd3f3c4882888, type: 2}
+  bullet: {fileID: 1238129362583406, guid: 82f30dfced4be0d40bd30022e747e758, type: 2}
   ghost: {fileID: 1580077410079674, guid: e027c2b619ed4ef46926950be0277390, type: 2}
+  spawnPlayer: {fileID: 0}
   anim: {fileID: 95383348417942210}
   ren: {fileID: 23486421709852040}
   rb: {fileID: 54205283078137832}
   jumpForce: 200
-  dashVelocity: 1
-  dashDuration: 1
+  dashVelocity: 0
+  dashRange: 1
   hp: 3
-  playerIndex: 0
+  playerIndex: 1
 --- !u!136 &136919853641736698
 CapsuleCollider:
   m_ObjectHideFlags: 1

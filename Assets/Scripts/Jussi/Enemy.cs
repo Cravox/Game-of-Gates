@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
 
     public float shootFrequence;
     private float moveY;
-    private float shotCounter;
+    private float shootTimer;
+    private float shootFrequency;
 
     public Transform shotSpawnPosition;
     private Animator anim;
@@ -16,21 +17,22 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        shotCounter = shootFrequence;
+
     }
 
     void Update()
     {
-        shotCounter -= Time.deltaTime;
+        shootTimer += Time.deltaTime;
 
         if (this.hp <= 0)
         {
             Destroy(this.gameObject, 0.2f);
         }
 
-        if(shotCounter < 0)
+        if(shootTimer >= shootFrequence)
         {
-            shotCounter = shootFrequence;
+            Shoot();
+            shootTimer -= shootFrequence;
         }
     }
 
@@ -43,13 +45,6 @@ public class Enemy : MonoBehaviour
     {
         Vector3 spawn = shotSpawnPosition.transform.position;
         GameObject bulletInstance = Object.Instantiate(bullet, spawn, transform.rotation);
-    }
-
-    void Death()
-    {
-        if(this.hp <= 0)
-        {
-            Destroy(this.gameObject, 0.1f);
-        }
+        bulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1,0,0)*250);
     }
 }

@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-
+        playerIndex = gameObject.GetComponentInParent<Player>().PlayerIndex;
     }
 
     void Update()
