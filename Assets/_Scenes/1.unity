@@ -756,11 +756,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856656727}
---- !u!4 &900445174 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4697121577462270, guid: 580e175e8afabcd4cb99717d9d7e1455,
-    type: 2}
-  m_PrefabInternal: {fileID: 1588182102}
 --- !u!1 &1001061371
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,15 +937,6 @@ Prefab:
       propertyPath: ultiMeter
       value: 
       objectReference: {fileID: 825366012}
-    - target: {fileID: 114795415241495348, guid: 147803ebc95b12b4681001dc8dd6ffa6,
-        type: 2}
-      propertyPath: spreadUltimateNumber
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188968654416322, guid: 147803ebc95b12b4681001dc8dd6ffa6, type: 2}
-      propertyPath: m_Name
-      value: Weapon_0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 147803ebc95b12b4681001dc8dd6ffa6, type: 2}
   m_IsPrefabParent: 0
@@ -1114,26 +1100,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1107728344795452, guid: 580e175e8afabcd4cb99717d9d7e1455, type: 2}
-      propertyPath: m_Name
-      value: shotSpawn_position
-      objectReference: {fileID: 0}
-    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
-        type: 2}
-      propertyPath: shotSpawnPosition
-      value: 
-      objectReference: {fileID: 900445174}
-    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
-        type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 1227354697214556, guid: eff73f781b8b41e45a641bdf69390959,
-        type: 2}
-    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 580e175e8afabcd4cb99717d9d7e1455, type: 2}
   m_IsPrefabParent: 0
@@ -1266,11 +1232,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114795415241495348, guid: 583e92b024f388340a4024f02872857c,
-        type: 2}
-      propertyPath: ultiMeter
-      value: 
-      objectReference: {fileID: 856656729}
     - target: {fileID: 114862502567073936, guid: 583e92b024f388340a4024f02872857c,
         type: 2}
       propertyPath: playerHP
@@ -1281,14 +1242,11 @@ Prefab:
       propertyPath: spawnPlayer
       value: 
       objectReference: {fileID: 1951893060}
-    - target: {fileID: 1188968654416322, guid: 583e92b024f388340a4024f02872857c, type: 2}
-      propertyPath: m_Name
-      value: Weapon_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580077410079674, guid: 583e92b024f388340a4024f02872857c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114795415241495348, guid: 583e92b024f388340a4024f02872857c,
+        type: 2}
+      propertyPath: ultiMeter
+      value: 
+      objectReference: {fileID: 856656729}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 583e92b024f388340a4024f02872857c, type: 2}
   m_IsPrefabParent: 0
