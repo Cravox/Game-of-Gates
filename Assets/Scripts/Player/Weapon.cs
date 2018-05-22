@@ -38,6 +38,7 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetButton("Fire_" + this.playerIndex))
         {
+            this.GetComponent<AudioSource>().Play();
             Shoot();
         }
 

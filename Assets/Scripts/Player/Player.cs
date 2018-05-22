@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public AudioSource[] allMyAudioSources;
     public GameObject playerHpUI;
     public GameObject bullet;
     public GameObject ghost;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     public int playerIndex = 0;
     public int hp = 3;
 
+    private AudioSource audioSource;
     private Vector3 dashStart;
     private Vector3 dashDestination;
     private float dashLimit;
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        allMyAudioSources = GetComponents<AudioSource>();
     }
 
     private void Update()
@@ -63,6 +65,8 @@ public class Player : MonoBehaviour
 
         if(Input.GetButtonDown("Dash_"+this.playerIndex))
         {
+            allMyAudioSources[0].Play();
+
             int inv = facingRight ? dashRange : -dashRange;
 
             completion = 0f;
@@ -132,6 +136,7 @@ public class Player : MonoBehaviour
     {
         if (hp <= 0)
         {
+            allMyAudioSources[1].Play();
             Instantiate(ghost, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }
