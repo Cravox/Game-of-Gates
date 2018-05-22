@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public float jumpForce = 200f;
     public float dashVelocity = 5;
+    public float moveVelocity = 5;
     public int dashRange = 1;
+    public int playerIndex = 0;
     public int hp = 3;
 
     private Vector3 dashStart;
@@ -23,7 +25,6 @@ public class Player : MonoBehaviour
     private float dashLimit;
     private float completion = 0f;
     private float dashTimer;
-    private float moveVelocity = 5;
     private bool jumping;
     private bool dashing;
     private bool grounded;
@@ -39,19 +40,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int playerIndex = 0;
-    public int PlayerIndex
-    {
-        get
-        {
-            return playerIndex;
-        }
-
-        set
-        {
-            playerIndex = value;
-        }
-    }
 
     private void Start()
     {
@@ -84,6 +72,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
         {
+            print("hola");
             jumping = true;
         }
     }

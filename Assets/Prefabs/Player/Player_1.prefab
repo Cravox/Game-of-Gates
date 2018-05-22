@@ -261,7 +261,7 @@ MonoBehaviour:
   ren: {fileID: 23486421709852040}
   rb: {fileID: 54205283078137832}
   jumpForce: 200
-  dashVelocity: 0
+  dashVelocity: 1
   dashRange: 1
   hp: 3
   playerIndex: 1

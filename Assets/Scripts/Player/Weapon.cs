@@ -12,10 +12,10 @@ public class Weapon : MonoBehaviour
     public Transform spawnSpreadUltimate;
     
 
+    public int playerIndex;
     public int spreadUltimateNumber = 8;
     public int bulletForce = 250;
 
-    private int playerIndex;
     private bool facingRight;
    
     private float ultimateProfit = 0.02f;
@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        playerIndex = gameObject.GetComponentInParent<Player>().PlayerIndex;
+        
     }
 
     void Update()
