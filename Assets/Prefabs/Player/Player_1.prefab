@@ -261,7 +261,7 @@ MonoBehaviour:
   anim: {fileID: 95383348417942210}
   ren: {fileID: 23486421709852040}
   rb: {fileID: 54205283078137832}
-  jumpForce: 245
+  jumpForce: 400
   dashVelocity: 6
   moveVelocity: 9.5
   dashRange: 2

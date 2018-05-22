@@ -1100,6 +1100,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
+        type: 2}
+      propertyPath: shootFrequence
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 580e175e8afabcd4cb99717d9d7e1455, type: 2}
   m_IsPrefabParent: 0
@@ -1188,11 +1198,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1951893060 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1580077410079674, guid: 147803ebc95b12b4681001dc8dd6ffa6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1309193342}
 --- !u!1001 &1994037182
 Prefab:
   m_ObjectHideFlags: 0
@@ -1232,21 +1237,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114862502567073936, guid: 583e92b024f388340a4024f02872857c,
-        type: 2}
-      propertyPath: playerHP
-      value: 
-      objectReference: {fileID: 580918503}
-    - target: {fileID: 114862502567073936, guid: 583e92b024f388340a4024f02872857c,
-        type: 2}
-      propertyPath: spawnPlayer
-      value: 
-      objectReference: {fileID: 1951893060}
-    - target: {fileID: 114795415241495348, guid: 583e92b024f388340a4024f02872857c,
-        type: 2}
-      propertyPath: ultiMeter
-      value: 
-      objectReference: {fileID: 856656729}
+    - target: {fileID: 1580077410079674, guid: 583e92b024f388340a4024f02872857c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 583e92b024f388340a4024f02872857c, type: 2}
   m_IsPrefabParent: 0
