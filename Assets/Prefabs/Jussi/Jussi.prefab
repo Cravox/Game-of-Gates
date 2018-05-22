@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4697121577462270}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: shotSpawn_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1200
   shootFrequence: 1
-  shotSpawnPosition: {fileID: 0}
-  bullet: {fileID: 0}
+  shotSpawnPosition: {fileID: 4697121577462270}
+  bullet: {fileID: 1227354697214556, guid: eff73f781b8b41e45a641bdf69390959, type: 2}
 --- !u!136 &136383290206316510
 CapsuleCollider:
   m_ObjectHideFlags: 1

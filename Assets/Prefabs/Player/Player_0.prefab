@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23429206315589504}
   - component: {fileID: 114795415241495348}
   m_Layer: 8
-  m_Name: Weapon
+  m_Name: Weapon_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,8 @@ MonoBehaviour:
   ultimateBullet: {fileID: 1238129362583406, guid: a1a8457b7af31e748ad1acf0d20d810d,
     type: 2}
   spawnSpreadUltimate: {fileID: 4632352743935058}
-  spreadUltimateNumber: 100
+  playerIndex: 0
+  spreadUltimateNumber: 8
   bulletForce: 250
 --- !u!114 &114862502567073936
 MonoBehaviour:
@@ -260,11 +261,12 @@ MonoBehaviour:
   anim: {fileID: 95383348417942210}
   ren: {fileID: 23486421709852040}
   rb: {fileID: 54205283078137832}
-  jumpForce: 200
-  dashVelocity: 1
-  dashRange: 1
-  hp: 3
+  jumpForce: 245
+  dashVelocity: 6
+  moveVelocity: 9.5
+  dashRange: 2
   playerIndex: 0
+  hp: 3
 --- !u!136 &136919853641736698
 CapsuleCollider:
   m_ObjectHideFlags: 1
