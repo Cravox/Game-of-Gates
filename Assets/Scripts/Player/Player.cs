@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public GameObject playerHP;
+    public GameObject playerHpUI;
     public GameObject bullet;
     public GameObject ghost;
     public GameObject spawnPlayer;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
         Dash();
 
-        playerHP.GetComponent<Text>().text = "HP:" + this.hp;
+        playerHpUI.GetComponent<Text>().text = "HP:" + this.hp;
 
         if(Input.GetButtonDown("Dash_"+this.playerIndex))
         {
@@ -123,7 +123,6 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy"))
         {
-            this.hp -= 1;
             StartCoroutine("Flash");
             StartCoroutine("InvincibleFrames");
         }

@@ -44,7 +44,7 @@ public class UltimateBullet : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Enemy"))
         {
-            col.gameObject.GetComponent<Enemy>().hp -= damage;
+            col.gameObject.GetComponent<Jussi>().hp -= damage;
             print("hola");
         }
     }

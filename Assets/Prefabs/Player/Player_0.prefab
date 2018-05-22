@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90194f30b981b7b48a0b3c1b7a30f22f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: {fileID: 0}
+  playerHpUI: {fileID: 0}
   bullet: {fileID: 1238129362583406, guid: 5146ae8bd40737d48a0bd3f3c4882888, type: 2}
   ghost: {fileID: 1580077410079674, guid: e027c2b619ed4ef46926950be0277390, type: 2}
   spawnPlayer: {fileID: 0}

@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy"))
         {
             ultiMeterImage.fillAmount += ultiProfit;
-            col.gameObject.GetComponent<Enemy>().hp -= damage;
+            col.gameObject.GetComponent<Jussi>().hp -= damage;
             Destroy(this.gameObject);
         }
     }
