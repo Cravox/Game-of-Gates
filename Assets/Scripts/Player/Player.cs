@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public float jumpForce = 200f;
     public float dashVelocity = 5;
+    public float moveVelocity = 5;
     public int dashRange = 1;
+    public int playerIndex = 0;
     public int hp = 3;
 
     private Vector3 dashStart;
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
     private float dashLimit;
     private float completion = 0f;
     private float dashTimer;
-    private float moveVelocity = 5;
+    private bool isDucking;
     private bool jumping;
     private bool dashing;
     private bool grounded;
@@ -39,19 +41,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int playerIndex = 0;
-    public int PlayerIndex
-    {
-        get
-        {
-            return playerIndex;
-        }
-
-        set
-        {
-            playerIndex = value;
-        }
-    }
 
     private void Start()
     {
@@ -84,6 +73,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
         {
+            print("hola");
             jumping = true;
         }
     }
@@ -166,11 +156,11 @@ public class Player : MonoBehaviour
         if (moveY >= 0.75f && grounded)
         {
             anim.SetBool("Ducking", true);
-            this.moveVelocity = 0;
+            isDucking = true;
         }
-        else
+        else if(moveY <= 0.75f)
         {
-            this.moveVelocity = 5;
+            isDucking = false;
             anim.SetBool("Ducking", false);
         }
 
@@ -180,7 +170,14 @@ public class Player : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal_" + this.playerIndex); //use horizontal-axis for player-movement
 
-        if (hp > 0) this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
+        if (!isDucking)
+        {
+            this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
+        }
+        else
+        {
+            this.rb.velocity = new Vector3(0 , this.rb.velocity.y, 0);
+        }
 
         if (moveX > 0.1f) facingRight = true;
         if (moveX < -0.1f) facingRight = false;

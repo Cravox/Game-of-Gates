@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
     private GameObject ultiMeter;
     private Image ultiMeterImage;
     private int damage;
+    public int playerIndex;
     private float range;
     private float ultiProfit;
 
@@ -23,7 +24,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Destroy(this.gameObject, range);
-        ultiMeter = GameObject.Find("Ultimeter");
+        ultiMeter = GameObject.Find("Ultimeter_"+this.playerIndex);
         ultiMeterImage = ultiMeter.GetComponent<Image>();
     }
     
