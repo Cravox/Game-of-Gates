@@ -1364,6 +1364,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
+        type: 2}
+      propertyPath: shootFrequence
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 580e175e8afabcd4cb99717d9d7e1455, type: 2}
   m_IsPrefabParent: 0
@@ -1452,6 +1462,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1951893060 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1580077410079674, guid: 147803ebc95b12b4681001dc8dd6ffa6,
@@ -1462,6 +1473,8 @@ AudioSource:
   m_PrefabParentObject: {fileID: 82475413391425744, guid: 147803ebc95b12b4681001dc8dd6ffa6,
     type: 2}
   m_PrefabInternal: {fileID: 1309193342}
+=======
+>>>>>>> Sascha
 --- !u!1001 &1994037182
 Prefab:
   m_ObjectHideFlags: 0
@@ -1501,6 +1514,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 114862502567073936, guid: 583e92b024f388340a4024f02872857c,
         type: 2}
       propertyPath: spawnPlayer
@@ -1511,6 +1525,12 @@ Prefab:
       propertyPath: ultiMeter
       value: 
       objectReference: {fileID: 856656729}
+=======
+    - target: {fileID: 1580077410079674, guid: 583e92b024f388340a4024f02872857c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Sascha
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 583e92b024f388340a4024f02872857c, type: 2}
   m_IsPrefabParent: 0

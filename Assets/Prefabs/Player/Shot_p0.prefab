@@ -116,8 +116,9 @@ MonoBehaviour:
   normalRange: 4
   normalUltiProfit: 0.02
   spreadDamage: 2
-  spreadRange: 0.3
+  spreadRange: 0.5
   spreadUltiProfit: 0.02
+  playerIndex: 0
 --- !u!136 &136890187807445064
 CapsuleCollider:
   m_ObjectHideFlags: 1
