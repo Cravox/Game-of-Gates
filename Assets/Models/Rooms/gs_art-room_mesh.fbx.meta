@@ -1,58 +1,23 @@
 fileFormatVersion: 2
-guid: b80f6351d18afe948b25b762d79c1bb4
+guid: 95d6e449591963e498f94c8216830257
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: group
-    100002: pasted__pCube42
-    100004: pasted__pCube43
-    100006: pCube1
-    100008: pCube14
-    100010: pCube15
-    100012: pCube16
-    100014: polySurface11
-    100016: pPlane1
-    100018: pPlane2
-    100020: pSphere18
-    100022: pSphere7
-    100024: //RootNode
-    100026: transform1
-    100028: transform10
-    100030: transform2
-    100032: transform3
-    100034: transform4
-    100036: transform5
-    100038: transform6
-    100040: transform7
-    100042: transform8
-    100044: transform9
-    400000: group
-    400002: pasted__pCube42
-    400004: pasted__pCube43
-    400006: pCube1
-    400008: pCube14
-    400010: pCube15
-    400012: pCube16
-    400014: polySurface11
-    400016: pPlane1
-    400018: pPlane2
-    400020: pSphere18
-    400022: pSphere7
-    400024: //RootNode
-    400026: transform1
-    400028: transform10
-    400030: transform2
-    400032: transform3
-    400034: transform4
-    400036: transform5
-    400038: transform6
-    400040: transform7
-    400042: transform8
-    400044: transform9
-    2100000: lambert1
-    2300000: pSphere18
-    3300000: pSphere18
-    4300000: pSphere18
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Metal
+    2100002: Furniture
+    2100004: lambert1
+    2100006: DoorFrame
+    2100008: Wall
+    2100010: Floor
+    2100012: DeckenRahmen
+    2100014: Decke
+    2100016: LichtLamellen
+    2100018: "Leuchtstoffr\xF6hren"
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: polySurface13
   externalObjects: {}
   materials:
     importMaterials: 1

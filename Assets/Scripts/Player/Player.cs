@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
         {
-            print("hola");
             jumping = true;
         }
     }
@@ -127,6 +126,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy"))
         {
+            allMyAudioSources[1].Play();
             StartCoroutine("Flash");
             StartCoroutine("InvincibleFrames");
         }
@@ -136,7 +136,6 @@ public class Player : MonoBehaviour
     {
         if (hp <= 0)
         {
-            allMyAudioSources[1].Play();
             Instantiate(ghost, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }

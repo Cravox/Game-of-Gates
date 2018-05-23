@@ -10,23 +10,20 @@ public class Weapon : MonoBehaviour
     public GameObject bullet;
     public GameObject ultimateBullet;
     public Transform spawnSpreadUltimate;
-    
-
     public int playerIndex;
     public int spreadUltimateNumber = 8;
     public int bulletForce = 250;
 
-    private bool facingRight;
-   
+    private AudioSource audio;
     private float ultimateProfit = 0.02f;
     private float shootFrequency = 0.14f;
     private float shootTimer = 0;
-
     private bool defaultFire = true;
+    private bool facingRight;
 
     void Start()
     {
-        
+        audio = this.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -38,7 +35,11 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetButton("Fire_" + this.playerIndex))
         {
-            this.GetComponent<AudioSource>().Play();
+            if (!audio.isPlaying)
+            {
+                audio.Play();
+            }
+
             Shoot();
         }
 

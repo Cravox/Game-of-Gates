@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Enemy : MonoBehaviour
+public class Jussi_yoshiEgg : MonoBehaviour
 {
     private Rigidbody rb;
     private Animator anim;
