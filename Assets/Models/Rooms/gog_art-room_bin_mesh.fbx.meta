@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: 8c6025c3acfe2f943a58bca4f18fd8cc
+guid: 1ee33225d6a4a184b8cb3c5c1485fc2d
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
+    2100000: blinn3
+    2100002: Material_bincap
+    2100004: Material_trashsack
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube40
+    4300000: pCylinder4
   externalObjects: {}
   materials:
     importMaterials: 1
