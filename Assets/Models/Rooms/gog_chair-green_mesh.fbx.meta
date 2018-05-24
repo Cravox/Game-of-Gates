@@ -1,14 +1,32 @@
 fileFormatVersion: 2
-guid: 030818bc01e9ca1428665a7b06c858e6
+guid: 2b6b8dce8098478468fa3c667be22cdb
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCube4
+    100004: pCylinder21
+    100006: pCylinder25
+    100008: pCylinder4
+    100010: transform3
+    100012: transform4
+    100014: transform5
     400000: //RootNode
-    2100000: 02 - Default
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Rafi Reference001
+    400002: pCube4
+    400004: pCylinder21
+    400006: pCylinder25
+    400008: pCylinder4
+    400010: transform3
+    400012: transform4
+    400014: transform5
+    2100000: Material_Rollen1
+    2100002: Material_Rollen2
+    2100004: "Material_Fu\xDF"
+    2100006: Material_Sitz
+    2100008: Material_Metal
+    2300000: pCylinder25
+    3300000: pCylinder25
+    4300000: pCylinder25
   externalObjects: {}
   materials:
     importMaterials: 1
