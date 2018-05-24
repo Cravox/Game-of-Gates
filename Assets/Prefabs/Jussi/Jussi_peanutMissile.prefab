@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 136310456863474626}
   - component: {fileID: 54648429881036584}
   - component: {fileID: 114943718003370858}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Jussi_peanutMissile
   m_TagString: PeanutMissile
   m_Icon: {fileID: 0}
