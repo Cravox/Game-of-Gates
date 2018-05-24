@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4632352743935058, guid: 147803ebc95b12b4681001dc8dd6ffa6, type: 2}
-  speed: 2
-  rotateSpeed: 50
+  speed: 1
+  rotateSpeed: 25
   activationTime: 0.2
   hp: 5
 --- !u!136 &136310456863474626

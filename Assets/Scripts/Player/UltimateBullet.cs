@@ -46,5 +46,10 @@ public class UltimateBullet : MonoBehaviour
         {
             col.gameObject.GetComponent<Jussi>().hp -= damage;
         }
+
+        if(col.gameObject.CompareTag("PeanutMissile"))
+        {
+            col.gameObject.GetComponent<Jussi_peanutMissile>().hp -= damage;
+        }
     }
 }

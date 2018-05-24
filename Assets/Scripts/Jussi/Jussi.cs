@@ -15,20 +15,25 @@ public class Jussi : MonoBehaviour
     public int hp;
     public int yoshiEggNumber = 4;
     public int peanutMissileNumber = 3;
+    public int peanutMissileSequences = 2;
+    public float peanutMissileSpawnSequenceDelay = 1;
     public float yoshiEggFrequency = 1f;
     public float peanutMissileForce = 100f;
     public float yoshiEggSpeed = 250f;
+    public float attackDelay = 3;
 
     private Animator anim;
     private int phase = 1;
     private int yoshiEggCounter = 0;
     private float moveY;
+    private float peanutMissileSpawnTimer = 0;
+    public float attackDelayTimer;
     private float shootTimer;
-    private bool defaultAttack = true;
+    public bool defaultAttack = true;
 
     void Awake()
     {
-
+        attackDelayTimer = attackDelay;
     }
 
     void Update()
@@ -56,10 +61,9 @@ public class Jussi : MonoBehaviour
 
     void PhaseOne()
     {
-        //float attackDelay = 0;
-        //attackDelay += Time.deltaTime;
+        attackDelayTimer += Time.deltaTime;
 
-        if (defaultAttack)
+        if (defaultAttack && attackDelayTimer >= attackDelay)
         {
             shootTimer += Time.deltaTime;
             Vector3 spawn = yoshiEggSpawnPosition.transform.position;
@@ -73,26 +77,33 @@ public class Jussi : MonoBehaviour
                 if (yoshiEggCounter >= yoshiEggNumber)
                 {
                     defaultAttack = false;
+                    attackDelayTimer = 0;
                 }
+
                 shootTimer -= yoshiEggFrequency;
             }
+
         }
-        else
+        else if (!defaultAttack && attackDelayTimer >= attackDelay)
         {
+            peanutMissileSpawnTimer += Time.deltaTime;
             Vector3 spawn = peanutMissileSpawnPosition.transform.position;
             GameObject[] peanutMissiles = new GameObject[peanutMissileNumber];
-            float missileAngle = -0.9f;
-            {
-                for (int i = 0; i < peanutMissiles.Length; i++)
-                {
-                    peanutMissiles[i] = Instantiate(peanutMissile, spawn, Quaternion.identity);
-                    peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
 
-                    missileAngle += 0.9f;
+            float missileAngle = -0.9f;
+            for (int i = 0; i < peanutMissileSequences; i++)
+            {
+                if (peanutMissileSpawnTimer >= peanutMissileSpawnSequenceDelay)
+                {
+                    for (int e = 0; e < peanutMissiles.Length; e++)
+                    {
+                        peanutMissiles[e] = Instantiate(peanutMissile, spawn, Quaternion.identity);
+                        peanutMissiles[e].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
+                        missileAngle += 0.9f;
+                    }
                 }
             }
             yoshiEggCounter = 0;
-            defaultAttack = true;
         }
 
     }
