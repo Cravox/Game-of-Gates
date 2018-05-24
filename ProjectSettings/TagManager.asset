@@ -9,6 +9,8 @@ TagManager:
   - Bullet
   - bulletEnemy
   - deadPlayer
+  - Parry
+  - PeanutMissile
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - obstacleSpawn
   - Platform
   - Invincible
-  - 
+  - PeanutMissile
   - 
   - 
   - 
