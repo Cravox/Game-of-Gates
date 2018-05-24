@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class InitiateObstacle : MonoBehaviour
 {
-    private float initTimer;
     public float shootFrequence;
-    private Rigidbody rb;
+    public GameObject flipNormal;
 
+    private float initTimer;
+    private Rigidbody rb;
     private float speed;
+
 
     void Awake()
     {
@@ -25,8 +27,7 @@ public class InitiateObstacle : MonoBehaviour
         
         if(initTimer < 0)
         {
-            GameObject obstacleRessource = (GameObject)Resources.Load("Obstacle_1");
-            GameObject obstacleInstance = Object.Instantiate(obstacleRessource, this.transform.position, this.transform.rotation);
+            Instantiate(flipNormal, this.transform.position, this.transform.rotation);
 
             initTimer = shootFrequence;
         }

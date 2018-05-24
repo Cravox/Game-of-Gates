@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy"))
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy") || col.gameObject.CompareTag("PeanutMissile"))
         {
             allMyAudioSources[1].Play();
             StartCoroutine("Flash");
@@ -218,8 +218,10 @@ public class Player : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             ren.enabled = false;
+            GetComponentInChildren<MeshRenderer>().enabled = false;
             yield return new WaitForSeconds(.1f);
             ren.enabled = true;
+            GetComponentInChildren<MeshRenderer>().enabled = true;
             yield return new WaitForSeconds(.1f);
         }
     }

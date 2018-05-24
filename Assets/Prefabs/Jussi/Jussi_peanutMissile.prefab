@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114943718003370858}
   m_Layer: 11
   m_Name: Jussi_peanutMissile
-  m_TagString: bulletEnemy
+  m_TagString: PeanutMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc399279af1802041a69eeef74b19a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 4632352743935058, guid: 147803ebc95b12b4681001dc8dd6ffa6, type: 2}
   speed: 2
   rotateSpeed: 50
+  activationTime: 0.2
   hp: 5
 --- !u!136 &136310456863474626
 CapsuleCollider:

@@ -65,5 +65,11 @@ public class Bullet : MonoBehaviour
             col.gameObject.GetComponent<Jussi>().hp -= damage;
             Destroy(this.gameObject);
         }
+
+        if (col.gameObject.CompareTag("PeanutMissile"))
+        {
+            Destroy(this.gameObject);
+            col.gameObject.GetComponent<Jussi_peanutMissile>().hp -= damage;
+        }
     }
 }

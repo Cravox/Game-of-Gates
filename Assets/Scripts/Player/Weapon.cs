@@ -49,42 +49,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void UltimateShot()
-    {
-        facingRight = gameObject.GetComponentInParent<Player>().FacingRight;
-
-        int inv = facingRight ? 1 : -1;
-
-        if(ultiMeter.fillAmount == 1 && defaultFire)
-        {
-            Vector3 spawn = shotSpawnPosition.transform.position;
-
-            ultiMeter.fillAmount = 0;
-            GameObject ultimateBulletInstance = Instantiate(ultimateBullet, spawn, Quaternion.identity);
-            ultimateBulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(inv, 0, 0) * bulletForce);
-        }
-
-        if(ultiMeter.fillAmount == 1 && !defaultFire)
-        {
-            GameObject[] spreadUltimateBullets = new GameObject[spreadUltimateNumber];
-
-            float bulletAngleInc = Mathf.Deg2Rad * (360 / spreadUltimateNumber);
-
-            float bulletAngle = 0f;
-
-            ultiMeter.fillAmount = 0;
-
-            for(int i = 0; i < spreadUltimateBullets.Length; i++)
-            {
-                spreadUltimateBullets[i] = Instantiate(ultimateBullet, spawnSpreadUltimate.position, Quaternion.identity);
-                spreadUltimateBullets[i].GetComponent<Rigidbody>().AddForce(new Vector3(Mathf.Cos(bulletAngle), Mathf.Sin(bulletAngle), 0) * bulletForce);
-                spreadUltimateBullets[i].GetComponent<UltimateBullet>().Initialize(UltimateBullet.Type.SPREAD);
-                bulletAngle += bulletAngleInc;
-            }
-        }
-        
-    }
-
     private void Shoot()
     {
         facingRight = gameObject.GetComponentInParent<Player>().FacingRight;
@@ -121,4 +85,41 @@ public class Weapon : MonoBehaviour
         }
 
     }
+
+    public void UltimateShot()
+    {
+        facingRight = gameObject.GetComponentInParent<Player>().FacingRight;
+
+        int inv = facingRight ? 1 : -1;
+
+        if(ultiMeter.fillAmount == 1 && defaultFire)
+        {
+            Vector3 spawn = shotSpawnPosition.transform.position;
+
+            ultiMeter.fillAmount = 0;
+            GameObject ultimateBulletInstance = Instantiate(ultimateBullet, spawn, Quaternion.identity);
+            ultimateBulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(inv, 0, 0) * bulletForce);
+        }
+
+        if(ultiMeter.fillAmount == 1 && !defaultFire)
+        {
+            GameObject[] spreadUltimateBullets = new GameObject[spreadUltimateNumber];
+
+            float bulletAngleInc = Mathf.Deg2Rad * (360 / spreadUltimateNumber);
+
+            float bulletAngle = 0f;
+
+            ultiMeter.fillAmount = 0;
+
+            for(int i = 0; i < spreadUltimateBullets.Length; i++)
+            {
+                spreadUltimateBullets[i] = Instantiate(ultimateBullet, spawnSpreadUltimate.position, Quaternion.identity);
+                spreadUltimateBullets[i].GetComponent<Rigidbody>().AddForce(new Vector3(Mathf.Cos(bulletAngle), Mathf.Sin(bulletAngle), 0) * bulletForce);
+                spreadUltimateBullets[i].GetComponent<UltimateBullet>().Initialize(UltimateBullet.Type.SPREAD);
+                bulletAngle += bulletAngleInc;
+            }
+        }
+        
+    }
+
 }
