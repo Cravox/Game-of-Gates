@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jussi_flipNormals : MonoBehaviour
 {
+    public float speed = 2f;
     public GameObject blackHole;
     private Rigidbody rb;
     
@@ -14,7 +15,7 @@ public class Jussi_flipNormals : MonoBehaviour
     }
     void Update()
     {
-        this.rb.velocity = new Vector3(0, -5, 0);
+        this.rb.velocity = new Vector3(0, -1, 0) *speed;
     }
 
     void OnTriggerEnter(Collider col)
@@ -29,10 +30,5 @@ public class Jussi_flipNormals : MonoBehaviour
         {
             Instantiate(blackHole, new Vector3(this.transform.position.x, -0.574f, 0), Quaternion.identity);
         }
-    }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        
     }
 }

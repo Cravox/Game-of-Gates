@@ -54,6 +54,7 @@ public class Jussi : MonoBehaviour
         if (this.hp <= criticalPhaseTrigger)
         {
             regularPhase = false;
+            flipNormalsLifeTimeCounter = -1f;
         }
 
         if (regularPhase)
@@ -160,7 +161,6 @@ public class Jussi : MonoBehaviour
 
         if(circleLaserLifeTimeCounter >= circleLaserLifeTime)
         {
-            print("Lukas stinkt nach Serkan");
             circleLaserInstantiate.SetActive(false);
             critAttack = 1;
             flipNormalsLifeTimeCounter = -0.5f;

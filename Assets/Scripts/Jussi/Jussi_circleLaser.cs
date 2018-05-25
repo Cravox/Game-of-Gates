@@ -12,7 +12,7 @@ public class Jussi_circleLaser : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        target = GameObject.Find("Player_0").GetComponent<Transform>();
+        target = GameObject.Find("gatetest_0").GetComponent<Transform>();
         Vector3 direction = (Vector3)target.position - rb.position;
         direction.Normalize();
         rb.velocity = direction * speed;
