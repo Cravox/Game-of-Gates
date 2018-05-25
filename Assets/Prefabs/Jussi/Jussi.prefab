@@ -248,8 +248,8 @@ MonoBehaviour:
   peanutMissileNumber: 3
   peanutMissileFrequency: 2
   peanutMissileForce: 500
-  flipNormalsLifeTime: 4
-  circleLaserLifeTime: 4
+  flipNormalsLifeTime: 8
+  circleLaserLifeTime: 8
 --- !u!136 &136383290206316510
 CapsuleCollider:
   m_ObjectHideFlags: 1

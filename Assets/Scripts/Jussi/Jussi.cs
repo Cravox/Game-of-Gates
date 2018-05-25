@@ -43,6 +43,7 @@ public class Jussi : MonoBehaviour
     private bool regularPhase = true;
     private bool firstPhase = true;
     private float attackDelay = 0;
+    private float delay = 0;
 
     void Update()
     {
@@ -54,7 +55,6 @@ public class Jussi : MonoBehaviour
         if (this.hp <= criticalPhaseTrigger)
         {
             regularPhase = false;
-            flipNormalsLifeTimeCounter = -1f;
         }
 
         if (regularPhase)
@@ -118,9 +118,9 @@ public class Jussi : MonoBehaviour
 
         GameObject[] peanutMissiles = new GameObject[peanutMissileNumber];
         float missileAngle = -0.4f;
-        if(shootTimer >= peanutMissileFrequency)
+        if (shootTimer >= peanutMissileFrequency)
         {
-            for(int i = 0; i < peanutMissiles.Length; i++)
+            for (int i = 0; i < peanutMissiles.Length; i++)
             {
                 peanutMissiles[i] = Instantiate(peanutMissile, spawn, Quaternion.identity);
                 peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
@@ -130,7 +130,7 @@ public class Jussi : MonoBehaviour
             shootTimer -= peanutMissileFrequency;
         }
 
-        if(peanutMissileCounter == 2)
+        if (peanutMissileCounter == 2)
         {
             shootTimer = -2f;
             yoshiEggFrequency = 1;
@@ -142,28 +142,37 @@ public class Jussi : MonoBehaviour
 
     void CritAttackOne()
     {
-        flipNormalInstantiate.SetActive(true);
-        flipNormalsLifeTimeCounter += Time.deltaTime;
-
-        if(flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
+        delay += Time.deltaTime;
+        if (delay >= 2f)
         {
-            flipNormalInstantiate.SetActive(false);
-            critAttack = 2;
-            circleLaserLifeTimeCounter = -0.5f;
+            flipNormalInstantiate.SetActive(true);
+            flipNormalsLifeTimeCounter += Time.deltaTime;
+            print(flipNormalsLifeTimeCounter);
+            if (flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
+            {
+                flipNormalInstantiate.SetActive(false);
+                critAttack = 2;
+                circleLaserLifeTimeCounter = 0;
+                delay = 0;
+            }
         }
 
     }
 
     void CritAttackTwo()
     {
-        circleLaserInstantiate.SetActive(true);
-        circleLaserLifeTimeCounter += Time.deltaTime;
-
-        if(circleLaserLifeTimeCounter >= circleLaserLifeTime)
+        delay += Time.deltaTime;
+        if (delay >= 2f)
         {
-            circleLaserInstantiate.SetActive(false);
-            critAttack = 1;
-            flipNormalsLifeTimeCounter = -0.5f;
+            circleLaserInstantiate.SetActive(true);
+            circleLaserLifeTimeCounter += Time.deltaTime;
+
+            if (circleLaserLifeTimeCounter >= circleLaserLifeTime)
+            {
+                circleLaserInstantiate.SetActive(false);
+                critAttack = 1;
+                flipNormalsLifeTimeCounter = 0;
+            }
         }
 
     }

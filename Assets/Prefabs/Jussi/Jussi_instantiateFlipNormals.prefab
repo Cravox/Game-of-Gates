@@ -80,5 +80,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a0790eb3ec8b48957783382c2db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootFrequency: 1
+  shootFrequency: 0.8
   flipNormal: {fileID: 1654362061080872, guid: afe6240b03e85494fbf59b11e916130a, type: 2}

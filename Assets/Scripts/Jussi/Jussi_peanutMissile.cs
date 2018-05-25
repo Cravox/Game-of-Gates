@@ -18,11 +18,16 @@ public class Jussi_peanutMissile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        target = GameObject.Find("gatetest_0").GetComponent<Transform>();
+        target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
     }
 
     void Update()
     {
+        if (target == null)
+        {
+            target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        }
+
         activationTimer += Time.deltaTime;
         if (this.hp <= 0) Destroy(this.gameObject);
     }
