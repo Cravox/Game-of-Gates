@@ -8,7 +8,7 @@ public class Jussi_peanutMissile : MonoBehaviour
 {
     public Transform target;
     public float speed = 1f;
-    public float rotateSpeed = 30f;
+    public float rotateSpeed = 25f;
     public float activationTime = 0.2f;
     public int hp = 5;
 
@@ -18,13 +18,12 @@ public class Jussi_peanutMissile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        target = GameObject.Find("Player_0").GetComponent<Transform>();
+        target = GameObject.Find("gatetest_0").GetComponent<Transform>();
     }
 
     void Update()
     {
         activationTimer += Time.deltaTime;
-
         if (this.hp <= 0) Destroy(this.gameObject);
     }
 

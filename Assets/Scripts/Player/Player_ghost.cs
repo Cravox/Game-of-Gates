@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ghostScript : MonoBehaviour {
+public class Player_ghost : MonoBehaviour {
 
 	// Use this for initialization
 	void Start ()

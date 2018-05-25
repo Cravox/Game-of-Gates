@@ -11,6 +11,7 @@ TagManager:
   - deadPlayer
   - Parry
   - PeanutMissile
+  - Ballon
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,7 @@ public class Jussi_flipNormals : MonoBehaviour
 
         if(col.gameObject.CompareTag("Ground"))
         {
-            Instantiate(blackHole, new Vector3(this.transform.position.x, -0.71f, 0), Quaternion.identity);
+            Instantiate(blackHole, new Vector3(this.transform.position.x, -0.574f, 0), Quaternion.identity);
         }
     }
 

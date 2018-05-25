@@ -7,34 +7,42 @@ public class Jussi : MonoBehaviour
 
     public GameObject yoshiEgg;
     public GameObject peanutMissile;
-    public GameObject flipNormal;
-    public GameObject circleLaser;
+    public GameObject flipNormalInstantiate;
+    public GameObject circleLaserInstantiate;
     public Transform instantiate;
     public Transform yoshiEggSpawnPosition;
     public Transform peanutMissileSpawnPosition;
     public int hp;
+    public int criticalPhaseTrigger = 400;
+
     public int yoshiEggNumber = 4;
-    public int peanutMissileNumber = 3;
-    public int peanutMissileSequences = 2;
-    public float peanutMissileSpawnSequenceDelay = 1;
-    public float yoshiEggFrequency = 1f;
-    public float peanutMissileForce = 100f;
     public float yoshiEggSpeed = 250f;
-    public float attackDelay = 3;
+    public float yoshiEggFrequency = 1f;
+    public float yoshiEggFastFrequency = 0.6f;
+
+    public int peanutMissileNumber = 3;
+    public float peanutMissileFrequency = 2;
+    public float peanutMissileForce = 100f;
+
+    public float flipNormalsLifeTime = 4f;
+
+    public float circleLaserLifeTime = 4f;
+
 
     private Animator anim;
-    private int phase = 1;
+    private int attack = 1;
+    private int critAttack = 1;
     private int yoshiEggCounter = 0;
+    private int peanutMissileCounter = 0;
+    private float circleLaserLifeTimeCounter = 0;
+    private float flipNormalsLifeTimeCounter = 0;
     private float moveY;
     private float peanutMissileSpawnTimer = 0;
-    public float attackDelayTimer;
-    private float shootTimer;
-    public bool defaultAttack = true;
-
-    void Awake()
-    {
-        attackDelayTimer = attackDelay;
-    }
+    private float shootTimer = 0;
+    private bool defaultShot = true;
+    private bool regularPhase = true;
+    private bool firstPhase = true;
+    private float attackDelay = 0;
 
     void Update()
     {
@@ -43,73 +51,120 @@ public class Jussi : MonoBehaviour
             Destroy(this.gameObject, 0.2f);
         }
 
-        if (this.hp <= 400)
+        if (this.hp <= criticalPhaseTrigger)
         {
-            phase = 2;
+            regularPhase = false;
         }
 
-        switch (phase)
+        if (regularPhase)
         {
-            case 1:
-                PhaseOne();
-                break;
-            case 2:
-                PhaseTwo();
-                break;
+            switch (attack)
+            {
+                case 1:
+                    AttackOne();
+                    break;
+                case 2:
+                    AttackTwo();
+                    break;
+            }
+        }
+        else
+        {
+            switch (critAttack)
+            {
+                case 1:
+                    CritAttackOne();
+                    break;
+                case 2:
+                    CritAttackTwo();
+                    break;
+            }
         }
     }
 
-    void PhaseOne()
+    void AttackOne()
     {
-        attackDelayTimer += Time.deltaTime;
-
-        if (defaultAttack && attackDelayTimer >= attackDelay)
+        Vector3 spawn = yoshiEggSpawnPosition.transform.position;
+        shootTimer += Time.deltaTime;
+        if (shootTimer >= yoshiEggFrequency && yoshiEggCounter < yoshiEggNumber)
         {
-            shootTimer += Time.deltaTime;
-            Vector3 spawn = yoshiEggSpawnPosition.transform.position;
+            GameObject yoshiEggInstance = Instantiate(yoshiEgg, spawn, Quaternion.identity);
+            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
+            yoshiEggCounter += 1;
+            shootTimer -= yoshiEggFrequency;
 
-            if (shootTimer >= yoshiEggFrequency && yoshiEggCounter < yoshiEggNumber)
+            if (yoshiEggCounter == 4 && firstPhase)
             {
-                GameObject yoshiEggInstance = Instantiate(yoshiEgg, spawn, Quaternion.identity);
-                yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
-                yoshiEggCounter += 1;
-
-                if (yoshiEggCounter >= yoshiEggNumber)
-                {
-                    defaultAttack = false;
-                    attackDelayTimer = 0;
-                }
-
-                shootTimer -= yoshiEggFrequency;
+                firstPhase = false;
+                yoshiEggCounter = 0;
+                yoshiEggFrequency = yoshiEggFastFrequency;
+                shootTimer = -1f;
             }
 
+            if (yoshiEggCounter == 4 && !firstPhase)
+            {
+                shootTimer = 0;
+                yoshiEggCounter = 0;
+                attack = 2;
+            }
         }
-        else if (!defaultAttack && attackDelayTimer >= attackDelay)
-        {
-            peanutMissileSpawnTimer += Time.deltaTime;
-            Vector3 spawn = peanutMissileSpawnPosition.transform.position;
-            GameObject[] peanutMissiles = new GameObject[peanutMissileNumber];
+    }
 
-            float missileAngle = -0.9f;
-            for (int i = 0; i < peanutMissileSequences; i++)
+    void AttackTwo()
+    {
+        shootTimer += Time.deltaTime;
+        Vector3 spawn = peanutMissileSpawnPosition.transform.position;
+
+        GameObject[] peanutMissiles = new GameObject[peanutMissileNumber];
+        float missileAngle = -0.4f;
+        if(shootTimer >= peanutMissileFrequency)
+        {
+            for(int i = 0; i < peanutMissiles.Length; i++)
             {
-                if (peanutMissileSpawnTimer >= peanutMissileSpawnSequenceDelay)
-                {
-                    for (int e = 0; e < peanutMissiles.Length; e++)
-                    {
-                        peanutMissiles[e] = Instantiate(peanutMissile, spawn, Quaternion.identity);
-                        peanutMissiles[e].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
-                        missileAngle += 0.9f;
-                    }
-                }
+                peanutMissiles[i] = Instantiate(peanutMissile, spawn, Quaternion.identity);
+                peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
+                missileAngle += 0.4f;
             }
-            yoshiEggCounter = 0;
+            peanutMissileCounter += 1;
+            shootTimer -= peanutMissileFrequency;
+        }
+
+        if(peanutMissileCounter == 2)
+        {
+            shootTimer = -2f;
+            yoshiEggFrequency = 1;
+            firstPhase = true;
+            peanutMissileCounter = 0;
+            attack = 1;
+        }
+    }
+
+    void CritAttackOne()
+    {
+        flipNormalInstantiate.SetActive(true);
+        flipNormalsLifeTimeCounter += Time.deltaTime;
+
+        if(flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
+        {
+            flipNormalInstantiate.SetActive(false);
+            critAttack = 2;
+            circleLaserLifeTimeCounter = -0.5f;
         }
 
     }
 
-    void PhaseTwo()
+    void CritAttackTwo()
     {
-        print("PHASE 2 STARTS");
+        circleLaserInstantiate.SetActive(true);
+        circleLaserLifeTimeCounter += Time.deltaTime;
+
+        if(circleLaserLifeTimeCounter >= circleLaserLifeTime)
+        {
+            print("Lukas stinkt nach Serkan");
+            circleLaserInstantiate.SetActive(false);
+            critAttack = 1;
+            flipNormalsLifeTimeCounter = -0.5f;
+        }
+
     }
 }

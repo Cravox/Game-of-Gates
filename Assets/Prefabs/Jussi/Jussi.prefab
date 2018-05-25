@@ -46,6 +46,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1278044026855154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4011568004500388}
+  m_Layer: 0
+  m_Name: peanutMissileSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1441769298538558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4035726071357510}
+  m_Layer: 0
+  m_Name: peanutMissileSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1468344055811412
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +91,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4011568004500388
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278044026855154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.295, y: 3.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4303330892780516}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4035726071357510
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1441769298538558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.295, y: 3.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4303330892780516}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4303330892780516
 Transform:
   m_ObjectHideFlags: 1
@@ -68,11 +124,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276267793336284}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.53, y: -0.732, z: 0}
+  m_LocalPosition: {x: 3.19, y: -0.732, z: 0}
   m_LocalScale: {x: 1, y: 0.8234976, z: 1}
   m_Children:
   - {fileID: 4697121577462270}
+  - {fileID: 4035726071357510}
   - {fileID: 4520972336334132}
+  - {fileID: 4011568004500388}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -87,7 +145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4303330892780516}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4697121577462270
 Transform:
@@ -176,22 +234,22 @@ MonoBehaviour:
   yoshiEgg: {fileID: 1227354697214556, guid: eff73f781b8b41e45a641bdf69390959, type: 2}
   peanutMissile: {fileID: 1926035834539060, guid: 95a5ece3fdca192498d6118dadde68b7,
     type: 2}
-  flipNormal: {fileID: 1654362061080872, guid: afe6240b03e85494fbf59b11e916130a, type: 2}
-  circleLaser: {fileID: 0}
+  flipNormalInstantiate: {fileID: 0}
+  circleLaserInstantiate: {fileID: 0}
   instantiate: {fileID: 0}
   yoshiEggSpawnPosition: {fileID: 4697121577462270}
-  peanutMissileSpawnPosition: {fileID: 4520972336334132}
+  peanutMissileSpawnPosition: {fileID: 4035726071357510}
   hp: 1200
+  criticalPhaseTrigger: 400
   yoshiEggNumber: 4
-  peanutMissileNumber: 3
-  peanutMissileSequences: 2
-  peanutMissileSpawnSequenceDelay: 1
-  yoshiEggFrequency: 1
-  peanutMissileForce: 500
   yoshiEggSpeed: 250
-  attackDelay: 3
-  attackDelayTimer: 0
-  defaultAttack: 1
+  yoshiEggFrequency: 1
+  yoshiEggFastFrequency: 0.6
+  peanutMissileNumber: 3
+  peanutMissileFrequency: 2
+  peanutMissileForce: 500
+  flipNormalsLifeTime: 4
+  circleLaserLifeTime: 4
 --- !u!136 &136383290206316510
 CapsuleCollider:
   m_ObjectHideFlags: 1
