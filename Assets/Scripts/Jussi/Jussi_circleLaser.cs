@@ -5,9 +5,10 @@ using UnityEngine;
 public class Jussi_circleLaser : MonoBehaviour
 {
     public Transform target;
-    public float speed = 1f;
+    public float speed = 2f;
 
     private Rigidbody rb;
+    private bool defaultTarget = true;
 
     void Start()
     {
@@ -23,8 +24,17 @@ public class Jussi_circleLaser : MonoBehaviour
     {
         if(target == null)
         {
+            defaultTarget = !defaultTarget;
+        }
+
+        if(defaultTarget)
+        {
+            target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
+        }else
+        {
             target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
         }
+
     }
 
     void OnTriggerEnter(Collider col)

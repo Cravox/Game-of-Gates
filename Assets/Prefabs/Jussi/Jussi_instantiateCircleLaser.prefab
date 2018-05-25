@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleLaserDelay: 0.1
-  shootFrequency: 0.5
+  shootFrequency: 0.6
   circleLaser: {fileID: 1261082142693068, guid: 4c0241852f5591f4eb7d719210265fe6,
     type: 2}
 --- !u!136 &136812142525859254

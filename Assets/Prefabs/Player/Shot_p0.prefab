@@ -114,10 +114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalDamage: 4
   normalRange: 4
-  normalUltiProfit: 0.02
+  normalUltiProfit: 0.01
   spreadDamage: 2
   spreadRange: 0.5
-  spreadUltiProfit: 0.02
+  spreadUltiProfit: 0.01
   playerIndex: 0
 --- !u!136 &136890187807445064
 CapsuleCollider:

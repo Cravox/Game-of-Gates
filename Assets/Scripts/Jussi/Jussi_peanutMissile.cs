@@ -12,20 +12,28 @@ public class Jussi_peanutMissile : MonoBehaviour
     public float activationTime = 0.2f;
     public int hp = 5;
 
+    public bool defaultTarget = true;
     private float activationTimer = 0;
     private Rigidbody rb;
     
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
     }
 
     void Update()
     {
-        if (target == null)
+        if(defaultTarget)
+        {
+            target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
+        }else
         {
             target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        }
+
+        if(target == null)
+        {
+            defaultTarget = !defaultTarget;
         }
 
         activationTimer += Time.deltaTime;
@@ -47,6 +55,11 @@ public class Jussi_peanutMissile : MonoBehaviour
     void OnTriggerEnter(Collider col)
 
     {
+        if(col.gameObject.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
+
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player>().hp -= 1;

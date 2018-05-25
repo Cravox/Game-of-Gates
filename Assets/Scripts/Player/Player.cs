@@ -150,9 +150,9 @@ public class Player : MonoBehaviour
     {
         //rotate character
         if (facingRight) {
-            this.transform.localEulerAngles = new Vector3(0, 270, 0);
-        } else {
             this.transform.localEulerAngles = new Vector3(0, 90, 0);
+        } else {
+            this.transform.localEulerAngles = new Vector3(0, 270, 0);
         }
     }
 

@@ -177,7 +177,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766088251216910}
-  m_Mesh: {fileID: 4300000, guid: 0970b969d16e6984b89131eb4d911b4f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 6006dc0da9fdb5b4598d39e80c7ce6bc, type: 3}
 --- !u!54 &54681045545971612
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -536,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3490aae0eb6aaca4aadde2a5cd197842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ultiMeterObject: {fileID: 0}
   ultiMeter: {fileID: 0}
   shotSpawnPosition: {fileID: 4993000480056998}
   bullet: {fileID: 1238129362583406, guid: 82f30dfced4be0d40bd30022e747e758, type: 2}
@@ -551,7 +552,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766088251216910}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7420e001c8cba784a9c52dcf8595b185, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.17120557

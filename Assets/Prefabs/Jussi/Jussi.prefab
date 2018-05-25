@@ -239,8 +239,8 @@ MonoBehaviour:
   instantiate: {fileID: 0}
   yoshiEggSpawnPosition: {fileID: 4697121577462270}
   peanutMissileSpawnPosition: {fileID: 4035726071357510}
-  hp: 1200
-  criticalPhaseTrigger: 400
+  hp: 2000
+  criticalPhaseTrigger: 700
   yoshiEggNumber: 4
   yoshiEggSpeed: 250
   yoshiEggFrequency: 1
@@ -248,8 +248,8 @@ MonoBehaviour:
   peanutMissileNumber: 3
   peanutMissileFrequency: 2
   peanutMissileForce: 500
-  flipNormalsLifeTime: 8
-  circleLaserLifeTime: 8
+  flipNormalsLifeTime: 7
+  circleLaserLifeTime: 7
 --- !u!136 &136383290206316510
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -126,11 +126,12 @@ public class Jussi : MonoBehaviour
                 peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
                 missileAngle += 0.4f;
             }
+            peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget = !peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget;
             peanutMissileCounter += 1;
             shootTimer -= peanutMissileFrequency;
         }
 
-        if (peanutMissileCounter == 2)
+        if (peanutMissileCounter == peanutMissileFrequency)
         {
             shootTimer = -2f;
             yoshiEggFrequency = 1;
@@ -147,7 +148,6 @@ public class Jussi : MonoBehaviour
         {
             flipNormalInstantiate.SetActive(true);
             flipNormalsLifeTimeCounter += Time.deltaTime;
-            print(flipNormalsLifeTimeCounter);
             if (flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
             {
                 flipNormalInstantiate.SetActive(false);
@@ -156,7 +156,6 @@ public class Jussi : MonoBehaviour
                 delay = 0;
             }
         }
-
     }
 
     void CritAttackTwo()
