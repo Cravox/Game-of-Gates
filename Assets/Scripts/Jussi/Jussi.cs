@@ -49,6 +49,8 @@ public class Jussi : MonoBehaviour
     {
         if (this.hp <= 0)
         {
+            //flipNormalInstantiate.SetActive(false);
+            //circleLaserInstantiate.SetActive(false);
             Destroy(this.gameObject, 0.2f);
         }
 
