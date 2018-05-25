@@ -727,7 +727,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 671690682}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &671690684
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2120,7 +2120,7 @@ Prefab:
     - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
         type: 2}
       propertyPath: hp
-      value: 2000
+      value: 705
       objectReference: {fileID: 0}
     - target: {fileID: 114990984977946012, guid: 580e175e8afabcd4cb99717d9d7e1455,
         type: 2}

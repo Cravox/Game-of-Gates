@@ -23,6 +23,11 @@ public class Jussi_peanutMissile : MonoBehaviour
 
     void Update()
     {
+        if(target == null)
+        {
+            defaultTarget = !defaultTarget;
+        }
+
         if(defaultTarget)
         {
             target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
@@ -31,10 +36,6 @@ public class Jussi_peanutMissile : MonoBehaviour
             target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
         }
 
-        if(target == null)
-        {
-            defaultTarget = !defaultTarget;
-        }
 
         activationTimer += Time.deltaTime;
         if (this.hp <= 0) Destroy(this.gameObject);

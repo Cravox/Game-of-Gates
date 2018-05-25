@@ -8,26 +8,10 @@ public class Jussi_circleLaser : MonoBehaviour
     public float speed = 2f;
 
     private Rigidbody rb;
-    private bool defaultTarget = true;
 
     void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
-        target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
-        Vector3 direction = (Vector3)target.position - rb.position;
-        direction.Normalize();
-        rb.velocity = direction * speed;
-        Destroy(this.gameObject, 10f);
-    }
-
-    void Update()
-    {
-        if(target == null)
-        {
-            defaultTarget = !defaultTarget;
-        }
-
-        if(defaultTarget)
+        if(GameObject.Find("hitTarget_0") != null)
         {
             target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
         }else
@@ -35,6 +19,21 @@ public class Jussi_circleLaser : MonoBehaviour
             target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
         }
 
+        rb = this.GetComponent<Rigidbody>();
+        Vector3 direction = (Vector3)target.position - rb.position;
+        direction.Normalize();
+
+        rb.velocity = direction * speed;
+        Destroy(this.gameObject, 3f);
+    }
+
+    void Update()
+    {
+
+    }
+
+    private void FixedUpdate()
+    {
     }
 
     void OnTriggerEnter(Collider col)

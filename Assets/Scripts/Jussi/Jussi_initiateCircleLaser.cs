@@ -33,9 +33,7 @@ public class Jussi_initiateCircleLaser : MonoBehaviour
         {
             Instantiate(circleLaser, this.transform.position, this.transform.rotation);
             initTimer -= shootFrequency;
-
         }
-
     }
 
     void OnCollisionEnter(Collision col)
