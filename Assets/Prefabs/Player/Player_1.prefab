@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580077410079674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.591, y: -0.543, z: -0.0000000034065}
+  m_LocalPosition: {x: -1.79, y: -0.062, z: -0.0000000034065}
   m_LocalScale: {x: 0.2015193, y: 0.2015192, z: 0.20151922}
   m_Children:
   - {fileID: 4147293886187558}
@@ -408,7 +408,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bb8c4959ba511524ca02eef9f7226dc2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -544,9 +544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allMyAudioSources: []
   playerHpUI: {fileID: 0}
-  bullet: {fileID: 1238129362583406, guid: 82f30dfced4be0d40bd30022e747e758, type: 2}
   ghost: {fileID: 1580077410079674, guid: e027c2b619ed4ef46926950be0277390, type: 2}
-  spawnPlayer: {fileID: 1580077410079674, guid: 147803ebc95b12b4681001dc8dd6ffa6,
+  spawnPlayer: {fileID: 1580077410079674, guid: 3bbdd1649b887474fa2848f96bca41be,
     type: 2}
   anim: {fileID: 95383348417942210}
   ren: {fileID: 23486421709852040}

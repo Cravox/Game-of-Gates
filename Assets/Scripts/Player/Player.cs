@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public AudioSource[] allMyAudioSources;
+    public GameObject landingParticles;
+    public GameObject walkingParticles;
     public GameObject playerHpUI;
-    public GameObject bullet;
     public GameObject ghost;
     public GameObject spawnPlayer;
     public Animator anim;
@@ -43,7 +44,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
         allMyAudioSources = GetComponents<AudioSource>();
@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
 
         Dash();
 
+        playerHpUI = GameObject.Find("HP_" + this.playerIndex);
         playerHpUI.GetComponent<Text>().text = "HP:" + this.hp;
 
         if(Input.GetButtonDown("Dash_"+this.playerIndex))
@@ -89,7 +90,11 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision col)
     {
         //Grounded check
-        if (col.gameObject.CompareTag("Ground")) this.grounded = true;
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            this.grounded = true;
+            Instantiate(landingParticles, this.transform.position, this.transform.rotation);
+        }
     }
 
     private void OnCollisionExit(Collision col)
@@ -136,7 +141,7 @@ public class Player : MonoBehaviour
     {
         if (hp <= 0)
         {
-            Instantiate(ghost, this.transform.position, this.transform.rotation);
+            Instantiate(ghost, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
@@ -145,9 +150,9 @@ public class Player : MonoBehaviour
     {
         //rotate character
         if (facingRight) {
-            this.transform.rotation = Quaternion.identity;
+            this.transform.localEulerAngles = new Vector3(0, 90, 0);
         } else {
-            this.transform.rotation = new Quaternion(0, 180, 0, 0);
+            this.transform.localEulerAngles = new Vector3(0, 270, 0);
         }
     }
 
@@ -172,6 +177,7 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         float moveX = Input.GetAxis("Horizontal_" + this.playerIndex); //use horizontal-axis for player-movement
+         
 
         if (!isDucking)
         {

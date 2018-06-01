@@ -6,25 +6,41 @@ using UnityEngine;
 
 public class Jussi_peanutMissile : MonoBehaviour
 {
+    public MeshRenderer renderer;
     public Transform target;
     public float speed = 1f;
-    public float rotateSpeed = 30f;
+    public float rotateSpeed = 25f;
     public float activationTime = 0.2f;
     public int hp = 5;
+    public bool defaultTarget = true;
 
+    private Color originalColor;
     private float activationTimer = 0;
     private Rigidbody rb;
     
     void Start()
     {
+        originalColor = renderer.materials[0].color;
         rb = GetComponent<Rigidbody>();
-        target = GameObject.Find("Player_0").GetComponent<Transform>();
     }
 
     void Update()
     {
-        activationTimer += Time.deltaTime;
+        if(target == null)
+        {
+            defaultTarget = !defaultTarget;
+        }
 
+        if(defaultTarget)
+        {
+            target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
+        }else
+        {
+            target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        }
+
+
+        activationTimer += Time.deltaTime;
         if (this.hp <= 0) Destroy(this.gameObject);
     }
 
@@ -43,6 +59,11 @@ public class Jussi_peanutMissile : MonoBehaviour
     void OnTriggerEnter(Collider col)
 
     {
+        if(col.gameObject.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
+
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player>().hp -= 1;
@@ -51,8 +72,15 @@ public class Jussi_peanutMissile : MonoBehaviour
 
         if(col.gameObject.CompareTag("Bullet"))
         {
+            renderer.materials[0].color = Color.white;
+            Invoke("ResetColor", 0.05f);
             this.hp -= 1;
         }
+    }
+
+    void ResetColor()
+    {
+        renderer.materials[0].color = originalColor;
     }
 
 }
