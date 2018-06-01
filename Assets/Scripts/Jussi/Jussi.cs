@@ -9,6 +9,7 @@ public class Jussi : MonoBehaviour
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
+    public MeshRenderer renderer;
     public Transform instantiate;
     public Transform yoshiEggSpawnPosition;
     public Transform peanutMissileSpawnPosition;
@@ -28,7 +29,7 @@ public class Jussi : MonoBehaviour
 
     public float circleLaserLifeTime = 4f;
 
-
+    private Color originalColor;
     private Animator anim;
     private int attack = 1;
     private int critAttack = 1;
@@ -45,12 +46,17 @@ public class Jussi : MonoBehaviour
     private float attackDelay = 0;
     private float delay = 0;
 
+    private void Start()
+    {
+        originalColor = renderer.materials[0].color;
+    }
+
     void Update()
     {
         if (this.hp <= 0)
         {
-            //flipNormalInstantiate.SetActive(false);
-            //circleLaserInstantiate.SetActive(false);
+            flipNormalInstantiate.SetActive(false);
+            circleLaserInstantiate.SetActive(false);
             Destroy(this.gameObject, 0.2f);
         }
 
@@ -176,5 +182,19 @@ public class Jussi : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.CompareTag("Bullet"))
+        {
+            renderer.materials[0].color = Color.white;
+            Invoke("ResetColor", 0.075f);
+        }
+    }
+
+    void ResetColor()
+    {
+        renderer.materials[0].color = originalColor;
     }
 }

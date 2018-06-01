@@ -6,18 +6,21 @@ using UnityEngine;
 
 public class Jussi_peanutMissile : MonoBehaviour
 {
+    public MeshRenderer renderer;
     public Transform target;
     public float speed = 1f;
     public float rotateSpeed = 25f;
     public float activationTime = 0.2f;
     public int hp = 5;
-
     public bool defaultTarget = true;
+
+    private Color originalColor;
     private float activationTimer = 0;
     private Rigidbody rb;
     
     void Start()
     {
+        originalColor = renderer.materials[0].color;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -69,8 +72,15 @@ public class Jussi_peanutMissile : MonoBehaviour
 
         if(col.gameObject.CompareTag("Bullet"))
         {
+            renderer.materials[0].color = Color.white;
+            Invoke("ResetColor", 0.05f);
             this.hp -= 1;
         }
+    }
+
+    void ResetColor()
+    {
+        renderer.materials[0].color = originalColor;
     }
 
 }
