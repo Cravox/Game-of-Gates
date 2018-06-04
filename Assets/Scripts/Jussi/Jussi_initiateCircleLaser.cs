@@ -31,6 +31,8 @@ public class Jussi_initiateCircleLaser : MonoBehaviour
 
         if (initTimer > shootFrequency)
         {
+            this.GetComponent<AudioSource>().Play();
+
             Instantiate(circleLaser, this.transform.position, this.transform.rotation);
             initTimer -= shootFrequency;
         }

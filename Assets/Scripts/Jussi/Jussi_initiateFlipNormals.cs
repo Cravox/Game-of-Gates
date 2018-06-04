@@ -27,6 +27,7 @@ public class Jussi_initiateFlipNormals : MonoBehaviour
         
         if(initTimer > shootFrequency)
         {
+            this.GetComponent<AudioSource>().Play();
             Instantiate(flipNormal, this.transform.position, this.transform.rotation);
 
             initTimer -= shootFrequency;

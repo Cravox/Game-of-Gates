@@ -3,18 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public bool paused = false;
+    public GameObject pauseMenu;
+    public AudioSource mainTheme;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetButtonDown("Menu"))
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Menu"))
         {
             SceneManager.LoadScene("levelSelect");
         }
-	}
+
+        if(Input.GetButtonDown("Pause"))
+        {
+            if(paused)
+            {
+                mainTheme.volume = 0.3f;
+                Time.timeScale = 1;
+                pauseMenu.active = false;
+                paused = false;
+            }else
+            {
+                mainTheme.volume = 0.05f;
+                Time.timeScale = 0;
+                pauseMenu.active = true;
+                paused = true;
+            }
+        }
+
+
+    }
 }

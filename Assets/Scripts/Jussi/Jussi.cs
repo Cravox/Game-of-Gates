@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Jussi : MonoBehaviour
 {
-
+    public AudioSource[] allAudioSources;
     public GameObject yoshiEgg;
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
     public MeshRenderer renderer;
-    public Transform instantiate;
     public Transform yoshiEggSpawnPosition;
     public Transform peanutMissileSpawnPosition;
     public int hp;
@@ -49,6 +48,7 @@ public class Jussi : MonoBehaviour
     private void Start()
     {
         originalColor = renderer.materials[0].color;
+        allAudioSources = this.GetComponents<AudioSource>();
     }
 
     void Update()
@@ -97,6 +97,8 @@ public class Jussi : MonoBehaviour
         shootTimer += Time.deltaTime;
         if (shootTimer >= yoshiEggFrequency && yoshiEggCounter < yoshiEggNumber)
         {
+            allAudioSources[0].Play();
+
             GameObject yoshiEggInstance = Instantiate(yoshiEgg, spawn, Quaternion.identity);
             yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
             yoshiEggCounter += 1;
@@ -128,6 +130,8 @@ public class Jussi : MonoBehaviour
         float missileAngle = -0.4f;
         if (shootTimer >= peanutMissileFrequency)
         {
+            allAudioSources[1].Play();
+
             for (int i = 0; i < peanutMissiles.Length; i++)
             {
                 peanutMissiles[i] = Instantiate(peanutMissile, spawn, Quaternion.identity);

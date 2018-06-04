@@ -20,24 +20,33 @@ public class Jussi_peanutMissile : MonoBehaviour
     
     void Start()
     {
+        if (GameObject.Find("hitTarget_0") != null)
+        {
+            target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
+        }
+        else
+        {
+            target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        }
+
         originalColor = renderer.materials[0].color;
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        if(target == null)
-        {
-            defaultTarget = !defaultTarget;
-        }
+        //if(target == null)
+        //{
+        //    defaultTarget = !defaultTarget;
+        //}
 
-        if(defaultTarget)
-        {
-            target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
-        }else
-        {
-            target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
-        }
+        //if(defaultTarget)
+        //{
+        //    target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
+        //}else
+        //{
+        //    target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        //}
 
 
         activationTimer += Time.deltaTime;
