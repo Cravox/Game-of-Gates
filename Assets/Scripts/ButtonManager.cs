@@ -33,7 +33,6 @@ public class ButtonManager : MonoBehaviour
 
     public void OnClickResume()
     {
-        ingameGUI.active = true;
         pauseMenu.active = false;
         Time.timeScale = 1;
     }
