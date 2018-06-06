@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool paused = false;
     public GameObject pauseMenu;
     public AudioSource mainTheme;
+    public GameObject eventSystem;
 
     void Start()
     {
@@ -28,12 +29,14 @@ public class GameManager : MonoBehaviour
                 mainTheme.volume = 0.3f;
                 Time.timeScale = 1;
                 pauseMenu.active = false;
+                eventSystem.active = false;
                 paused = false;
             }else
             {
                 mainTheme.volume = 0.05f;
                 Time.timeScale = 0;
                 pauseMenu.active = true;
+                eventSystem.active = true;
                 paused = true;
             }
         }

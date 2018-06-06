@@ -79,7 +79,7 @@ public class Player_weapon : MonoBehaviour
                 for (int i = 0; i < spreadBullets.Length; i++)
                 {
                     spreadBullets[i] = Instantiate(bullet, spawn, Quaternion.identity);
-                    spreadBullets[i].GetComponent<Rigidbody>().AddForce(new Vector3(inv, bulletAngle, 0) * bulletForce);
+                    spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(0, bulletAngle, 0)) * bulletForce);
                     spreadBullets[i].GetComponent<Player_bullet>().Initialize(Player_bullet.Type.SPREAD);
                     bulletAngle += 0.3f;
                 }

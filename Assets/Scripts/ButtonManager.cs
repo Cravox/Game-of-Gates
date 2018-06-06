@@ -40,5 +40,6 @@ public class ButtonManager : MonoBehaviour
     public void OnClickRestart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 }
