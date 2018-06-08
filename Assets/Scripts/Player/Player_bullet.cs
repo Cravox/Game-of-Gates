@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player_bullet : MonoBehaviour
 {
+    public AudioSource[] allAudioSources;
     public int normalDamage;
     public float normalRange;
     public float normalUltiProfit;
@@ -12,6 +13,7 @@ public class Player_bullet : MonoBehaviour
     public float spreadRange;
     public float spreadUltiProfit;
 
+    private AudioSource sound;
     private GameObject ultiMeter;
     private Image ultiMeterImage;
     private int damage;
@@ -23,6 +25,7 @@ public class Player_bullet : MonoBehaviour
 
     void Start()
     {
+        allAudioSources = this.GetComponents<AudioSource>();
         Destroy(this.gameObject, range);
         ultiMeter = GameObject.Find("Ultimeter_"+this.playerIndex);
         ultiMeterImage = ultiMeter.GetComponent<Image>();

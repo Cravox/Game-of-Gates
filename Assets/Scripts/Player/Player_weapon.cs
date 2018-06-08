@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player_weapon : MonoBehaviour
 {
+    public AudioSource[] allAudioSources;
     public GameObject ultiMeterObject;
     public Image ultiMeter;
     public Transform shotSpawnPosition;
@@ -15,7 +16,6 @@ public class Player_weapon : MonoBehaviour
     public int spreadUltimateNumber = 8;
     public int bulletForce = 250;
 
-    private AudioSource audio;
     private float ultimateProfit = 0.02f;
     private float shootFrequency = 0.14f;
     private float shootTimer = 0;
@@ -24,7 +24,7 @@ public class Player_weapon : MonoBehaviour
 
     void Start()
     {
-        audio = this.GetComponent<AudioSource>();
+        allAudioSources = this.GetComponents<AudioSource>();
         ultiMeterObject = GameObject.Find("Ultimeter_" + this.playerIndex);
         ultiMeter = ultiMeterObject.GetComponent<Image>();
     }
@@ -38,10 +38,13 @@ public class Player_weapon : MonoBehaviour
 
         if (Input.GetButton("Fire_" + this.playerIndex))
         {
-            if (!audio.isPlaying)
-            {
-                audio.Play();
-            }
+            //if (!allAudioSources[0].isPlaying && defaultFire)
+            //{
+            //    allAudioSources[0].Play();
+            //}else if(!allAudioSources[1].isPlaying && !defaultFire)
+            //{
+            //    allAudioSources[1].Play();
+            //}
 
             Shoot();
         }
@@ -49,6 +52,13 @@ public class Player_weapon : MonoBehaviour
         if (Input.GetButtonDown("Ultimate_"+this.playerIndex))
         {
             UltimateShot();
+        }
+
+        float moveY = Input.GetAxisRaw("Vertical_" + this.playerIndex);
+
+        if(moveY <= -0.75f)
+        {
+            
         }
     }
 
