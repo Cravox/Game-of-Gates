@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public AudioSource[] allMyAudioSources;
+    public GameObject gameManager;
     public GameObject landingParticles;
     public GameObject walkingParticles;
     public GameObject playerHpUI;
@@ -51,20 +52,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        RotateCharacter(); 
-        
-        Movement();
-
-        Death();
-
-        Duck();
-
-        Dash();
-
         playerHpUI = GameObject.Find("HP_" + this.playerIndex);
         playerHpUI.GetComponent<Text>().text = "HP:" + this.hp;
+        InputManager();
+    }
 
-        if(Input.GetButtonDown("Dash_"+this.playerIndex))
+    private void InputManager()
+    {
+        if(!gameManager.GetComponent<GameManager>().paused)
+        {
+            if (Input.GetButtonDown("Dash_" + this.playerIndex))
         {
             allMyAudioSources[0].Play();
 
@@ -76,10 +73,22 @@ public class Player : MonoBehaviour
             dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
         }
 
-        if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
+            if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
         {
             jumping = true;
         }
+
+            RotateCharacter();
+
+            Movement();
+
+            Death();
+
+            Duck();
+
+            Dash();
+        }
+        
     }
 
     private void FixedUpdate()

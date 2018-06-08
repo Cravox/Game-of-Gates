@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public bool paused = false;
     public GameObject pauseMenu;
-    public AudioSource mainTheme;
     public GameObject eventSystem;
+    public AudioSource mainTheme;
 
     void Start()
     {

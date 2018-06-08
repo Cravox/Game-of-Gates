@@ -9,10 +9,12 @@ public class ButtonManager : MonoBehaviour
 
     public GameObject ingameGUI;
     public GameObject pauseMenu;
+    public GameObject gameManager;
 
     public void OnClickLevelSelect()
     {
         SceneManager.LoadScene("levelSelect");
+        Time.timeScale = 1;
     }
 
     public void OnClickOptions()
@@ -35,6 +37,7 @@ public class ButtonManager : MonoBehaviour
     {
         pauseMenu.active = false;
         Time.timeScale = 1;
+        gameManager.GetComponent<GameManager>().paused = false;
     }
 
     public void OnClickRestart()
