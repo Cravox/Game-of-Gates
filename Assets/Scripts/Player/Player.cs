@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     private bool dashing;
     private bool grounded;
 
-    private bool facingRight;
+    private bool facingRight = true;
     public bool FacingRight {
         get {
             return facingRight;

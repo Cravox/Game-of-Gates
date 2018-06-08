@@ -57,7 +57,7 @@ public class Jussi : MonoBehaviour
         {
             flipNormalInstantiate.SetActive(false);
             circleLaserInstantiate.SetActive(false);
-            Destroy(this.gameObject, 0.2f);
+            Destroy(this.gameObject, 1f);
         }
 
         if (this.hp <= criticalPhaseTrigger)

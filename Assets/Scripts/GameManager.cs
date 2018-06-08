@@ -6,41 +6,65 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public bool paused = false;
+    public GameObject player1;
+    public GameObject player2;
     public GameObject pauseMenu;
-    public GameObject eventSystem;
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public GameObject Jussi;
     public AudioSource mainTheme;
 
     void Start()
     {
-
+        Time.timeScale = 1;
     }
 
     void Update()
     {
+        if (paused) Time.timeScale = 0;
+        else Time.timeScale = 1;
+
         if (Input.GetButtonDown("Menu"))
         {
             SceneManager.LoadScene("levelSelect");
+        }
+
+        if(Jussi != null)
+        {
+            if(Jussi.GetComponent<Jussi>().hp <= 0)
+            {
+                winScreen.active = true;
+                paused = true;
+            }
         }
 
         if(Input.GetButtonDown("Pause"))
         {
             if(paused)
             {
-                mainTheme.volume = 0.3f;
-                Time.timeScale = 1;
+                if(mainTheme != null)
+                {
+                    mainTheme.volume = 0.3f;
+                }
+                //Time.timeScale = 1;
                 pauseMenu.active = false;
-                eventSystem.active = false;
                 paused = false;
             }else
             {
-                mainTheme.volume = 0.05f;
-                Time.timeScale = 0;
+                if (mainTheme != null)
+                {
+                    mainTheme.volume = 0.05f;
+                }
+                //Time.timeScale = 0;
                 pauseMenu.active = true;
-                eventSystem.active = true;
                 paused = true;
             }
         }
 
-
+        if(player1 == null || player1 == null && player2 == null)
+        {
+            paused = true;
+            loseScreen.active = true;
+        }
     }
 }
