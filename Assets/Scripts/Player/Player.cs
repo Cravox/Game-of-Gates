@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private float dashLimit;
     private float completion = 0f;
     private float dashTimer;
+    private float startVelocity;
     private bool isDucking;
     private bool jumping;
     private bool dashing;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        startVelocity = moveVelocity;
         allMyAudioSources = GetComponents<AudioSource>();
     }
 
@@ -77,6 +79,14 @@ public class Player : MonoBehaviour
         {
             jumping = true;
         }
+
+            if(Input.GetButton("DontMove_" + this.playerIndex))
+            {
+                moveVelocity = 0;
+            }else if(Input.GetButtonUp("DontMove_"+ this.playerIndex))
+            {
+                moveVelocity = startVelocity;
+            }
 
             RotateCharacter();
 
