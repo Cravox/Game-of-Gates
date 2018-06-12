@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
                 {
                     mainTheme.volume = 0.05f;
                 }
+                GamePad.SetVibration(0, 0, 0);
                 //Time.timeScale = 0;
                 pauseMenu.active = true;
                 paused = true;

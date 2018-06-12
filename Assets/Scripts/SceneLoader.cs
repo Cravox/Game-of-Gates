@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+
+
     void Update()
     {
         StartCoroutine("LoadAsynchronously");

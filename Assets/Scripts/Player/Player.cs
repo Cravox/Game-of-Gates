@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class Player : MonoBehaviour
 {
@@ -36,12 +37,15 @@ public class Player : MonoBehaviour
     private bool grounded;
 
     private bool facingRight = true;
-    public bool FacingRight {
-        get {
+    public bool FacingRight
+    {
+        get
+        {
             return facingRight;
         }
 
-        set {
+        set
+        {
             facingRight = value;
         }
     }
@@ -61,29 +65,30 @@ public class Player : MonoBehaviour
 
     private void InputManager()
     {
-        if(!gameManager.GetComponent<GameManager>().paused)
+        if (!gameManager.GetComponent<GameManager>().paused)
         {
             if (Input.GetButtonDown("Dash_" + this.playerIndex))
-        {
-            allMyAudioSources[0].Play();
+            {
+                allMyAudioSources[0].Play();
 
-            int inv = facingRight ? dashRange : -dashRange;
+                int inv = facingRight ? dashRange : -dashRange;
 
-            completion = 0f;
-            dashing = true;
-            dashStart = this.transform.position;
-            dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
-        }
+                completion = 0f;
+                dashing = true;
+                dashStart = this.transform.position;
+                dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
+            }
 
             if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
-        {
-            jumping = true;
-        }
+            {
+                jumping = true;
+            }
 
-            if(Input.GetButton("DontMove_" + this.playerIndex))
+            if (Input.GetButton("DontMove_" + this.playerIndex))
             {
                 moveVelocity = 0;
-            }else if(Input.GetButtonUp("DontMove_"+ this.playerIndex))
+            }
+            else if (Input.GetButtonUp("DontMove_" + this.playerIndex))
             {
                 moveVelocity = startVelocity;
             }
@@ -98,7 +103,7 @@ public class Player : MonoBehaviour
 
             Dash();
         }
-        
+
     }
 
     private void FixedUpdate()
@@ -140,7 +145,7 @@ public class Player : MonoBehaviour
             Destroy(col.gameObject);
         }
 
-        if(col.gameObject.CompareTag("Parry") && Input.GetButtonDown("Jump_"+this.playerIndex) && !grounded)
+        if (col.gameObject.CompareTag("Parry") && Input.GetButtonDown("Jump_" + this.playerIndex) && !grounded)
         {
             Destroy(col.gameObject, 0.1f);
         }
@@ -151,6 +156,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy") || col.gameObject.CompareTag("PeanutMissile"))
         {
             allMyAudioSources[1].Play();
+            StartCoroutine("GamePadVibration");
             StartCoroutine("Flash");
             StartCoroutine("InvincibleFrames");
         }
@@ -160,6 +166,7 @@ public class Player : MonoBehaviour
     {
         if (hp <= 0)
         {
+            GamePad.SetVibration(0, 0, 0);
             Instantiate(ghost, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
@@ -168,9 +175,12 @@ public class Player : MonoBehaviour
     private void RotateCharacter()
     {
         //rotate character
-        if (facingRight) {
+        if (facingRight)
+        {
             this.transform.localEulerAngles = new Vector3(0, 90, 0);
-        } else {
+        }
+        else
+        {
             this.transform.localEulerAngles = new Vector3(0, 270, 0);
         }
     }
@@ -185,7 +195,7 @@ public class Player : MonoBehaviour
             anim.SetBool("Ducking", true);
             isDucking = true;
         }
-        else if(moveY <= 0.75f)
+        else if (moveY <= 0.75f)
         {
             isDucking = false;
             anim.SetBool("Ducking", false);
@@ -196,7 +206,7 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         float moveX = Input.GetAxis("Horizontal_" + this.playerIndex); //use horizontal-axis for player-movement
-         
+
 
         if (!isDucking)
         {
@@ -204,7 +214,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            this.rb.velocity = new Vector3(0 , this.rb.velocity.y, 0);
+            this.rb.velocity = new Vector3(0, this.rb.velocity.y, 0);
         }
 
         if (moveX > 0.1f) facingRight = true;
@@ -220,11 +230,11 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        if(dashing)
+        if (dashing)
         {
             transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
             completion += Time.deltaTime * dashVelocity;
-            if(completion >= 1)
+            if (completion >= 1)
             {
                 dashing = false;
             }
@@ -249,5 +259,12 @@ public class Player : MonoBehaviour
             GetComponentInChildren<MeshRenderer>().enabled = true;
             yield return new WaitForSeconds(.1f);
         }
+    }
+
+    private IEnumerator GamePadVibration()
+    {
+        GamePad.SetVibration(0, 1, 1);
+        yield return new WaitForSeconds(0.5f);
+        GamePad.SetVibration(0, 0, 0);
     }
 }
