@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
                 jumping = true;
             }
 
-            if (Input.GetButton("DontMove_" + this.playerIndex))
+            if (Input.GetButton("DontMove_" + this.playerIndex) && grounded)
             {
                 moveVelocity = 0;
             }

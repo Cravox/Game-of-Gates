@@ -83,7 +83,7 @@ public class Player_weapon : MonoBehaviour
                 float moveY = Input.GetAxisRaw("Vertical_" + this.playerIndex);
                 float moveX = Input.GetAxisRaw("Horizontal_" + this.playerIndex);
 
-                float bulletAngle = -0.3f;
+                float bulletAngle = -0.2f;
 
                 for (int i = 0; i < spreadBullets.Length; i++)
                 {
@@ -100,7 +100,7 @@ public class Player_weapon : MonoBehaviour
                         spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(0, bulletAngle, 0)) * bulletForce);
                     }
                     spreadBullets[i].GetComponent<Player_bullet>().Initialize(Player_bullet.Type.SPREAD);
-                    bulletAngle += 0.3f;
+                    bulletAngle += 0.2f;
                 }
             }
             shootTimer -= shootFrequency;
