@@ -1,32 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public Slider progressBar;
+    AsyncOperation operation;
 
+    private float progress;
+    private bool sceneLoaded = false;
 
     void Update()
     {
-        StartCoroutine("LoadAsynchronously");
-    }
+        //StartCoroutine("LoadAsynchronously");
+        string loadedScene = "1";
+        progress = progressBar.value + Random.Range(0.002f, 0.01f);
 
-    public void LoadScene(int sceneIndex)
-    {
+        progressBar.value = progress;
 
-    }
-
-    IEnumerator LoadAsynchronously (int sceneIndex)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-
-        while(!operation.isDone)
+        if (progressBar.value == 1f && !sceneLoaded)
         {
-            Debug.Log(operation.progress);
-
-            yield return new WaitForSeconds(2f);
+            AsyncOperation operation = SceneManager.LoadSceneAsync(loadedScene);
+            sceneLoaded = true;
         }
-    }
 
+    }
 }
