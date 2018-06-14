@@ -1,15 +1,20 @@
 fileFormatVersion: 2
-guid: fae52f010d93be44cb4ba0af04c8b51b
+guid: 6fa70e6b50d086f4d94ec2e66712d2cc
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
+    2100000: 02 - Default
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pSphere17
-  externalObjects: {}
+    4300000: Rain_completed
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 661a5843515f15943b519cf0c0cb9db5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

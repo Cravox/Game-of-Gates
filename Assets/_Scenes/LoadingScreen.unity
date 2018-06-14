@@ -418,15 +418,15 @@ RectTransform:
   m_GameObject: {fileID: 580546802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.9228854, y: 5.922888, z: 5.922888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2047877720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 70}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 117.33}
+  m_SizeDelta: {x: -200, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580546804
 MonoBehaviour:
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -449,10 +449,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 6
-    m_FontStyle: 0
+    m_FontSize: 10
+    m_FontStyle: 3
     m_BestFit: 1
-    m_MinSize: 6
+    m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -460,7 +460,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"Wer hier rumpimmelt wird gefickt"
+  m_Text: '"Wer hier rumpimmelt wird gefickt!"
+
 
 
     - Geon Cho'

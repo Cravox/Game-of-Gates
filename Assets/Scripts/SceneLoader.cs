@@ -14,13 +14,12 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
-        //StartCoroutine("LoadAsynchronously");
         string loadedScene = "1";
         progress = progressBar.value + Random.Range(0.002f, 0.01f);
 
         progressBar.value = progress;
 
-        if (progressBar.value == 1f && !sceneLoaded)
+        if (progressBar.value >= 0.9f && !sceneLoaded)
         {
             AsyncOperation operation = SceneManager.LoadSceneAsync(loadedScene);
             sceneLoaded = true;

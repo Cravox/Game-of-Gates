@@ -6,13 +6,14 @@ using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour
 {
-    public bool paused = false;
+    public bool paused = true;
     public GameObject player1;
     public GameObject player2;
     public GameObject pauseMenu;
     public GameObject winScreen;
     public GameObject loseScreen;
     public GameObject Jussi;
+    public GameObject bossCountdown;
     public AudioSource mainTheme;
 
     void Start()

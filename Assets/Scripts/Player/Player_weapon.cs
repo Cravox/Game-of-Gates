@@ -91,9 +91,13 @@ public class Player_weapon : MonoBehaviour
                     if (moveY <= -0.75f)
                     {
                         spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle, 0, 0)) * bulletForce);
-                    }else if (moveY <= -0.5f && moveX > 0.1f || moveY <= -0.5f && moveX < -0.1f)
+                    }else if (moveY <= -0.5f && moveX > 0.1f &&!facingRight || moveY <= -0.5f && moveX < -0.1f && !facingRight)
                     {
-                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle/2, -bulletAngle/2, 0)) * bulletForce);
+                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(-bulletAngle/2, -bulletAngle/2, 0)) * bulletForce);
+                    }
+                    else if (moveY <= -0.5f && moveX > 0.1f && facingRight || moveY <= -0.5f && moveX < -0.1f && facingRight)
+                    {
+                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle / 2, -bulletAngle / 2, 0)) * bulletForce);
                     }
                     else
                     {

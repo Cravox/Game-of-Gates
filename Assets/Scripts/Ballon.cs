@@ -24,18 +24,8 @@ public class Ballon : MonoBehaviour
     {
         if(hp <= 0)
         {
-            LoadScene(assignedScene);
+            SceneManager.LoadScene("LoadingScreen");
         }
-    }
-
-    public void LoadScene(int sceneSelected)
-    {
-        SceneManager.LoadScene(sceneSelected.ToString());
-    }
-
-    public void LoadScene(string sceneSelected)
-    {
-        SceneManager.LoadScene(sceneSelected);
     }
 
     void OnTriggerEnter(Collider col)
