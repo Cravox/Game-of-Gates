@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GameObject ghost;
     public GameObject spawnPlayer;
     public Animator anim;
-    public MeshRenderer ren;
+    public SkinnedMeshRenderer[] ren;
     public Rigidbody rb;
     public float jumpForce = 200f;
     public float dashVelocity = 5;
@@ -54,11 +54,11 @@ public class Player : MonoBehaviour
     {
         startVelocity = moveVelocity;
         allMyAudioSources = GetComponents<AudioSource>();
+        ren = this.GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     private void Update()
     {
-        playerHpUI = GameObject.Find("HP_" + this.playerIndex);
         playerHpUI.GetComponent<Text>().text = "HP:" + this.hp;
         InputManager();
     }
@@ -232,7 +232,8 @@ public class Player : MonoBehaviour
     {
         if (dashing)
         {
-            transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
+            rb.velocity = Vector3.Lerp(dashStart, dashDestination, completion);
+            //transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
             completion += Time.deltaTime * dashVelocity;
             if (completion >= 1)
             {
@@ -252,11 +253,16 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            ren.enabled = false;
-            GetComponentInChildren<MeshRenderer>().enabled = false;
+            foreach (SkinnedMeshRenderer item in ren)
+            {
+                item.enabled = false;
+            }
             yield return new WaitForSeconds(.1f);
-            ren.enabled = true;
-            GetComponentInChildren<MeshRenderer>().enabled = true;
+
+            foreach (SkinnedMeshRenderer item in ren)
+            {
+                item.enabled = true;
+            }
             yield return new WaitForSeconds(.1f);
         }
     }

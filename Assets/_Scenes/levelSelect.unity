@@ -114,11 +114,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &175463126 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1783561736087404, guid: 81f269ece3c3b8942b9836fb762b0f03,
-    type: 2}
-  m_PrefabInternal: {fileID: 893659581}
 --- !u!1 &180916615 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1511588503381662, guid: df3c7d64494b3b64880cccc79f1c9977,
@@ -189,11 +184,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &518765636 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1872713337901762, guid: 81f269ece3c3b8942b9836fb762b0f03,
-    type: 2}
-  m_PrefabInternal: {fileID: 893659581}
 --- !u!1 &559389651
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,17 +394,17 @@ Prefab:
         type: 2}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 175463126}
+      objectReference: {fileID: 0}
     - target: {fileID: 114773087171781588, guid: df3c7d64494b3b64880cccc79f1c9977,
         type: 2}
       propertyPath: winScreen
       value: 
-      objectReference: {fileID: 871980610}
+      objectReference: {fileID: 0}
     - target: {fileID: 114773087171781588, guid: df3c7d64494b3b64880cccc79f1c9977,
         type: 2}
       propertyPath: loseScreen
       value: 
-      objectReference: {fileID: 518765636}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df3c7d64494b3b64880cccc79f1c9977, type: 2}
   m_IsPrefabParent: 0
@@ -565,11 +555,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &871980610 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1672648424857072, guid: 81f269ece3c3b8942b9836fb762b0f03,
-    type: 2}
-  m_PrefabInternal: {fileID: 893659581}
 --- !u!1001 &893659581
 Prefab:
   m_ObjectHideFlags: 0
@@ -672,6 +657,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1203620138722682, guid: 81f269ece3c3b8942b9836fb762b0f03, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81f269ece3c3b8942b9836fb762b0f03, type: 2}
   m_IsPrefabParent: 0
@@ -705,11 +694,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.11, z: 0.1025112}
   m_Center: {x: -0.00012384728, y: 0.10142109, z: 0}
---- !u!1 &952082641 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1914394183092112, guid: 81f269ece3c3b8942b9836fb762b0f03,
-    type: 2}
-  m_PrefabInternal: {fileID: 893659581}
 --- !u!1001 &1280309740
 Prefab:
   m_ObjectHideFlags: 0
@@ -831,7 +815,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463345968 stripped
 GameObject:
@@ -1017,7 +1001,7 @@ Prefab:
         type: 2}
       propertyPath: playerHpUI
       value: 
-      objectReference: {fileID: 952082641}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bbdd1649b887474fa2848f96bca41be, type: 2}
   m_IsPrefabParent: 0

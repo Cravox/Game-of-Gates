@@ -27,8 +27,8 @@ public class Player_weapon : MonoBehaviour
     void Start()
     {
         allAudioSources = this.GetComponents<AudioSource>();
-        ultiMeterObject = GameObject.Find("Ultimeter_" + this.playerIndex);
-        ultiMeter = ultiMeterObject.GetComponent<Image>();
+        //ultiMeterObject = GameObject.Find("Ultimeter_" + this.playerIndex);
+        //ultiMeter = ultiMeterObject.GetComponent<Image>();
     }
 
     void Update()
