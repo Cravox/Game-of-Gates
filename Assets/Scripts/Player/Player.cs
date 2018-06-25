@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public GameObject gameManager;
     public GameObject landingParticles;
     public GameObject walkingParticles;
-    public GameObject playerHpUI;
     public GameObject ghost;
     public GameObject spawnPlayer;
     public Animator anim;
@@ -59,7 +58,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        playerHpUI.GetComponent<Text>().text = "HP:" + this.hp;
         InputManager();
     }
 
@@ -130,18 +128,20 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("deadPlayer") && Input.GetButtonDown("Jump_" + this.playerIndex) && !grounded)
         {
+            spawnPlayer.SetActive(true);
+            spawnPlayer.transform.position = this.transform.position;
+            spawnPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
 
-            if (playerIndex == 0)
-            {
-                GameObject spawnedPlayer = Object.Instantiate(spawnPlayer, col.gameObject.transform.position, this.gameObject.transform.rotation);
-                spawnedPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
-            }
-            else
-            {
-                GameObject spawnedPlayer = Object.Instantiate(spawnPlayer, col.gameObject.transform.position, this.gameObject.transform.rotation);
-                spawnedPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
-            }
-
+            //if (playerIndex == 0)
+            //{
+            //    GameObject spawnedPlayer = Object.Instantiate(spawnPlayer, col.gameObject.transform.position, this.gameObject.transform.rotation);
+            //    spawnedPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
+            //}
+            //else
+            //{
+            //    GameObject spawnedPlayer = Object.Instantiate(spawnPlayer, col.gameObject.transform.position, this.gameObject.transform.rotation);
+            //    spawnedPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
+            //}
             Destroy(col.gameObject);
         }
 
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
         {
             GamePad.SetVibration(0, 0, 0);
             Instantiate(ghost, this.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 

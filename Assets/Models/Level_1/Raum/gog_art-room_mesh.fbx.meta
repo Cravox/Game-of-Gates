@@ -1,74 +1,74 @@
 fileFormatVersion: 2
-guid: 50765dfd614a5b1459748f93534f15c6
+guid: 46c3b8114ba2b1143b6ecc1629fc04d9
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: "Material_Leuchtstoffr\xF6hren"
-    2100002: Material_DeckenRahmen
-    2100004: Material_Decke
-    2100006: Material_LichtLamellen
-    2100008: lambert1
-    2100010: Material_Metal
-    2100012: Material_Furniture
-    2100014: Material_DoorFrame
-    2100016: Material_Floor
-    2100018: Material_Wall
+    2100000: Material_LichtLamellen
+    2100002: Material_Floor
+    2100004: Material_Wall
+    2100006: "Material_Leuchtstoffr\xF6hren"
+    2100008: Material_Metal
+    2100010: lambert1
+    2100012: Material_DoorFrame
+    2100014: Material_DeckenRahmen
+    2100016: Material_Decke
+    2100018: Material_Furniture
     2300000: //RootNode
     3300000: //RootNode
-    4300000: polySurface221
+    4300000: polySurface399
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_Decke
-    second: {fileID: 2100000, guid: 538d585c2b6bbe94e94890b5bc97c98d, type: 2}
+    second: {fileID: 2100000, guid: 13207b468867eff438f2d5f9b9d26507, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_DeckenRahmen
-    second: {fileID: 2100000, guid: c4e49daee5383114584f562fef8c0951, type: 2}
+    second: {fileID: 2100000, guid: 2bd262b0143e31448a5f7db81e29b13d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_DoorFrame
-    second: {fileID: 2100000, guid: dc0229442b244804fb47e4098f9aa890, type: 2}
+    second: {fileID: 2100000, guid: b94981e19d48d7241a11c1b4505089f3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_Floor
-    second: {fileID: 2100000, guid: 01472a8fa10cb6b4682da7626800bf6f, type: 2}
+    second: {fileID: 2100000, guid: 71f671a7f1463ca448aed08f0101706d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_Furniture
-    second: {fileID: 2100000, guid: a89b19b84c7f51a4ba7251f0ae04e194, type: 2}
+    second: {fileID: 2100000, guid: f2d4abee6e4ee7f4fbdbff52e71363a1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: "Material_Leuchtstoffr\xF6hren"
-    second: {fileID: 2100000, guid: 8b073f7848550b749b4356c87d4a9dfa, type: 2}
+    second: {fileID: 2100000, guid: 42d2f3e758d20334eb23bb6373180575, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_LichtLamellen
-    second: {fileID: 2100000, guid: d7efe9816408b5844979ea16832ed9ab, type: 2}
+    second: {fileID: 2100000, guid: 8a8cf94298a7cdf43a590549f97b4678, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_Metal
-    second: {fileID: 2100000, guid: e068f8ab76998214bb5982843386bae4, type: 2}
+    second: {fileID: 2100000, guid: 42d255a2f8a50c54da9eeda4b3baafac, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_Wall
-    second: {fileID: 2100000, guid: 521946e96f68d7f498c9a2f978cede27, type: 2}
+    second: {fileID: 2100000, guid: f58fa260b54aa9f48ac0f3b0a6f85209, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: 4210cd0d75d25104d8ca8aa4e02dbd63, type: 2}
+    second: {fileID: 2100000, guid: 6c8e25903c9d38740a194fd4bc8f925a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

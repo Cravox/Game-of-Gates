@@ -27,7 +27,7 @@ public class Player_bullet : MonoBehaviour
     {
         allAudioSources = this.GetComponents<AudioSource>();
         Destroy(this.gameObject, range);
-        ultiMeter = GameObject.Find("Ultimeter_"+this.playerIndex);
+        ultiMeter = GameObject.Find("Image_"+this.playerIndex);
         ultiMeterImage = ultiMeter.GetComponent<Image>();
     }
     

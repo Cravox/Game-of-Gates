@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Player_weapon : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
-    public GameObject ultiMeterObject;
     public Image ultiMeter;
     public Transform shotSpawnPosition;
     public GameObject bullet;
@@ -27,8 +26,6 @@ public class Player_weapon : MonoBehaviour
     void Start()
     {
         allAudioSources = this.GetComponents<AudioSource>();
-        //ultiMeterObject = GameObject.Find("Ultimeter_" + this.playerIndex);
-        //ultiMeter = ultiMeterObject.GetComponent<Image>();
     }
 
     void Update()
