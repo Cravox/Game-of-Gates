@@ -7,28 +7,37 @@ public class BossCountdown : MonoBehaviour
 {
     public GameObject countdownPanel;
     public GameManager gameManager;
-    private Text countDown;
-    public int countLimit = 3;
-    private float counter = 2f;
+    public Sprite[] countDownSprites = new Sprite[4];
+    public float counter = 1f;
+    public int countLimit = 4;
+    private Image countDownImage;
+
 
     void Start()
     {
-        countDown = this.GetComponent<Text>();
+        countDownImage = this.GetComponent<Image>();
     }
 
     void Update()
     {
-        if (Time.realtimeSinceStartup >= counter)
-        {
-            counter += 1.5f;
-            countLimit -= 1;
+        counter -= Time.deltaTime;
 
-            if (countLimit == 0)
-            {
-                gameManager.GetComponent<GameManager>().paused = false;
-                countdownPanel.SetActive(false);
-            }
+        if(counter <= 0)
+        {
+            countLimit -= 1;
+            counter = 1f;
         }
-        countDown.text = countLimit + "...";
+
+        if (countLimit == 0)
+        {
+            countdownPanel.SetActive(false);
+            gameManager.noInput = false;
+            counter = Time.realtimeSinceStartup * 2;
+        }
+
+        if(countLimit >= 0)
+        {
+            countDownImage.sprite = countDownSprites[countLimit];
+        }
     }
 }

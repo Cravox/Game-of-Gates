@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
     private void InputManager()
     {
-        if (!gameManager.GetComponent<GameManager>().paused)
+        if (!gameManager.GetComponent<GameManager>().paused || !gameManager.GetComponent<GameManager>().noInput)
         {
             if (Input.GetButtonDown("Dash_" + this.playerIndex))
             {
@@ -130,18 +130,10 @@ public class Player : MonoBehaviour
         {
             spawnPlayer.SetActive(true);
             spawnPlayer.transform.position = this.transform.position;
+            spawnPlayer.GetComponent<Player>().hp = 1;
+            spawnPlayer.GetComponent<Player>().StartCoroutine("Flash");
+            spawnPlayer.GetComponent<Player>().StartCoroutine("InvincibleFrames");
             spawnPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
-
-            //if (playerIndex == 0)
-            //{
-            //    GameObject spawnedPlayer = Object.Instantiate(spawnPlayer, col.gameObject.transform.position, this.gameObject.transform.rotation);
-            //    spawnedPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
-            //}
-            //else
-            //{
-            //    GameObject spawnedPlayer = Object.Instantiate(spawnPlayer, col.gameObject.transform.position, this.gameObject.transform.rotation);
-            //    spawnedPlayer.GetComponent<Rigidbody>().AddForce(0, 250, 0);
-            //}
             Destroy(col.gameObject);
         }
 
@@ -156,7 +148,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy") || col.gameObject.CompareTag("PeanutMissile"))
         {
             allMyAudioSources[1].Play();
-            StartCoroutine("GamePadVibration");
+            //StartCoroutine("GamePadVibration");
             StartCoroutine("Flash");
             StartCoroutine("InvincibleFrames");
         }
@@ -232,8 +224,7 @@ public class Player : MonoBehaviour
     {
         if (dashing)
         {
-            rb.velocity = Vector3.Lerp(dashStart, dashDestination, completion);
-            //transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
+            transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
             completion += Time.deltaTime * dashVelocity;
             if (completion >= 1)
             {
@@ -269,8 +260,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator GamePadVibration()
     {
-        GamePad.SetVibration(0, 1, 1);
+        GamePad.SetVibration(PlayerIndex.One, 1, 1);
         yield return new WaitForSeconds(0.5f);
-        GamePad.SetVibration(0, 0, 0);
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
     }
 }

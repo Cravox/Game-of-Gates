@@ -10,19 +10,19 @@ public class SceneLoader : MonoBehaviour
     AsyncOperation operation;
 
     private float progress;
-    private bool sceneLoaded = false;
+    //private bool sceneLoaded = false;
 
     void Update()
     {
-        string loadedScene = "1";
+        string loadedScene = "Jussi_Singleplayer";
         progress = progressBar.value + Random.Range(0.002f, 0.01f);
 
         progressBar.value = progress;
 
-        if (progressBar.value >= 0.9f && !sceneLoaded)
+        if (progressBar.value == 1f /*&& !sceneLoaded*/)
         {
             AsyncOperation operation = SceneManager.LoadSceneAsync(loadedScene);
-            sceneLoaded = true;
+            //sceneLoaded = true;
         }
 
     }

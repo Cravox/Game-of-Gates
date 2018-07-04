@@ -7,11 +7,13 @@ using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour
 {
-    public bool paused = true;
+    public bool paused = false;
+    public bool noInput = true;
+    private bool allDead = false;
     private bool blinkState;
     private bool blinking = false;
 
-    public Sprite[] playerHpUISprites = new Sprite[4];
+    public Sprite[] playerHpUISprites = new Sprite[5];
 
     public Image[] HpImages;
     public GameObject[] Players;
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Menu"))
         {
-            SceneManager.LoadScene("levelSelect");
+            SceneManager.LoadScene("levelSelect_Gate2");
         }
 
         if (Jussi != null)
@@ -78,13 +80,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < Players.Length; i++)
+        for (int i = 0; i < Players.Length; i++)
         {
-            if (Players[i].activeSelf == false)
-            {
-                paused = true;
-                loseScreen.SetActive(true);
-            }
+            //if (Players[i].activeSelf == true)
+            //{
+            //    allDead = true;
+            //} else if (Players[0])
 
             switch (hpPlayers[i].hp)
             {
@@ -98,7 +99,17 @@ public class GameManager : MonoBehaviour
                         blinking = true;
                     }
                     break;
+                case 0:
+                    HpImages[i].sprite = playerHpUISprites[4];
+                    StopCoroutine(HpBlink(HpImages[i]));
+                    break;
             }
+        }
+
+        if (Players[0].activeSelf == false && Players[1].activeSelf == false)
+        {
+            paused = true;
+            loseScreen.SetActive(true);
         }
     }
 

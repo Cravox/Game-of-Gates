@@ -14,8 +14,7 @@ public class Player_bullet : MonoBehaviour
     public float spreadUltiProfit;
 
     private AudioSource sound;
-    private GameObject ultiMeter;
-    private Image ultiMeterImage;
+    private Image ultiMeter;
     private int damage;
     public int playerIndex;
     private float range;
@@ -27,8 +26,7 @@ public class Player_bullet : MonoBehaviour
     {
         allAudioSources = this.GetComponents<AudioSource>();
         Destroy(this.gameObject, range);
-        ultiMeter = GameObject.Find("Image_"+this.playerIndex);
-        ultiMeterImage = ultiMeter.GetComponent<Image>();
+        ultiMeter = GameObject.Find("Ultimeter_" + this.playerIndex).GetComponent<Image>();
     }
     
     void Update()
@@ -64,19 +62,19 @@ public class Player_bullet : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            ultiMeterImage.fillAmount += ultiProfit;
+            ultiMeter.fillAmount += ultiProfit;
             col.gameObject.GetComponent<Jussi>().hp -= damage;
             Destroy(this.gameObject);
         }
 
         if (col.gameObject.CompareTag("PeanutMissile"))
         {
-            ultiMeterImage.fillAmount += ultiProfit;
+            ultiMeter.fillAmount += ultiProfit/2;
             col.gameObject.GetComponent<Jussi_peanutMissile>().hp -= damage;
             Destroy(this.gameObject);
         }
 
-        if(col.gameObject.CompareTag("Ballon"))
+        if (col.gameObject.CompareTag("Ballon"))
         {
             Destroy(this.gameObject);
         }

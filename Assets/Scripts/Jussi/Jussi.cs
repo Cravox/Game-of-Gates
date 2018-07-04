@@ -9,6 +9,7 @@ public class Jussi : MonoBehaviour
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
+    public GameObject gameManagerObj;
     public MeshRenderer renderer;
     public Transform yoshiEggSpawnPosition;
     public Transform peanutMissileSpawnPosition;
@@ -28,6 +29,7 @@ public class Jussi : MonoBehaviour
 
     public float circleLaserLifeTime = 4f;
 
+    private GameManager gameManager;
     private Color originalColor;
     private Animator anim;
     private int attack = 1;
@@ -49,6 +51,7 @@ public class Jussi : MonoBehaviour
     {
         originalColor = renderer.materials[0].color;
         allAudioSources = this.GetComponents<AudioSource>();
+        gameManager = gameManagerObj.GetComponent<GameManager>();
     }
 
     void Update()
@@ -65,28 +68,31 @@ public class Jussi : MonoBehaviour
             regularPhase = false;
         }
 
-        if (regularPhase)
+        if (!gameManager.GetComponent<GameManager>().paused || !gameManager.GetComponent<GameManager>().noInput)
         {
-            switch (attack)
+            if (regularPhase)
             {
-                case 1:
-                    AttackOne();
-                    break;
-                case 2:
-                    AttackTwo();
-                    break;
+                switch (attack)
+                {
+                    case 1:
+                        AttackOne();
+                        break;
+                    case 2:
+                        AttackTwo();
+                        break;
+                }
             }
-        }
-        else
-        {
-            switch (critAttack)
+            else
             {
-                case 1:
-                    CritAttackOne();
-                    break;
-                case 2:
-                    CritAttackTwo();
-                    break;
+                switch (critAttack)
+                {
+                    case 1:
+                        CritAttackOne();
+                        break;
+                    case 2:
+                        CritAttackTwo();
+                        break;
+                }
             }
         }
     }
@@ -190,7 +196,7 @@ public class Jussi : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.CompareTag("Bullet"))
+        if (col.gameObject.CompareTag("Bullet"))
         {
             renderer.materials[0].color = Color.white;
             Invoke("ResetColor", 0.075f);

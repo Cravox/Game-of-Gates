@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UltiMeter : MonoBehaviour
 {
+    private bool blinkState;
+    private bool blinking = false;
+
     public Sprite[] ultiSprites;
     private Image ultiMeter;
 
@@ -18,13 +21,33 @@ public class UltiMeter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ultiMeter.fillAmount == 1)
+        if(ultiMeter.fillAmount == 1f && !blinking)
         {
-            ultiMeter.sprite = ultiSprites[1];
+            StartCoroutine("UltBlink");
+            blinking = true;
         }
-        else
+        else if (ultiMeter.fillAmount < 1f)
         {
+            blinking = false;
             ultiMeter.sprite = ultiSprites[0];
+            StopCoroutine("UltBlink");
+        }
+    }
+
+    private IEnumerator UltBlink()
+    {
+        while (true)
+        {
+            if (blinkState)
+            {
+                ultiMeter.sprite = ultiSprites[0];
+            }
+            else
+            {
+                ultiMeter.sprite = ultiSprites[1];
+            }
+            blinkState = !blinkState;
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

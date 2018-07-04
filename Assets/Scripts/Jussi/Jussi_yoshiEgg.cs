@@ -5,17 +5,13 @@ using UnityEngine;
 public class Jussi_yoshiEgg : MonoBehaviour
 {
     private Rigidbody rb;
-    private Animator anim;
 
-    public float bulletTimer;
     private int enemyDamage = 1;
 
 
     void Awake()
     {
-        anim = this.gameObject.GetComponent<Animator>();
         rb = this.gameObject.GetComponent<Rigidbody>();
-        bulletTimer = 0.3f;
     }
 
     void Start()
@@ -25,12 +21,7 @@ public class Jussi_yoshiEgg : MonoBehaviour
 
     void Update()
     {
-        bulletTimer -= Time.deltaTime;
 
-        if (bulletTimer < 0)
-        {
-            anim.SetTrigger("Timer");
-        }
     }
 
     void OnTriggerEnter(Collider col)

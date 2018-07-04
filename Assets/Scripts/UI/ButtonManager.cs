@@ -25,7 +25,7 @@ public class ButtonManager : MonoBehaviour
     public void OnClickMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("0");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnClickResume()
@@ -40,5 +40,20 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
         //gameManager.GetComponent<GameManager>().paused = false;
+    }
+
+    public void ClickSP()
+    {
+        SceneManager.LoadScene("Jussi_Singleplayer");
+    }
+
+    public void ClickMP()
+    {
+        SceneManager.LoadScene("Jussi_Multiplayer");
+    }
+
+    public void ClickSelectGate()
+    {
+        SceneManager.LoadScene("levelSelect_Gate2");
     }
 }
