@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 136890187807445064}
   - component: {fileID: 23788558899300008}
   - component: {fileID: 54976256053770782}
-  - component: {fileID: 114378386997435130}
+  - component: {fileID: 114226296065600390}
   m_Layer: 9
   m_Name: Ultimateshot_p1
   m_TagString: Bullet
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &114378386997435130
+--- !u!114 &114226296065600390
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public bool paused = false;
     public bool noInput = true;
+    public bool multiPlayer;
     private bool allDead = false;
-    private bool blinkState;
-    private bool blinking = false;
+    private bool[] blinkStates = new bool[2];
 
     public Sprite[] playerHpUISprites = new Sprite[5];
 
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject loseScreen;
     public GameObject Jussi;
     public GameObject bossCountdown;
+    public bool[] blinkings = new bool[2];
 
     public AudioSource mainTheme;
     private Player[] hpPlayers;
@@ -82,42 +83,48 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < Players.Length; i++)
         {
-            //if (Players[i].activeSelf == true)
-            //{
-            //    allDead = true;
-            //} else if (Players[0])
-
             switch (hpPlayers[i].hp)
             {
                 case 2:
                     HpImages[i].sprite = playerHpUISprites[2];
                     break;
                 case 1:
-                    if (!blinking)
+                    if (!blinkings[i])
                     {
-                        StartCoroutine(HpBlink(HpImages[i]));
-                        blinking = true;
+                        StartCoroutine(HpBlink(HpImages[i], i));
+                        blinkings[i] = true;
                     }
                     break;
                 case 0:
                     HpImages[i].sprite = playerHpUISprites[4];
-                    StopCoroutine(HpBlink(HpImages[i]));
+                    StopCoroutine(HpBlink(HpImages[i], i));
                     break;
             }
         }
 
-        if (Players[0].activeSelf == false && Players[1].activeSelf == false)
+        if(multiPlayer)
         {
-            paused = true;
-            loseScreen.SetActive(true);
+            if (Players[0].activeSelf == false && Players[1].activeSelf == false)
+            {
+                paused = true;
+                loseScreen.SetActive(true);
+            }
+        }
+        else
+        {
+            if(Players[0].activeSelf == false)
+            {
+                paused = true;
+                loseScreen.SetActive(true);
+            }
         }
     }
 
-    private IEnumerator HpBlink(Image hpImage)
+    private IEnumerator HpBlink(Image hpImage, int playerID)
     {
         while (true)
         {
-            if (blinkState)
+            if (blinkStates[playerID])
             {
                 hpImage.sprite = playerHpUISprites[1];
             }
@@ -125,7 +132,7 @@ public class GameManager : MonoBehaviour
             {
                 hpImage.sprite = playerHpUISprites[0];
             }
-            blinkState = !blinkState;
+            blinkStates[playerID] = !blinkStates[playerID];
             yield return new WaitForSeconds(0.5f);
         }
     }

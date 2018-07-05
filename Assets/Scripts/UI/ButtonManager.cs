@@ -39,7 +39,6 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
-        //gameManager.GetComponent<GameManager>().paused = false;
     }
 
     public void ClickSP()
