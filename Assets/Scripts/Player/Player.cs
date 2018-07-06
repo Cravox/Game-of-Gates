@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
     private void InputManager()
     {
-        if (!gameManager.GetComponent<GameManager>().paused || !gameManager.GetComponent<GameManager>().noInput)
+        if (!gameManager.GetComponent<GameManager>().paused && !gameManager.GetComponent<GameManager>().noInput)
         {
             if (Input.GetButtonDown("Dash_" + this.playerIndex))
             {
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
+        //Movement();
     }
 
     private void OnCollisionEnter(Collision col)

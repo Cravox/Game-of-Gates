@@ -11,24 +11,26 @@ public class Jussi_circleLaser : MonoBehaviour
 
     void Start()
     {
-        for(int i = 0; i < 2; i++)
-        {
-            target = GameObject.Find("hitTarget_"+i).GetComponent<Transform>();
-        }
-
-        //if(GameObject.Find("hitTarget_0") != null)
+        //for(int i = 0; i < 2; i++)
         //{
-        //}else
-        //{
-        //    target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        //    target = GameObject.Find("hitTarget_"+i).GetComponent<Transform>();
         //}
+
+        if (GameObject.Find("hitTarget_0") != null)
+        {
+            target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
+        }
+        else
+        {
+            target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
+        }
 
         rb = this.GetComponent<Rigidbody>();
         Vector3 direction = (Vector3)target.position - rb.position;
         direction.Normalize();
 
         rb.velocity = direction * speed;
-        Destroy(this.gameObject, 3f);
+        Destroy(this.gameObject, 2f);
     }
 
     void Update()

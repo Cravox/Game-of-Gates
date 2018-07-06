@@ -32,12 +32,8 @@ public class BossCountdown : MonoBehaviour
         {
             countdownPanel.SetActive(false);
             gameManager.noInput = false;
-            counter = Time.realtimeSinceStartup * 2;
         }
 
-        if(countLimit >= 0)
-        {
-            countDownImage.sprite = countDownSprites[countLimit];
-        }
+        countDownImage.sprite = countDownSprites[countLimit-1];
     }
 }

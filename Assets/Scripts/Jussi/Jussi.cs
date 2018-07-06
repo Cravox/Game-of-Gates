@@ -5,6 +5,10 @@ using UnityEngine;
 public class Jussi : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
+    public GameObject[] Lights = new GameObject[9];
+    public GameObject[] bottles = new GameObject[7];
+    public GameObject[] cracks = new GameObject[3];
+    public GameObject mihawkSword;
     public GameObject yoshiEgg;
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
@@ -41,14 +45,17 @@ public class Jussi : MonoBehaviour
     private float moveY;
     private float peanutMissileSpawnTimer = 0;
     private float shootTimer = 0;
+    private bool blinking;
     private bool defaultShot = true;
     private bool regularPhase = true;
     private bool firstPhase = true;
     private float attackDelay = 0;
+    private int bossHpPercent;
     private float delay = 0;
 
     private void Start()
     {
+        bossHpPercent = hp / 100;
         originalColor = renderer.materials[0].color;
         allAudioSources = this.GetComponents<AudioSource>();
         gameManager = gameManagerObj.GetComponent<GameManager>();
@@ -68,7 +75,7 @@ public class Jussi : MonoBehaviour
             regularPhase = false;
         }
 
-        if (!gameManager.GetComponent<GameManager>().paused || !gameManager.GetComponent<GameManager>().noInput)
+        if (!gameManager.GetComponent<GameManager>().paused && !gameManager.GetComponent<GameManager>().noInput)
         {
             if (regularPhase)
             {
@@ -84,6 +91,12 @@ public class Jussi : MonoBehaviour
             }
             else
             {
+                if (!blinking)
+                {
+                    StartCoroutine("Flashing");
+                    blinking = true;
+                }
+
                 switch (critAttack)
                 {
                     case 1:
@@ -93,6 +106,43 @@ public class Jussi : MonoBehaviour
                         CritAttackTwo();
                         break;
                 }
+            }
+        }
+
+        if (gameManager.multiPlayer)
+        {
+            switch (hp)
+            {
+                case 1600:
+                    cracks[0].SetActive(true);
+                    for(int i = 0; i < bottles.Length; i++)
+                    {
+                        bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+                    }
+                    break;
+                case 1200:
+                    mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
+                    break;
+                case 800:
+                    cracks[1].SetActive(true);
+                    break;
+                case 400:
+                    cracks[2].SetActive(true);
+                    break;
+            }
+        }
+        else
+        {
+            switch (hp)
+            {
+                case 1600:
+                    break;
+                case 1200:
+                    break;
+                case 800:
+                    break;
+                case 400:
+                    break;
             }
         }
     }
@@ -206,5 +256,22 @@ public class Jussi : MonoBehaviour
     void ResetColor()
     {
         renderer.materials[0].color = originalColor;
+    }
+
+    IEnumerator Flashing()
+    {
+        while (true)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Lights[Random.Range(0, Lights.Length)].SetActive(true);
+            }
+            yield return new WaitForSeconds(0.5f);
+            for (int i = 0; i < 3; i++)
+            {
+                Lights[Random.Range(0, Lights.Length)].SetActive(false);
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

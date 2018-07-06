@@ -6,24 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public Slider progressBar;
     AsyncOperation operation;
 
+    public string scene;
+    public float timer = 0;
     private float progress;
-    //private bool sceneLoaded = false;
+    private bool sceneLoaded;
 
     void Update()
     {
-        string loadedScene = "Jussi_Singleplayer";
-        progress = progressBar.value + Random.Range(0.002f, 0.01f);
-
-        progressBar.value = progress;
-
-        if (progressBar.value == 1f /*&& !sceneLoaded*/)
+        timer += Time.deltaTime;
+        //string loadedScene = "Jussi_Multiplayer";
+        if(timer >= 2 && !sceneLoaded)
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(loadedScene);
-            //sceneLoaded = true;
+            AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
+            sceneLoaded = true;
         }
-
     }
 }

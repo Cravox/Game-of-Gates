@@ -43,16 +43,21 @@ public class ButtonManager : MonoBehaviour
 
     public void ClickSP()
     {
-        SceneManager.LoadScene("Jussi_Singleplayer");
+        SceneManager.LoadScene("LoadingScreen_SP");
+        Time.timeScale = 1;
+
     }
 
     public void ClickMP()
     {
-        SceneManager.LoadScene("Jussi_Multiplayer");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LoadingScreen_MP");
+
     }
 
     public void ClickSelectGate()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("levelSelect_Gate2");
     }
 }

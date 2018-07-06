@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allAudioSources: []
+  impact: {fileID: 1420603003400516, guid: 9cbeb7e4cdede2440b417823d50274eb, type: 2}
   normalDamage: 4
   normalRange: 4
   normalUltiProfit: 0.01

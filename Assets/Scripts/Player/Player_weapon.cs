@@ -10,6 +10,7 @@ public class Player_weapon : MonoBehaviour
     public Transform shotSpawnPosition;
     public GameObject bullet;
     public GameObject ultimateBullet;
+    public GameManager gM;
     public Transform spawnSpreadUltimate;
     public int playerIndex;
     public int spreadUltimateNumber = 8;
@@ -61,52 +62,54 @@ public class Player_weapon : MonoBehaviour
         facingRight = gameObject.GetComponentInParent<Player>().FacingRight;
 
         shootTimer += Time.deltaTime;
-
-        if (shootTimer > shootFrequency)
+        if(!gM.paused && !gM.noInput)
         {
-            int inv = facingRight ? 1 : -1;
-
-            Vector3 spawn = shotSpawnPosition.transform.position;
-            if (defaultFire)
+            if (shootTimer > shootFrequency)
             {
-                GameObject bulletInstance = Instantiate(bullet, spawn, Quaternion.identity);
-                bulletInstance.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-                bulletInstance.GetComponent<Player_bullet>().Initialize(Player_bullet.Type.NORMAL);
-            }
-            else
-            {
-                GameObject[] spreadBullets = new GameObject[3];
+                int inv = facingRight ? 1 : -1;
 
-                float moveY = Input.GetAxisRaw("Vertical_" + this.playerIndex);
-                float moveX = Input.GetAxisRaw("Horizontal_" + this.playerIndex);
-
-                float bulletAngle = -0.2f;
-
-                for (int i = 0; i < spreadBullets.Length; i++)
+                Vector3 spawn = shotSpawnPosition.transform.position;
+                if (defaultFire)
                 {
-                    spreadBullets[i] = Instantiate(bullet, spawn, Quaternion.identity);
-                    if (moveY <= -0.75f)
-                    {
-                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle, 0, 0)) * bulletForce);
-                    }else if (moveY <= -0.5f && moveX > 0.1f &&!facingRight || moveY <= -0.5f && moveX < -0.1f && !facingRight)
-                    {
-                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(-bulletAngle/2, -bulletAngle/2, 0)) * bulletForce);
-                    }
-                    else if (moveY <= -0.5f && moveX > 0.1f && facingRight || moveY <= -0.5f && moveX < -0.1f && facingRight)
-                    {
-                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle / 2, -bulletAngle / 2, 0)) * bulletForce);
-                    }
-                    else
-                    {
-                        spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(0, bulletAngle, 0)) * bulletForce);
-                    }
-                    spreadBullets[i].GetComponent<Player_bullet>().Initialize(Player_bullet.Type.SPREAD);
-                    bulletAngle += 0.2f;
+                    GameObject bulletInstance = Instantiate(bullet, spawn, Quaternion.identity);
+                    bulletInstance.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+                    bulletInstance.GetComponent<Player_bullet>().Initialize(Player_bullet.Type.NORMAL);
                 }
-            }
-            shootTimer -= shootFrequency;
-        }
+                else
+                {
+                    GameObject[] spreadBullets = new GameObject[3];
 
+                    float moveY = Input.GetAxisRaw("Vertical_" + this.playerIndex);
+                    float moveX = Input.GetAxisRaw("Horizontal_" + this.playerIndex);
+
+                    float bulletAngle = -0.2f;
+
+                    for (int i = 0; i < spreadBullets.Length; i++)
+                    {
+                        spreadBullets[i] = Instantiate(bullet, spawn, Quaternion.identity);
+                        if (moveY <= -0.75f)
+                        {
+                            spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle, 0, 0)) * bulletForce);
+                        }
+                        else if (moveY <= -0.5f && moveX > 0.1f && !facingRight || moveY <= -0.5f && moveX < -0.1f && !facingRight)
+                        {
+                            spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(-bulletAngle / 2, -bulletAngle / 2, 0)) * bulletForce);
+                        }
+                        else if (moveY <= -0.5f && moveX > 0.1f && facingRight || moveY <= -0.5f && moveX < -0.1f && facingRight)
+                        {
+                            spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(bulletAngle / 2, -bulletAngle / 2, 0)) * bulletForce);
+                        }
+                        else
+                        {
+                            spreadBullets[i].GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(0, bulletAngle, 0)) * bulletForce);
+                        }
+                        spreadBullets[i].GetComponent<Player_bullet>().Initialize(Player_bullet.Type.SPREAD);
+                        bulletAngle += 0.2f;
+                    }
+                }
+                shootTimer -= shootFrequency;
+            }
+        }
     }
 
     public void UltimateShot()
@@ -114,34 +117,38 @@ public class Player_weapon : MonoBehaviour
         facingRight = gameObject.GetComponentInParent<Player>().FacingRight;
 
         int inv = facingRight ? 1 : -1;
-
-        if (ultiMeter.fillAmount == 1 && defaultFire)
+        if (!gM.paused && !gM.noInput)
         {
-            Vector3 spawn = shotSpawnPosition.transform.position;
-
-            ultiMeter.fillAmount = 0;
-            GameObject ultimateBulletInstance = Instantiate(ultimateBullet, spawn, Quaternion.identity);
-            ultimateBulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(inv, 0, 0) * bulletForce);
-        }
-
-        if (ultiMeter.fillAmount == 1 && !defaultFire)
-        {
-            GameObject[] spreadUltimateBullets = new GameObject[spreadUltimateNumber];
-
-            float bulletAngleInc = Mathf.Deg2Rad * (360 / spreadUltimateNumber);
-
-            float bulletAngle = 0f;
-
-            ultiMeter.fillAmount = 0;
-
-            for (int i = 0; i < spreadUltimateBullets.Length; i++)
+            if (ultiMeter.fillAmount == 1 && defaultFire)
             {
-                spreadUltimateBullets[i] = Instantiate(ultimateBullet, spawnSpreadUltimate.position, Quaternion.identity);
-                spreadUltimateBullets[i].GetComponent<Rigidbody>().AddForce(new Vector3(Mathf.Cos(bulletAngle), Mathf.Sin(bulletAngle), 0) * bulletForce);
-                spreadUltimateBullets[i].GetComponent<Player_ultimateBullet>().Initialize(Player_ultimateBullet.Type.SPREAD);
-                bulletAngle += bulletAngleInc;
+                Vector3 spawn = shotSpawnPosition.transform.position;
+
+                ultiMeter.fillAmount = 0;
+                GameObject ultimateBulletInstance = Instantiate(ultimateBullet, spawn, Quaternion.identity);
+                ultimateBulletInstance.GetComponent<Rigidbody>().AddForce(new Vector3(inv, 0, 0) * bulletForce);
+            }
+
+            if (ultiMeter.fillAmount == 1 && !defaultFire)
+            {
+                GameObject[] spreadUltimateBullets = new GameObject[spreadUltimateNumber];
+
+                float bulletAngleInc = Mathf.Deg2Rad * (360 / spreadUltimateNumber);
+
+                float bulletAngle = 0f;
+
+                ultiMeter.fillAmount = 0;
+
+                for (int i = 0; i < spreadUltimateBullets.Length; i++)
+                {
+                    spreadUltimateBullets[i] = Instantiate(ultimateBullet, spawnSpreadUltimate.position, Quaternion.identity);
+                    spreadUltimateBullets[i].GetComponent<Rigidbody>().AddForce(new Vector3(Mathf.Cos(bulletAngle), Mathf.Sin(bulletAngle), 0) * bulletForce);
+                    spreadUltimateBullets[i].GetComponent<Player_ultimateBullet>().Initialize(Player_ultimateBullet.Type.SPREAD);
+                    bulletAngle += bulletAngleInc;
+                }
             }
         }
+
+
 
     }
 
