@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jussi : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
+    public Animator mülleimer;
     public GameObject[] Lights = new GameObject[9];
     public GameObject[] bottles = new GameObject[7];
     public GameObject[] cracks = new GameObject[3];
@@ -32,7 +33,7 @@ public class Jussi : MonoBehaviour
     public float flipNormalsLifeTime = 4f;
 
     public float circleLaserLifeTime = 4f;
-
+    
     private GameManager gameManager;
     private Color originalColor;
     private Animator anim;
@@ -113,21 +114,24 @@ public class Jussi : MonoBehaviour
         {
             switch (hp)
             {
-                case 1600:
+                case 2600:
                     cracks[0].SetActive(true);
-                    for(int i = 0; i < bottles.Length; i++)
+                    for (int i = 0; i < bottles.Length; i++)
                     {
                         bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
                     }
                     break;
-                case 1200:
+                case 2300:
+                    mülleimer.GetComponent<Animator>().enabled = true;
+                    break;
+                case 2100:
+                    cracks[2].SetActive(true);
+                    break;
+                case 2000:
                     mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
                     break;
-                case 800:
+                case 1600:
                     cracks[1].SetActive(true);
-                    break;
-                case 400:
-                    cracks[2].SetActive(true);
                     break;
             }
         }
@@ -135,13 +139,24 @@ public class Jussi : MonoBehaviour
         {
             switch (hp)
             {
-                case 1600:
-                    break;
                 case 1200:
+                    cracks[0].SetActive(true);
+                    for (int i = 0; i < bottles.Length; i++)
+                    {
+                        bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+                    }
                     break;
-                case 800:
+                case 1000:
+                    mülleimer.GetComponent<Animator>().enabled = true;
                     break;
-                case 400:
+                case 900:
+                    mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
+                    break;
+                case 600:
+                    cracks[1].SetActive(true);
+                    break;
+                case 300:
+                    cracks[2].SetActive(true);
                     break;
             }
         }

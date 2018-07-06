@@ -11,6 +11,7 @@ public class Player_weapon : MonoBehaviour
     public GameObject bullet;
     public GameObject ultimateBullet;
     public GameManager gM;
+    public Animator anim;
     public Transform spawnSpreadUltimate;
     public int playerIndex;
     public int spreadUltimateNumber = 8;
@@ -45,8 +46,12 @@ public class Player_weapon : MonoBehaviour
             //{
             //    allAudioSources[1].Play();
             //}
-
+            anim.SetBool("isShooting", true);
             Shoot();
+        }
+        if(Input.GetButtonUp("Fire_"+ this.playerIndex))
+        {
+            anim.SetBool("isShooting", false);
         }
 
         if (Input.GetButtonDown("Ultimate_" + this.playerIndex))

@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
         //Grounded check
         if (col.gameObject.CompareTag("Ground"))
         {
+            anim.SetBool("isGrounded", true);
             this.grounded = true;
             Instantiate(landingParticles, this.transform.position, this.transform.rotation);
         }
@@ -121,7 +122,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit(Collision col)
     {
-        if (col.gameObject.CompareTag("Ground")) this.grounded = false;
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            this.grounded = false;
+            anim.SetBool("isGrounded", false);
+        }
     }
 
     private void OnTriggerStay(Collider col)
@@ -184,13 +189,13 @@ public class Player : MonoBehaviour
 
         if (moveY >= 0.75f && grounded)
         {
-            anim.SetBool("Ducking", true);
+            anim.SetBool("isCrouching", true);
             isDucking = true;
         }
         else if (moveY <= 0.75f)
         {
             isDucking = false;
-            anim.SetBool("Ducking", false);
+            anim.SetBool("isCrouching", false);
         }
 
     }
@@ -209,9 +214,22 @@ public class Player : MonoBehaviour
             this.rb.velocity = new Vector3(0, this.rb.velocity.y, 0);
         }
 
-        if (moveX > 0.1f) facingRight = true;
-        if (moveX < -0.1f) facingRight = false;
+        if (moveX > 0.1f)
+        {
+            facingRight = true;
+            anim.SetBool("isWalking", true);
+        }
 
+        if (moveX < -0.1f)
+        {
+            facingRight = false;
+            anim.SetBool("isWalking", true);
+        }
+        
+        if(moveX == 0)
+        {
+            anim.SetBool("isWalking", false);
+        }
 
         if (jumping)
         {
