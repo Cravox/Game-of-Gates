@@ -9089,8 +9089,8 @@ MonoBehaviour:
   renderer: {fileID: 1597175643}
   yoshiEggSpawnPosition: {fileID: 2029792127}
   peanutMissileSpawnPosition: {fileID: 1747570890}
-  hp: 1200
-  criticalPhaseTrigger: 400
+  hp: 1500
+  criticalPhaseTrigger: 500
   yoshiEggNumber: 4
   yoshiEggSpeed: 250
   yoshiEggFrequency: 1

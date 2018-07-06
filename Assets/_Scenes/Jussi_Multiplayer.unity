@@ -1995,7 +1995,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 290047836}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -3.07, y: -0.53, z: -1.168}
+  m_LocalPosition: {x: -2.824, y: -0.53, z: -1.168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 557344606}
@@ -8050,7 +8050,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4906625837041740, guid: 075f73d07eca7c64b8fa3fc80d68a096, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.349
       objectReference: {fileID: 0}
     - target: {fileID: 4906625837041740, guid: 075f73d07eca7c64b8fa3fc80d68a096, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9102,8 +9102,8 @@ MonoBehaviour:
   renderer: {fileID: 1597175643}
   yoshiEggSpawnPosition: {fileID: 2029792127}
   peanutMissileSpawnPosition: {fileID: 1747570890}
-  hp: 2000
-  criticalPhaseTrigger: 650
+  hp: 3000
+  criticalPhaseTrigger: 1300
   yoshiEggNumber: 4
   yoshiEggSpeed: 250
   yoshiEggFrequency: 1
