@@ -7,6 +7,7 @@ using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioSource[] allAudioSources = new AudioSource[2];
     public bool paused = false;
     public bool noInput = true;
     public bool multiPlayer;
@@ -39,6 +40,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (paused) Time.timeScale = 0;
         else Time.timeScale = 1;
 
@@ -51,6 +55,8 @@ public class GameManager : MonoBehaviour
         {
             if (Jussi.GetComponent<Jussi>().hp <= 0)
             {
+                allAudioSources[0].enabled = false;
+                allAudioSources[1].enabled = true;
                 winScreen.active = true;
                 paused = true;
             }

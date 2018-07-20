@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: e6cf81ac99494fa4a8daa8baec9b0747
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Blends
+    100002: Elbow_L_
+    100004: Elbow_R_
+    100006: Eye_L_
+    100008: Eye_R_
+    100010: Fingers_1_L_
+    100012: Fingers_1_R_
+    100014: Fingers_2_L_
+    100016: Fingers_2_R_
+    100018: Fingers_3_L_
+    100020: Fingers_3_R_
+    100022: GEO_GRP
+    100024: Hat_base_
+    100026: Hat_nose_base_
+    100028: Hat_nose_tip_
+    100030: Hate_top_
+    100032: Head_
+    100034: Head_GEO
+    100036: //RootNode
+    100038: Jussie_Body_GEO
+    100040: Jussie_Eyes_GEO
+    100042: Jussie_Hat_GEO
+    100044: Root_
+    100046: Shoulder_L_
+    100048: Shoulder_R_
+    100050: Spine_0_
+    100052: Spine_10_
+    100054: Spine_11_
+    100056: Spine_12_
+    100058: Spine_13_
+    100060: Spine_14_
+    100062: Spine_15_
+    100064: Spine_16_
+    100066: Spine_17_
+    100068: Spine_1_
+    100070: Spine_2_
+    100072: Spine_3_
+    100074: Spine_4_
+    100076: Spine_5_
+    100078: Spine_6_
+    100080: Spine_7_
+    100082: Spine_8_
+    100084: Spine_9_
+    100086: Thumb_1_L_
+    100088: Thumb_1_R_
+    100090: Thumb_2_L_
+    100092: Thumb_2_R_
+    100094: Tongue_1_
+    100096: Tongue_2_
+    100098: Tongue_3_
+    100100: Tongue_4_
+    100102: Tongue_GEO
+    100104: Wrist_L_
+    100106: Wrist_R_
+    400000: Blends
+    400002: Elbow_L_
+    400004: Elbow_R_
+    400006: Eye_L_
+    400008: Eye_R_
+    400010: Fingers_1_L_
+    400012: Fingers_1_R_
+    400014: Fingers_2_L_
+    400016: Fingers_2_R_
+    400018: Fingers_3_L_
+    400020: Fingers_3_R_
+    400022: GEO_GRP
+    400024: Hat_base_
+    400026: Hat_nose_base_
+    400028: Hat_nose_tip_
+    400030: Hate_top_
+    400032: Head_
+    400034: Head_GEO
+    400036: //RootNode
+    400038: Jussie_Body_GEO
+    400040: Jussie_Eyes_GEO
+    400042: Jussie_Hat_GEO
+    400044: Root_
+    400046: Shoulder_L_
+    400048: Shoulder_R_
+    400050: Spine_0_
+    400052: Spine_10_
+    400054: Spine_11_
+    400056: Spine_12_
+    400058: Spine_13_
+    400060: Spine_14_
+    400062: Spine_15_
+    400064: Spine_16_
+    400066: Spine_17_
+    400068: Spine_1_
+    400070: Spine_2_
+    400072: Spine_3_
+    400074: Spine_4_
+    400076: Spine_5_
+    400078: Spine_6_
+    400080: Spine_7_
+    400082: Spine_8_
+    400084: Spine_9_
+    400086: Thumb_1_L_
+    400088: Thumb_1_R_
+    400090: Thumb_2_L_
+    400092: Thumb_2_R_
+    400094: Tongue_1_
+    400096: Tongue_2_
+    400098: Tongue_3_
+    400100: Tongue_4_
+    400102: Tongue_GEO
+    400104: Wrist_L_
+    400106: Wrist_R_
+    2100000: Jussie_MAT
+    4300000: Head_GEO
+    4300002: Jussie_Body_GEO
+    4300004: Tongue_GEO
+    4300006: Jussie_Eyes_GEO
+    4300008: Jussie_Hat_GEO
+    9500000: //RootNode
+    13700000: Head_GEO
+    13700002: Jussie_Body_GEO
+    13700004: Jussie_Eyes_GEO
+    13700006: Jussie_Hat_GEO
+    13700008: Tongue_GEO
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Root_
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

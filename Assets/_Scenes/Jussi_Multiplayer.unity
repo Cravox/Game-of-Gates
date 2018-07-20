@@ -4305,14 +4305,14 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 671690682}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9dcdea9ccb016ff46805ba1e03af2b3d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7c437857f9bbc2641a798aec25b81c8e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.17
+  m_Volume: 0.513
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -11471,6 +11471,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114773087171781588, guid: df3c7d64494b3b64880cccc79f1c9977,
         type: 2}
+      propertyPath: allAudioSources.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773087171781588, guid: df3c7d64494b3b64880cccc79f1c9977,
+        type: 2}
       propertyPath: playerUltUISprites.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -11713,6 +11718,16 @@ Prefab:
       propertyPath: multiPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114773087171781588, guid: df3c7d64494b3b64880cccc79f1c9977,
+        type: 2}
+      propertyPath: allAudioSources.Array.data[0]
+      value: 
+      objectReference: {fileID: 671690687}
+    - target: {fileID: 114773087171781588, guid: df3c7d64494b3b64880cccc79f1c9977,
+        type: 2}
+      propertyPath: allAudioSources.Array.data[1]
+      value: 
+      objectReference: {fileID: 671690688}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df3c7d64494b3b64880cccc79f1c9977, type: 2}
   m_IsPrefabParent: 0

@@ -15,11 +15,12 @@ public class Jussi : MonoBehaviour
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
     public GameObject gameManagerObj;
-    public MeshRenderer renderer;
+    public SkinnedMeshRenderer[] renderer;
     public Transform yoshiEggSpawnPosition;
     public Transform peanutMissileSpawnPosition;
     public int hp;
-    public int criticalPhaseTrigger = 400;
+    public int flipNormalTrigger = 1200;
+    public int thirdPhaseTrigger = 400;
 
     public int yoshiEggNumber = 4;
     public float yoshiEggSpeed = 250f;
@@ -37,18 +38,18 @@ public class Jussi : MonoBehaviour
     private GameManager gameManager;
     private Color originalColor;
     private Animator anim;
-    private int attack = 1;
-    private int critAttack = 1;
+    private int phase = 1;
+    //private int attack = 1;
+    //private int critAttack = 1;
     private int yoshiEggCounter = 0;
     private int peanutMissileCounter = 0;
     private float circleLaserLifeTimeCounter = 0;
     private float flipNormalsLifeTimeCounter = 0;
-    private float moveY;
     private float peanutMissileSpawnTimer = 0;
     private float shootTimer = 0;
     private bool blinking;
     private bool defaultShot = true;
-    private bool regularPhase = true;
+    //private bool regularPhase = true;
     private bool firstPhase = true;
     private float attackDelay = 0;
     private int bossHpPercent;
@@ -56,8 +57,13 @@ public class Jussi : MonoBehaviour
 
     private void Start()
     {
+        anim = this.GetComponent<Animator>();
         bossHpPercent = hp / 100;
-        originalColor = renderer.materials[0].color;
+        renderer = this.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach(SkinnedMeshRenderer item in renderer)
+        {
+            originalColor = item.material.color;
+        }
         allAudioSources = this.GetComponents<AudioSource>();
         gameManager = gameManagerObj.GetComponent<GameManager>();
     }
@@ -66,47 +72,37 @@ public class Jussi : MonoBehaviour
     {
         if (this.hp <= 0)
         {
-            flipNormalInstantiate.SetActive(false);
-            circleLaserInstantiate.SetActive(false);
-            Destroy(this.gameObject, 1f);
+            Death();
         }
 
-        if (this.hp <= criticalPhaseTrigger)
+        if (this.hp <= flipNormalTrigger)
         {
-            regularPhase = false;
+            phase += 1;
+        }
+
+        if(this.hp <= thirdPhaseTrigger)
+        {
+            phase += 1;
         }
 
         if (!gameManager.GetComponent<GameManager>().paused && !gameManager.GetComponent<GameManager>().noInput)
         {
-            if (regularPhase)
+            switch(phase)
             {
-                switch (attack)
-                {
-                    case 1:
-                        AttackOne();
-                        break;
-                    case 2:
-                        AttackTwo();
-                        break;
-                }
-            }
-            else
-            {
-                if (!blinking)
-                {
-                    StartCoroutine("Flashing");
-                    blinking = true;
-                }
-
-                switch (critAttack)
-                {
-                    case 1:
-                        CritAttackOne();
-                        break;
-                    case 2:
-                        CritAttackTwo();
-                        break;
-                }
+                case 1:
+                    PhaseOne();
+                    break;
+                case 2:
+                    PhaseTwo();
+                    break;
+                case 3:
+                    if (!blinking)
+                    {
+                        StartCoroutine("Flashing");
+                        blinking = true;
+                    }
+                    PhaseThree();
+                    break;
             }
         }
 
@@ -162,7 +158,22 @@ public class Jussi : MonoBehaviour
         }
     }
 
-    void AttackOne()
+    void PhaseOne()
+    {
+        YoshiEggsAttack();
+    }
+
+    void PhaseTwo()
+    {
+
+    }
+
+    void PhaseThree()
+    {
+
+    }
+
+    void YoshiEggsAttack()
     {
         Vector3 spawn = yoshiEggSpawnPosition.transform.position;
         shootTimer += Time.deltaTime;
@@ -187,12 +198,11 @@ public class Jussi : MonoBehaviour
             {
                 shootTimer = 0;
                 yoshiEggCounter = 0;
-                attack = 2;
             }
         }
     }
 
-    void AttackTwo()
+    void PeanutStreamAttack()
     {
         shootTimer += Time.deltaTime;
         Vector3 spawn = peanutMissileSpawnPosition.transform.position;
@@ -220,11 +230,10 @@ public class Jussi : MonoBehaviour
             yoshiEggFrequency = 1;
             firstPhase = true;
             peanutMissileCounter = 0;
-            attack = 1;
         }
     }
 
-    void CritAttackOne()
+    void FlipNormalsAttack()
     {
         delay += Time.deltaTime;
         if (delay >= 2f)
@@ -234,14 +243,13 @@ public class Jussi : MonoBehaviour
             if (flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
             {
                 flipNormalInstantiate.SetActive(false);
-                critAttack = 2;
                 circleLaserLifeTimeCounter = 0;
                 delay = 0;
             }
         }
     }
 
-    void CritAttackTwo()
+    void LaserAttack()
     {
         delay += Time.deltaTime;
         if (delay >= 2f)
@@ -252,7 +260,6 @@ public class Jussi : MonoBehaviour
             if (circleLaserLifeTimeCounter >= circleLaserLifeTime)
             {
                 circleLaserInstantiate.SetActive(false);
-                critAttack = 1;
                 flipNormalsLifeTimeCounter = 0;
             }
         }
@@ -263,14 +270,20 @@ public class Jussi : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            renderer.materials[0].color = Color.white;
+            foreach(SkinnedMeshRenderer item in renderer)
+            {
+                item.material.color = Color.white;
+            }
             Invoke("ResetColor", 0.075f);
         }
     }
 
     void ResetColor()
     {
-        renderer.materials[0].color = originalColor;
+        foreach (SkinnedMeshRenderer item in renderer)
+        {
+            item.material.color = originalColor;
+        }
     }
 
     IEnumerator Flashing()
@@ -288,5 +301,12 @@ public class Jussi : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    void Death()
+    {
+        flipNormalInstantiate.SetActive(false);
+        circleLaserInstantiate.SetActive(false);
+        Destroy(this.gameObject, 1f);
     }
 }

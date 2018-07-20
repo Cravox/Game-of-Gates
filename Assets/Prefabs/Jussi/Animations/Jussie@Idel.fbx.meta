@@ -1,0 +1,321 @@
+fileFormatVersion: 2
+guid: b0ec2e59c42fab44993cd7f129ef2caa
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Elbow_L_
+    100002: Elbow_R_
+    100004: Eye_L_
+    100006: Eye_R_
+    100008: Fingers_1_L_
+    100010: Fingers_1_R_
+    100012: Fingers_2_L_
+    100014: Fingers_2_R_
+    100016: Fingers_3_L_
+    100018: Fingers_3_R_
+    100020: GEO_GRP
+    100022: Hat_base_
+    100024: Hat_nose_base_
+    100026: Hat_nose_tip_
+    100028: Hate_top_
+    100030: Head_
+    100032: Head_GEO
+    100034: //RootNode
+    100036: Root_
+    100038: Shoulder_L_
+    100040: Shoulder_R_
+    100042: Spine_0_
+    100044: Spine_10_
+    100046: Spine_11_
+    100048: Spine_12_
+    100050: Spine_13_
+    100052: Spine_14_
+    100054: Spine_15_
+    100056: Spine_16_
+    100058: Spine_17_
+    100060: Spine_1_
+    100062: Spine_2_
+    100064: Spine_3_
+    100066: Spine_4_
+    100068: Spine_5_
+    100070: Spine_6_
+    100072: Spine_7_
+    100074: Spine_8_
+    100076: Spine_9_
+    100078: Thumb_1_L_
+    100080: Thumb_1_R_
+    100082: Thumb_2_L_
+    100084: Thumb_2_R_
+    100086: Tongue_1_
+    100088: Tongue_2_
+    100090: Tongue_3_
+    100092: Tongue_4_
+    100094: Wrist_L_
+    100096: Wrist_R_
+    400000: Elbow_L_
+    400002: Elbow_R_
+    400004: Eye_L_
+    400006: Eye_R_
+    400008: Fingers_1_L_
+    400010: Fingers_1_R_
+    400012: Fingers_2_L_
+    400014: Fingers_2_R_
+    400016: Fingers_3_L_
+    400018: Fingers_3_R_
+    400020: GEO_GRP
+    400022: Hat_base_
+    400024: Hat_nose_base_
+    400026: Hat_nose_tip_
+    400028: Hate_top_
+    400030: Head_
+    400032: Head_GEO
+    400034: //RootNode
+    400036: Root_
+    400038: Shoulder_L_
+    400040: Shoulder_R_
+    400042: Spine_0_
+    400044: Spine_10_
+    400046: Spine_11_
+    400048: Spine_12_
+    400050: Spine_13_
+    400052: Spine_14_
+    400054: Spine_15_
+    400056: Spine_16_
+    400058: Spine_17_
+    400060: Spine_1_
+    400062: Spine_2_
+    400064: Spine_3_
+    400066: Spine_4_
+    400068: Spine_5_
+    400070: Spine_6_
+    400072: Spine_7_
+    400074: Spine_8_
+    400076: Spine_9_
+    400078: Thumb_1_L_
+    400080: Thumb_1_R_
+    400082: Thumb_2_L_
+    400084: Thumb_2_R_
+    400086: Tongue_1_
+    400088: Tongue_2_
+    400090: Tongue_3_
+    400092: Tongue_4_
+    400094: Wrist_L_
+    400096: Wrist_R_
+    2100000: Jussie_MAT
+    4300000: Head_GEO
+    7400000: Idel
+    9500000: //RootNode
+    13700000: Head_GEO
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idel
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.00036013126
+            value: 0.0000029502892
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.016270489
+            value: 0.002037413
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.40812546
+            value: 0.24114564
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.459166
+            value: 0.6631081
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.74140054
+            value: 0.27264515
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.9590247
+            value: 0.5748384
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.07892439
+            outSlope: -0.07892439
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.22984576
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Root_
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
