@@ -13,7 +13,32 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: pCylinder25
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Material_Fu\xDF"
+    second: {fileID: 2100000, guid: 5de08e15176f3b4438ed38e3d0b82288, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Metal
+    second: {fileID: 2100000, guid: 2d947910ff0f4ea4f955bbf99de23c54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Rollen1
+    second: {fileID: 2100000, guid: ecdaae4b76efa924b949ca9a97e04a29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Rollen2
+    second: {fileID: 2100000, guid: d4c229514271e2744ad15f1d369a1cfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Sitz
+    second: {fileID: 2100000, guid: df02f3305372bf4488f9bdac5cdb3e50, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

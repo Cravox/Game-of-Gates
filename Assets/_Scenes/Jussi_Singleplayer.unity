@@ -171,7 +171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4722774999502650, guid: 53583b70c591be843af1ff235f5fe60e, type: 2}
       propertyPath: m_RootOrder
-      value: 57
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 4722774999502650, guid: 53583b70c591be843af1ff235f5fe60e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -209,7 +209,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 52cf8c3f545a14c4db77bbbc7861b4c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1
+      value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 52cf8c3f545a14c4db77bbbc7861b4c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2829,7 +2829,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4527773972505270, guid: b6ecc1f755ee8b04a8026d430b25ad29, type: 2}
       propertyPath: m_RootOrder
-      value: 56
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 4527773972505270, guid: b6ecc1f755ee8b04a8026d430b25ad29, type: 2}
       propertyPath: m_LocalScale.x
@@ -5741,7 +5741,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4670929282123072, guid: 3bbdd1649b887474fa2848f96bca41be, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.07
+      value: -3.386
       objectReference: {fileID: 0}
     - target: {fileID: 4670929282123072, guid: 3bbdd1649b887474fa2848f96bca41be, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5791,6 +5791,21 @@ Prefab:
       propertyPath: gM
       value: 
       objectReference: {fileID: 1826194115}
+    - target: {fileID: 114306487026654444, guid: 3bbdd1649b887474fa2848f96bca41be,
+        type: 2}
+      propertyPath: dashForce
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306487026654444, guid: 3bbdd1649b887474fa2848f96bca41be,
+        type: 2}
+      propertyPath: dashRange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306487026654444, guid: 3bbdd1649b887474fa2848f96bca41be,
+        type: 2}
+      propertyPath: dashVelocity
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bbdd1649b887474fa2848f96bca41be, type: 2}
   m_IsPrefabParent: 0
@@ -6705,7 +6720,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4350907063408972, guid: 972993d521ab89b439bcf56b380a58ce, type: 2}
       propertyPath: m_RootOrder
-      value: 60
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 4350907063408972, guid: 972993d521ab89b439bcf56b380a58ce, type: 2}
       propertyPath: m_LocalScale.x
@@ -7823,7 +7838,7 @@ Prefab:
         type: 2}
       propertyPath: renderer
       value: 
-      objectReference: {fileID: 1597175643}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3de0d8b8cc1ccd443a1c9b499a340f12, type: 2}
   m_IsPrefabParent: 0
@@ -8319,7 +8334,8 @@ MonoBehaviour:
   yoshiEggSpawnPosition: {fileID: 2029792127}
   peanutMissileSpawnPosition: {fileID: 1747570890}
   hp: 1500
-  criticalPhaseTrigger: 500
+  flipNormalTrigger: 1200
+  thirdPhaseTrigger: 400
   yoshiEggNumber: 4
   yoshiEggSpeed: 250
   yoshiEggFrequency: 1
@@ -9529,7 +9545,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.14, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1771857358
 MeshFilter:
@@ -9649,7 +9665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4504925201494414, guid: c29fb96ef19056e4c846e3d852c25a0c, type: 2}
       propertyPath: m_RootOrder
-      value: 55
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 4504925201494414, guid: c29fb96ef19056e4c846e3d852c25a0c, type: 2}
       propertyPath: m_LocalScale.x
@@ -11429,7 +11445,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.14, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2021005227
 MeshFilter:
@@ -11585,7 +11601,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4695485775576538, guid: 5224ca6bf9fd0d145a375f59d615876e, type: 2}
       propertyPath: m_RootOrder
-      value: 58
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 95494783827351118, guid: 5224ca6bf9fd0d145a375f59d615876e,
         type: 2}

@@ -43,17 +43,19 @@ public class Jussi : MonoBehaviour
     //private int critAttack = 1;
     private int yoshiEggCounter = 0;
     private int peanutMissileCounter = 0;
+    private int maxHp;
+    private float yoshiEggStartFrequency;
     private float circleLaserLifeTimeCounter = 0;
     private float flipNormalsLifeTimeCounter = 0;
     private float peanutMissileSpawnTimer = 0;
+    private float delay = 0;
+    private float attackDelay = 0;
     private float shootTimer = 0;
     private bool blinking;
     private bool defaultShot = true;
     //private bool regularPhase = true;
     private bool firstPhase = true;
-    private float attackDelay = 0;
     private int bossHpPercent;
-    private float delay = 0;
 
     private void Start()
     {
@@ -66,6 +68,10 @@ public class Jussi : MonoBehaviour
         }
         allAudioSources = this.GetComponents<AudioSource>();
         gameManager = gameManagerObj.GetComponent<GameManager>();
+
+        yoshiEggStartFrequency = yoshiEggFrequency;
+
+        maxHp = hp;
     }
 
     void Update()
@@ -87,7 +93,7 @@ public class Jussi : MonoBehaviour
 
         if (!gameManager.GetComponent<GameManager>().paused && !gameManager.GetComponent<GameManager>().noInput)
         {
-            switch(phase)
+            switch(hp)
             {
                 case 1:
                     PhaseOne();
@@ -106,56 +112,56 @@ public class Jussi : MonoBehaviour
             }
         }
 
-        if (gameManager.multiPlayer)
-        {
-            switch (hp)
-            {
-                case 2600:
-                    cracks[0].SetActive(true);
-                    for (int i = 0; i < bottles.Length; i++)
-                    {
-                        bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-                    }
-                    break;
-                case 2300:
-                    mülleimer.GetComponent<Animator>().enabled = true;
-                    break;
-                case 2100:
-                    cracks[2].SetActive(true);
-                    break;
-                case 2000:
-                    mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
-                    break;
-                case 1600:
-                    cracks[1].SetActive(true);
-                    break;
-            }
-        }
-        else
-        {
-            switch (hp)
-            {
-                case 1200:
-                    cracks[0].SetActive(true);
-                    for (int i = 0; i < bottles.Length; i++)
-                    {
-                        bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-                    }
-                    break;
-                case 1000:
-                    mülleimer.GetComponent<Animator>().enabled = true;
-                    break;
-                case 900:
-                    mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
-                    break;
-                case 600:
-                    cracks[1].SetActive(true);
-                    break;
-                case 300:
-                    cracks[2].SetActive(true);
-                    break;
-            }
-        }
+        //if (gameManager.multiPlayer)
+        //{
+        //    switch (hp)
+        //    {
+        //        case 2600:
+        //            cracks[0].SetActive(true);
+        //            for (int i = 0; i < bottles.Length; i++)
+        //            {
+        //                bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        //            }
+        //            break;
+        //        case 2300:
+        //            mülleimer.GetComponent<Animator>().enabled = true;
+        //            break;
+        //        case 2100:
+        //            cracks[2].SetActive(true);
+        //            break;
+        //        case 2000:
+        //            mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
+        //            break;
+        //        case 1600:
+        //            cracks[1].SetActive(true);
+        //            break;
+        //    }
+        //}
+        //else
+        //{
+        //    switch (hp)
+        //    {
+        //        case 1200:
+        //            cracks[0].SetActive(true);
+        //            for (int i = 0; i < bottles.Length; i++)
+        //            {
+        //                bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        //            }
+        //            break;
+        //        case 1000:
+        //            mülleimer.GetComponent<Animator>().enabled = true;
+        //            break;
+        //        case 900:
+        //            mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
+        //            break;
+        //        case 600:
+        //            cracks[1].SetActive(true);
+        //            break;
+        //        case 300:
+        //            cracks[2].SetActive(true);
+        //            break;
+        //    }
+        //}
     }
 
     void PhaseOne()
@@ -165,11 +171,13 @@ public class Jussi : MonoBehaviour
 
     void PhaseTwo()
     {
-
+        FlipNormalsAttack();
     }
 
     void PhaseThree()
     {
+        flipNormalInstantiate.SetActive(false);
+
 
     }
 
@@ -198,6 +206,8 @@ public class Jussi : MonoBehaviour
             {
                 shootTimer = 0;
                 yoshiEggCounter = 0;
+                firstPhase = true;
+                yoshiEggFrequency = yoshiEggStartFrequency;
             }
         }
     }
@@ -239,13 +249,13 @@ public class Jussi : MonoBehaviour
         if (delay >= 2f)
         {
             flipNormalInstantiate.SetActive(true);
-            flipNormalsLifeTimeCounter += Time.deltaTime;
-            if (flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
-            {
-                flipNormalInstantiate.SetActive(false);
-                circleLaserLifeTimeCounter = 0;
-                delay = 0;
-            }
+            //flipNormalsLifeTimeCounter += Time.deltaTime;
+            //if (flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
+            //{
+            //    flipNormalInstantiate.SetActive(false);
+            //    circleLaserLifeTimeCounter = 0;
+            //    delay = 0;
+            //}
         }
     }
 

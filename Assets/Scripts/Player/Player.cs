@@ -19,9 +19,10 @@ public class Player : MonoBehaviour
     public float jumpForce = 200f;
     public float dashVelocity = 5;
     public float moveVelocity = 5;
-    public int dashRange = 1;
+    public float dashRange = 1f;
     public int playerIndex = 0;
     public int hp = 3;
+    public bool canDash = true;
 
     private AudioSource audioSource;
     private Vector3 dashStart;
@@ -48,12 +49,14 @@ public class Player : MonoBehaviour
             facingRight = value;
         }
     }
+    private RigidbodyConstraints constraints;
 
     private void Start()
     {
         startVelocity = moveVelocity;
         allMyAudioSources = GetComponents<AudioSource>();
         ren = this.GetComponentsInChildren<SkinnedMeshRenderer>();
+        constraints = this.rb.constraints;
     }
 
     private void Update()
@@ -65,16 +68,10 @@ public class Player : MonoBehaviour
     {
         if (!gameManager.GetComponent<GameManager>().paused && !gameManager.GetComponent<GameManager>().noInput)
         {
-            if (Input.GetButtonDown("Dash_" + this.playerIndex))
+            if (Input.GetButtonDown("Dash_" + this.playerIndex) && canDash)
             {
-                allMyAudioSources[0].Play();
-
-                int inv = facingRight ? dashRange : -dashRange;
-
-                completion = 0f;
                 dashing = true;
-                dashStart = this.transform.position;
-                dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
+                allMyAudioSources[0].Play();
             }
 
             if (Input.GetButtonDown("Jump_" + this.playerIndex) && grounded == true)
@@ -116,6 +113,7 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isGrounded", true);
             this.grounded = true;
+            canDash = true;
             Instantiate(landingParticles, this.transform.position, this.transform.rotation);
         }
     }
@@ -242,14 +240,31 @@ public class Player : MonoBehaviour
     {
         if (dashing)
         {
-            transform.position = Vector3.Lerp(dashStart, dashDestination, completion);
+            float offset = 0.25f;
+
+            float inv = facingRight ? dashRange : -dashRange;
+            dashStart = this.transform.position;
+            dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
+
+            Vector3 zVector = Vector3.Lerp(dashStart, dashDestination, completion);
+            if(zVector.x < -4.06f + offset || zVector.x > 4.58f - offset)
+            {
+                completion = 1;
+            }
+
             completion += Time.deltaTime * dashVelocity;
             if (completion >= 1)
             {
+                completion = 0f;
                 dashing = false;
+                canDash = false;
+            }
+            else
+            {
+                transform.position = zVector;
             }
         }
-    } //BUUUUUGG
+    }
 
     private IEnumerator InvincibleFrames()
     {
