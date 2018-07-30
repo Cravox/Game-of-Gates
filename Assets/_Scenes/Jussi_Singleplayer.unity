@@ -7839,6 +7839,21 @@ Prefab:
       propertyPath: renderer
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: thirdPhaseTrigger
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: yoshiEggSecondFrequency
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: yoshiEggThirdFrequency
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3de0d8b8cc1ccd443a1c9b499a340f12, type: 2}
   m_IsPrefabParent: 0
@@ -8338,8 +8353,9 @@ MonoBehaviour:
   thirdPhaseTrigger: 400
   yoshiEggNumber: 4
   yoshiEggSpeed: 250
-  yoshiEggFrequency: 1
-  yoshiEggFastFrequency: 0.6
+  yoshiEggFirstFrequency: 1
+  yoshiEggSecondFrequency: 0.75
+  yoshiEggThirdFrequency: 0.5
   peanutMissileNumber: 3
   peanutMissileFrequency: 2
   peanutMissileForce: 500
