@@ -222,7 +222,7 @@ public class Jussi : MonoBehaviour
 
             if (yoshiEggCounter == 4 && yoshiEggPhase == 3)
             {
-                shootTimer = 0;
+                shootTimer = -1f;
                 //firstPhase = true;
                 yoshiEggFirstFrequency = yoshiEggStartFrequency;
                 yoshiEggPhase += 1;
@@ -230,6 +230,11 @@ public class Jussi : MonoBehaviour
                 yoshiEggPhase = 1;
             }
         }
+    }
+
+    void YoshiEggPhaseSwitch()
+    {
+
     }
 
     void FlipNormalsAttack()

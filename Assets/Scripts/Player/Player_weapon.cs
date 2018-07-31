@@ -164,14 +164,20 @@ public class Player_weapon : MonoBehaviour
 
         if (moveY <= -0.75f)
         {
+            anim.SetBool("aim90°", true);
+            anim.SetBool("aim45°", false);
             this.transform.localEulerAngles = new Vector3(-90, 0, 0);
         }
         else if (moveY <= -0.5f && moveX > 0.1f || moveY <= -0.5f && moveX < -0.1f)
         {
+            anim.SetBool("aim90°", false);
+            anim.SetBool("aim45°", true);
             this.transform.localEulerAngles = new Vector3(-45, 0, 0);
         }
         else
         {
+            anim.SetBool("aim45°", false);
+            anim.SetBool("aim90°", false);
             this.transform.localEulerAngles = new Vector3(0, 0, 0);
         }
     }

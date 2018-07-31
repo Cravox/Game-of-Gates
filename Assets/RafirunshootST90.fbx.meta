@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90a1c373368eef54abec4690671a7da3
+guid: 943c24e923e4d314cb1a99fd634a6b67
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -19,32 +19,35 @@ ModelImporter:
     100026: Foot_L_
     100028: Foot_R_
     100030: Glasses_
-    100032: //RootNode
-    100034: Head_
-    100036: Pelvis_
-    100038: Root_
-    100040: Shin_L_
-    100042: Shin_R_
-    100044: Shoulder_L_
-    100046: Shoulder_R_
-    100048: Spine_1_
-    100050: Spine_2_
-    100052: Straw_base_1_
-    100054: Straw_root_
-    100056: Straw_tip_1_
-    100058: Straw_tip_2_
-    100060: Straw_tip_3_
-    100062: Straw_tip_4_
-    100064: Thigh_L_
-    100066: Thigh_R_
-    100068: Thumb_L_1_
-    100070: Thumb_L_2_
-    100072: Thumb_R_1_
-    100074: Thumb_R_2_
-    100076: Toe_L_
-    100078: Toe_R_
-    100080: Wrist_L_
-    100082: Wrist_R_
+    100032: Head_
+    100034: Pelvis_
+    100036: Rafi
+    100038: Rafi_GEO_GRP
+    100040: Rafi_Head_GEO
+    100042: //RootNode
+    100044: Root_
+    100046: Shin_L_
+    100048: Shin_R_
+    100050: Shoulder_L_
+    100052: Shoulder_R_
+    100054: Spine_1_
+    100056: Spine_2_
+    100058: Straw_base_1_
+    100060: Straw_root_
+    100062: Straw_tip_1_
+    100064: Straw_tip_2_
+    100066: Straw_tip_3_
+    100068: Straw_tip_4_
+    100070: Thigh_L_
+    100072: Thigh_R_
+    100074: Thumb_L_1_
+    100076: Thumb_L_2_
+    100078: Thumb_R_1_
+    100080: Thumb_R_2_
+    100082: Toe_L_
+    100084: Toe_R_
+    100086: Wrist_L_
+    100088: Wrist_R_
     400000: ball_L_
     400002: ball_R_
     400004: Chest_
@@ -61,34 +64,40 @@ ModelImporter:
     400026: Foot_L_
     400028: Foot_R_
     400030: Glasses_
-    400032: //RootNode
-    400034: Head_
-    400036: Pelvis_
-    400038: Root_
-    400040: Shin_L_
-    400042: Shin_R_
-    400044: Shoulder_L_
-    400046: Shoulder_R_
-    400048: Spine_1_
-    400050: Spine_2_
-    400052: Straw_base_1_
-    400054: Straw_root_
-    400056: Straw_tip_1_
-    400058: Straw_tip_2_
-    400060: Straw_tip_3_
-    400062: Straw_tip_4_
-    400064: Thigh_L_
-    400066: Thigh_R_
-    400068: Thumb_L_1_
-    400070: Thumb_L_2_
-    400072: Thumb_R_1_
-    400074: Thumb_R_2_
-    400076: Toe_L_
-    400078: Toe_R_
-    400080: Wrist_L_
-    400082: Wrist_R_
-    7400000: crouch_shoot
+    400032: Head_
+    400034: Pelvis_
+    400036: Rafi
+    400038: Rafi_GEO_GRP
+    400040: Rafi_Head_GEO
+    400042: //RootNode
+    400044: Root_
+    400046: Shin_L_
+    400048: Shin_R_
+    400050: Shoulder_L_
+    400052: Shoulder_R_
+    400054: Spine_1_
+    400056: Spine_2_
+    400058: Straw_base_1_
+    400060: Straw_root_
+    400062: Straw_tip_1_
+    400064: Straw_tip_2_
+    400066: Straw_tip_3_
+    400068: Straw_tip_4_
+    400070: Thigh_L_
+    400072: Thigh_R_
+    400074: Thumb_L_1_
+    400076: Thumb_L_2_
+    400078: Thumb_R_1_
+    400080: Thumb_R_2_
+    400082: Toe_L_
+    400084: Toe_R_
+    400086: Wrist_L_
+    400088: Wrist_R_
+    2100000: Rafi_MAT
+    4300000: Rafi_Head_GEO
+    7400000: Take 001
     9500000: //RootNode
+    13700000: Rafi_Head_GEO
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -116,35 +125,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: crouch_shoot
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 16
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
