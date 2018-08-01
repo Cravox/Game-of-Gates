@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
             if (Input.GetButton("DontMove_" + this.playerIndex) && grounded)
             {
                 moveVelocity = 0;
+                anim.SetBool("isWalking", false);
             }
             else if (Input.GetButtonUp("DontMove_" + this.playerIndex))
             {
@@ -99,11 +100,6 @@ public class Player : MonoBehaviour
             Dash();
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        //Movement();
     }
 
     private void OnCollisionEnter(Collision col)
@@ -203,31 +199,42 @@ public class Player : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal_" + this.playerIndex); //use horizontal-axis for player-movement
 
 
-        if (!isDucking)
+        if (!isDucking && moveX < -0.1f || !isDucking && moveX > 0.1f)
         {
+            anim.SetBool("isWalking", true);
             this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
         }
         else
         {
+            anim.SetBool("isWalking", false);
             this.rb.velocity = new Vector3(0, this.rb.velocity.y, 0);
         }
 
         if (moveX > 0.1f)
         {
             facingRight = true;
-            anim.SetBool("isWalking", true);
+            //anim.SetBool("isWalking", true);
         }
 
         if (moveX < -0.1f)
         {
             facingRight = false;
-            anim.SetBool("isWalking", true);
+            //anim.SetBool("isWalking", true);
         }
-        
-        if(moveX == 0)
-        {
-            anim.SetBool("isWalking", false);
-        }
+
+        //if(rb.velocity.x > 0.1f)
+        //{
+        //    anim.SetBool("isWalking", true);
+        //}
+        //else i...
+        // (rb.velocity.x < -0.1f)
+        //{
+        //    anim.SetBool("isWalking", true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isWalking", false);
+        //}
 
         if (jumping)
         {

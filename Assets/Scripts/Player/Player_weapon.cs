@@ -172,7 +172,7 @@ public class Player_weapon : MonoBehaviour
         {
             anim.SetBool("aim90°", false);
             anim.SetBool("aim45°", true);
-            this.transform.localEulerAngles = new Vector3(-45, 0, 0);
+            this.transform.localEulerAngles = new Vector3(-30, 0, 0);
         }
         else
         {
