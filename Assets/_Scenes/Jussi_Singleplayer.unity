@@ -8151,12 +8151,12 @@ Prefab:
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
       propertyPath: hp
-      value: 902
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
       propertyPath: flipNormalTrigger
-      value: 901
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
