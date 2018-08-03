@@ -175,9 +175,9 @@ MonoBehaviour:
   renderer: {fileID: 23013596129404764}
   target: {fileID: 0}
   speed: 2
-  rotateSpeed: 40
+  rotateSpeed: 45
   activationTime: 0.2
-  hp: 5
+  hp: 15
   defaultTarget: 0
 --- !u!136 &136310456863474626
 CapsuleCollider:

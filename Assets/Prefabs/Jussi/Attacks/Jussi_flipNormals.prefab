@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8971a6f0746593d4b8b97e38181dde86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 5
   blackHole: {fileID: 1485967971288666, guid: fc5fb74c92c69f044ac61ace004382d5, type: 2}
 --- !u!198 &198126296947758060
 ParticleSystem:

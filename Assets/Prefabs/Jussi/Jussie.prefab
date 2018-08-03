@@ -139,11 +139,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4485301535008074}
+  - component: {fileID: 114603611423129646}
   - component: {fileID: 95935584026239048}
   - component: {fileID: 136753297459900528}
-  - component: {fileID: 82954400895567200}
   - component: {fileID: 82304594315428154}
-  - component: {fileID: 114603611423129646}
+  - component: {fileID: 82954400895567200}
   m_Layer: 17
   m_Name: Jussie
   m_TagString: Enemy
@@ -1996,7 +1996,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e550db51c45084646b54c0684982682a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allAudioSources: []
+  allAudioSources:
+  - {fileID: 0}
+  - {fileID: 0}
   "m\xFClleimer": {fileID: 0}
   Lights:
   - {fileID: 0}
@@ -2027,15 +2029,18 @@ MonoBehaviour:
   flipNormalInstantiate: {fileID: 0}
   circleLaserInstantiate: {fileID: 0}
   gameManagerObj: {fileID: 0}
-  renderer: {fileID: 0}
+  renderer:
+  - {fileID: 0}
   yoshiEggSpawnPosition: {fileID: 4853323770720474}
   peanutMissileSpawnPosition: {fileID: 4569095647413856}
   hp: 1500
-  criticalPhaseTrigger: 500
+  flipNormalTrigger: 1200
+  thirdPhaseTrigger: 400
   yoshiEggNumber: 4
   yoshiEggSpeed: 250
-  yoshiEggFrequency: 1
-  yoshiEggFastFrequency: 0.6
+  yoshiEggFirstFrequency: 1
+  yoshiEggSecondFrequency: 0.85
+  yoshiEggThirdFrequency: 0.6
   peanutMissileNumber: 3
   peanutMissileFrequency: 2
   peanutMissileForce: 500

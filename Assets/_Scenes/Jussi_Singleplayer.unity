@@ -3572,7 +3572,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 671690682}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!124 &671690684
 Behaviour:
   m_ObjectHideFlags: 0
@@ -8127,12 +8127,12 @@ Prefab:
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
       propertyPath: thirdPhaseTrigger
-      value: 750
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
       propertyPath: yoshiEggSecondFrequency
-      value: 0.85
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
@@ -8146,7 +8146,49 @@ Prefab:
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: hp
+      value: 902
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: flipNormalTrigger
+      value: 901
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: yoshiEggFirstFrequency
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: peanutMissileForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569095647413856, guid: 3de0d8b8cc1ccd443a1c9b499a340f12, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569095647413856, guid: 3de0d8b8cc1ccd443a1c9b499a340f12, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569095647413856, guid: 3de0d8b8cc1ccd443a1c9b499a340f12, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: peanutMissileNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
+        type: 2}
+      propertyPath: peanutMissileFrequency
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3de0d8b8cc1ccd443a1c9b499a340f12, type: 2}
@@ -11544,7 +11586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2000246829
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12363,7 +12405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2114841251
 MonoBehaviour:
   m_ObjectHideFlags: 0
