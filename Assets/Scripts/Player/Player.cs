@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public int playerIndex = 0;
     public int hp = 3;
     public bool canDash = true;
+    public bool godMode = false;
 
     private AudioSource audioSource;
     private Vector3 dashStart;
@@ -61,6 +62,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(godMode)
+        {
+            gameObject.layer = 15;
+        }
         InputManager();
     }
 

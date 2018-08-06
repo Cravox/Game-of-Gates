@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class Jussi : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
     public Animator mülleimer;
+    public Animator anim;
+    public AnimationClip yoshiEggAnimation;
+    public GameManager gameManager;
     public GameObject[] Lights = new GameObject[9];
     public GameObject[] bottles = new GameObject[7];
     public GameObject[] cracks = new GameObject[3];
@@ -14,66 +17,63 @@ public class Jussi : MonoBehaviour
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
-    public GameObject gameManagerObj;
     public SkinnedMeshRenderer[] renderer;
     public Transform yoshiEggSpawnPosition;
     public Transform peanutMissileSpawnPosition;
     public int hp;
     public int flipNormalTrigger = 1200;
     public int thirdPhaseTrigger = 400;
+    public float pauseTime = 1f;
 
     public int yoshiEggNumber = 4;
     public float yoshiEggSpeed = 250f;
-    public float yoshiEggFirstFrequency = 1f;
-    public float yoshiEggSecondFrequency = 0.85f;
-    public float yoshiEggThirdFrequency = 0.6f;
+    public float[] yoshiEggFrequencies = new float[3];
+    public float[] yoshiEggAnimationMultipliers = new float[3];
 
     public int peanutMissileNumber = 3;
     public float peanutMissileFrequency = 2;
     public float peanutMissileForce = 100f;
+    public bool animReady;
 
     public float flipNormalsLifeTime = 4f;
 
     public float circleLaserLifeTime = 4f;
-    
-    private GameManager gameManager;
+
     private Color originalColor;
-    private Animator anim;
     private int phase = 1;
-    //private int attack = 1;
-    //private int critAttack = 1;
     private int yoshiEggCounter = 0;
     private int peanutMissileCounter = 0;
     private int maxHp;
     private int yoshiEggPhase = 1;
-    private float yoshiEggStartFrequency;
+    private float yoshiEggFrequency;
     private float circleLaserLifeTimeCounter = 0;
     private float flipNormalsLifeTimeCounter = 0;
     private float peanutMissileSpawnTimer = 0;
     private float delay = 0;
     private float attackDelay = 0;
-    private float shootTimer = 0;
+    private float pauseTimer = 0;
+    private float shootTimer;
     private bool blinking;
     private bool defaultShot = true;
-    //private bool regularPhase = true;
     private bool firstPhase = true;
     private int bossHpPercent;
 
     private void Start()
     {
+        anim.speed = yoshiEggAnimationMultipliers[0];
         anim = this.GetComponent<Animator>();
         bossHpPercent = hp / 100;
         renderer = this.GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach(SkinnedMeshRenderer item in renderer)
+        foreach (SkinnedMeshRenderer item in renderer)
         {
             originalColor = item.material.color;
         }
         allAudioSources = this.GetComponents<AudioSource>();
-        gameManager = gameManagerObj.GetComponent<GameManager>();
 
-        yoshiEggStartFrequency = yoshiEggFirstFrequency;
+        yoshiEggFrequency = yoshiEggFrequencies[0];
 
         maxHp = hp;
+
     }
 
     void Update()
@@ -88,14 +88,14 @@ public class Jussi : MonoBehaviour
             phase = 2;
         }
 
-        if(this.hp <= thirdPhaseTrigger)
+        if (this.hp <= thirdPhaseTrigger)
         {
             phase = 3;
         }
 
-        if (!gameManager.GetComponent<GameManager>().paused && !gameManager.GetComponent<GameManager>().noInput)
+        if (!gameManager.paused && !gameManager.noInput)
         {
-            switch(phase)
+            switch (phase)
             {
                 case 1:
                     PhaseOne();
@@ -113,7 +113,7 @@ public class Jussi : MonoBehaviour
                     break;
             }
         } // is scheiße mach neu
-                                                                                                                    // is scheiße mach neu
+          // is scheiße mach neu
         if (gameManager.multiPlayer)
         {
             switch (hp)
@@ -168,7 +168,12 @@ public class Jussi : MonoBehaviour
 
     void PhaseOne()
     {
-        YoshiEggsAttack();
+        pauseTimer += Time.deltaTime;
+        if (pauseTimer >= pauseTime)
+        {
+            YoshiEggsAttack();
+            pauseTime -= pauseTime;
+        }
     }
 
     void PhaseTwo()
@@ -180,61 +185,74 @@ public class Jussi : MonoBehaviour
     {
         flipNormalInstantiate.SetActive(false);
 
-        if(firstPhase)
+        if (firstPhase)
         {
             PeanutStreamAttack();
-        }else
+        }
+        else
         {
             LaserAttack();
         }
     }
 
-    void YoshiEggsAttack()
+    public void AnimTry()
     {
-        Vector3 spawn = yoshiEggSpawnPosition.transform.position;
-        shootTimer += Time.deltaTime;
-        if (shootTimer >= yoshiEggFirstFrequency && yoshiEggCounter < yoshiEggNumber)
-        {
-            allAudioSources[0].Play();
-
-            GameObject yoshiEggInstance = Instantiate(yoshiEgg, spawn, Quaternion.identity);
-            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
-            yoshiEggCounter += 1;
-            shootTimer -= yoshiEggFirstFrequency;
-
-            if (yoshiEggCounter == 4 && yoshiEggPhase == 1)
-            {
-                //firstPhase = false;
-                yoshiEggFirstFrequency = yoshiEggSecondFrequency;
-                shootTimer = -1f;
-                yoshiEggPhase += 1;
-                yoshiEggCounter = 0;
-            }
-
-            if (yoshiEggCounter == 4 && yoshiEggPhase == 2)
-            {
-                shootTimer = -1f;
-                //firstPhase = true;
-                yoshiEggFirstFrequency = yoshiEggThirdFrequency;
-                yoshiEggPhase += 1;
-                yoshiEggCounter = 0;
-            }
-
-            if (yoshiEggCounter == 4 && yoshiEggPhase == 3)
-            {
-                shootTimer = -1f;
-                //firstPhase = true;
-                yoshiEggFirstFrequency = yoshiEggStartFrequency;
-                yoshiEggPhase += 1;
-                yoshiEggCounter = 0;
-                yoshiEggPhase = 1;
-            }
-        }
+        animReady = true;
     }
 
-    void YoshiEggPhaseSwitch()
-    {
 
+    void YoshiEggsAttack()
+    {
+        anim.SetTrigger("YoshiAttack");
+        if (animReady && yoshiEggCounter < yoshiEggNumber)
+        {
+            animReady = false;
+            allAudioSources[0].Play();
+
+            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
+            yoshiEggCounter += 1;
+
+
+            if (yoshiEggCounter == 4)
+            {
+                switch (yoshiEggPhase)
+                {
+                    case 1:
+                        yoshiEggAnimation. = yoshiEggAnimationMultipliers[0];
+                        YoshiEggSwapPhase();
+                        yoshiEggFrequency = yoshiEggFrequencies[1];
+                        break;
+                    case 2:
+                        anim.speed = yoshiEggAnimationMultipliers[1];
+                        YoshiEggSwapPhase();
+                        yoshiEggFrequency = yoshiEggFrequencies[2];
+                        break;
+                    case 3:
+                        anim.speed = yoshiEggAnimationMultipliers[2];
+                        YoshiEggSwapPhase();
+                        yoshiEggFrequency = yoshiEggFrequencies[0];
+                        break;
+                }
+            }
+        }
+
+    }
+
+
+    void YoshiEggSwapPhase()
+    {
+        shootTimer = -1f;
+        yoshiEggCounter = 0;
+
+        if (yoshiEggPhase != 3)
+        {
+            yoshiEggPhase += 1;
+        }
+        else
+        {
+            yoshiEggPhase = 1;
+        }
     }
 
     void FlipNormalsAttack()
@@ -278,7 +296,6 @@ public class Jussi : MonoBehaviour
         if (peanutMissileCounter == peanutMissileFrequency)
         {
             shootTimer = -2f;
-            yoshiEggFirstFrequency = 1;
             firstPhase = false;
             peanutMissileCounter = 0;
         }
@@ -306,7 +323,7 @@ public class Jussi : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            foreach(SkinnedMeshRenderer item in renderer)
+            foreach (SkinnedMeshRenderer item in renderer)
             {
                 item.material.color = Color.white;
             }
