@@ -8,7 +8,6 @@ public class Jussi : MonoBehaviour
     public Animator mülleimer;
     public Animator anim;
     public GameManager gameManager;
-    public GameObject[] Lights = new GameObject[9];
     public GameObject[] bottles = new GameObject[7];
     public GameObject[] cracks = new GameObject[3];
     public GameObject mihawkSword;
@@ -18,14 +17,16 @@ public class Jussi : MonoBehaviour
     public GameObject circleLaserInstantiate;
     public SkinnedMeshRenderer[] renderer;
     public Transform yoshiEggSpawnPosition;
-    public Transform peanutMissileSpawnPosition;
+    public Transform[] peanutMissileSpawnPosition = new Transform[2];
     public int hp;
     public int flipNormalTrigger = 1200;
     public int thirdPhaseTrigger = 400;
     public float pauseTime = 1f;
     public bool flipNormals = false;
+    public bool firstPhase = true;
 
     public float yoshiEggSpeed = 250f;
+    public int yoshiEggPhase = 0;
 
     public int peanutMissileNumber = 3;
     public float peanutMissileFrequency = 2;
@@ -40,7 +41,6 @@ public class Jussi : MonoBehaviour
     private int yoshiEggCounter = 0;
     private int peanutMissileCounter = 0;
     private int maxHp;
-    public int yoshiEggPhase = 0;
     private float yoshiEggFrequency;
     private float circleLaserLifeTimeCounter = 0;
     private float flipNormalsLifeTimeCounter = 0;
@@ -51,7 +51,6 @@ public class Jussi : MonoBehaviour
     private float shootTimer;
     private bool blinking;
     private bool defaultShot = true;
-    private bool firstPhase = true;
     private bool triggered = false;
     private int bossHpPercent;
 
@@ -102,7 +101,6 @@ public class Jussi : MonoBehaviour
                 case 3:
                     if (!blinking)
                     {
-                        StartCoroutine("Flashing");
                         blinking = true;
                     }
                     PhaseThree();
@@ -164,6 +162,7 @@ public class Jussi : MonoBehaviour
 
     void PhaseOne()
     {
+        anim.SetBool("YoshiAttack", true);
         switch (yoshiEggPhase)
         {
             case 1:
@@ -182,6 +181,7 @@ public class Jussi : MonoBehaviour
     {
         if(!triggered)
         {
+            anim.SetBool("YoshiAttack", false);
             anim.SetTrigger("Transition");
             triggered = true;
         }
@@ -222,7 +222,7 @@ public class Jussi : MonoBehaviour
 
     void YoshiEggsAttack()
     {
-        anim.SetBool("YoshiAttack", true);
+        anim.SetBool("YoshiAttack1", true);
         anim.SetBool("YoshiAttack2", false);
         anim.SetBool("YoshiAttack3", false);
 
@@ -239,7 +239,7 @@ public class Jussi : MonoBehaviour
 
     void YoshiEggsAttackSec()
     {
-        anim.SetBool("YoshiAttack", false);
+        anim.SetBool("YoshiAttack1", false);
         anim.SetBool("YoshiAttack2", true);
         anim.SetBool("YoshiAttack3", false);
 
@@ -256,7 +256,7 @@ public class Jussi : MonoBehaviour
 
     void YoshiEggsAttackThird()
     {
-        anim.SetBool("YoshiAttack", false);
+        anim.SetBool("YoshiAttack1", false);
         anim.SetBool("YoshiAttack2", false);
         anim.SetBool("YoshiAttack3", true);
 
@@ -279,8 +279,17 @@ public class Jussi : MonoBehaviour
 
     void PeanutStreamAttack()
     {
+        anim.SetTrigger("Peanut");
         shootTimer += Time.deltaTime;
-        Vector3 spawn = peanutMissileSpawnPosition.transform.position;
+
+        bool firstInstantiate = true;
+
+        Vector3[] spawns = new Vector3[2];
+
+        for(int i = 0; i < 1; i++)
+        {
+            spawns[i] = peanutMissileSpawnPosition[i].transform.position;
+        }
 
         GameObject[] peanutMissiles = new GameObject[peanutMissileNumber];
         float missileAngle = -0.4f;
@@ -290,7 +299,7 @@ public class Jussi : MonoBehaviour
 
             for (int i = 0; i < peanutMissiles.Length; i++)
             {
-                peanutMissiles[i] = Instantiate(peanutMissile, spawn, Quaternion.identity);
+                peanutMissiles[i] = Instantiate(peanutMissile, spawns[0], Quaternion.identity);
                 peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
                 missileAngle += 0.4f;
             }
@@ -309,6 +318,7 @@ public class Jussi : MonoBehaviour
 
     void LaserAttack()
     {
+        anim.SetTrigger("CircleLaser");
         delay += Time.deltaTime;
         if (delay >= 2f)
         {
@@ -322,7 +332,6 @@ public class Jussi : MonoBehaviour
                 firstPhase = true;
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider col)
@@ -345,27 +354,10 @@ public class Jussi : MonoBehaviour
         }
     }
 
-    IEnumerator Flashing()
-    {
-        while (true)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                Lights[Random.Range(0, Lights.Length)].SetActive(true);
-            }
-            yield return new WaitForSeconds(0.5f);
-            for (int i = 0; i < 3; i++)
-            {
-                Lights[Random.Range(0, Lights.Length)].SetActive(false);
-            }
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
     void Death()
     {
+        anim.SetTrigger("Death");
         flipNormalInstantiate.SetActive(false);
         circleLaserInstantiate.SetActive(false);
-        Destroy(this.gameObject, 1f);
     }
 }
