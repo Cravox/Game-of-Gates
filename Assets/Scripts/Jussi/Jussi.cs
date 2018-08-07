@@ -7,7 +7,6 @@ public class Jussi : MonoBehaviour
     public AudioSource[] allAudioSources;
     public Animator mülleimer;
     public Animator anim;
-    public AnimationClip yoshiEggAnimation;
     public GameManager gameManager;
     public GameObject[] Lights = new GameObject[9];
     public GameObject[] bottles = new GameObject[7];
@@ -24,27 +23,24 @@ public class Jussi : MonoBehaviour
     public int flipNormalTrigger = 1200;
     public int thirdPhaseTrigger = 400;
     public float pauseTime = 1f;
+    public bool flipNormals = false;
 
-    public int yoshiEggNumber = 4;
     public float yoshiEggSpeed = 250f;
-    public float[] yoshiEggFrequencies = new float[3];
-    public float[] yoshiEggAnimationMultipliers = new float[3];
 
     public int peanutMissileNumber = 3;
     public float peanutMissileFrequency = 2;
     public float peanutMissileForce = 100f;
-    public bool animReady;
-
     public float flipNormalsLifeTime = 4f;
-
     public float circleLaserLifeTime = 4f;
+
+    public bool animReady;
 
     private Color originalColor;
     private int phase = 1;
     private int yoshiEggCounter = 0;
     private int peanutMissileCounter = 0;
     private int maxHp;
-    private int yoshiEggPhase = 1;
+    public int yoshiEggPhase = 0;
     private float yoshiEggFrequency;
     private float circleLaserLifeTimeCounter = 0;
     private float flipNormalsLifeTimeCounter = 0;
@@ -56,11 +52,11 @@ public class Jussi : MonoBehaviour
     private bool blinking;
     private bool defaultShot = true;
     private bool firstPhase = true;
+    private bool triggered = false;
     private int bossHpPercent;
 
     private void Start()
     {
-        anim.speed = yoshiEggAnimationMultipliers[0];
         anim = this.GetComponent<Animator>();
         bossHpPercent = hp / 100;
         renderer = this.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -69,8 +65,6 @@ public class Jussi : MonoBehaviour
             originalColor = item.material.color;
         }
         allAudioSources = this.GetComponents<AudioSource>();
-
-        yoshiEggFrequency = yoshiEggFrequencies[0];
 
         maxHp = hp;
 
@@ -90,6 +84,8 @@ public class Jussi : MonoBehaviour
 
         if (this.hp <= thirdPhaseTrigger)
         {
+            anim.SetTrigger("Rage");
+            flipNormalInstantiate.SetActive(false);
             phase = 3;
         }
 
@@ -168,17 +164,29 @@ public class Jussi : MonoBehaviour
 
     void PhaseOne()
     {
-        pauseTimer += Time.deltaTime;
-        if (pauseTimer >= pauseTime)
+        switch (yoshiEggPhase)
         {
-            YoshiEggsAttack();
-            pauseTime -= pauseTime;
+            case 1:
+                YoshiEggsAttack();
+                break;
+            case 2:
+                YoshiEggsAttackSec();
+                break;
+            case 3:
+                YoshiEggsAttackThird();
+                break;
         }
     }
 
     void PhaseTwo()
     {
-        FlipNormalsAttack();
+        if(!triggered)
+        {
+            anim.SetTrigger("Transition");
+            triggered = true;
+        }
+
+        if(flipNormals) FlipNormalsAttack();
     }
 
     void PhaseThree()
@@ -195,57 +203,9 @@ public class Jussi : MonoBehaviour
         }
     }
 
-    public void AnimTry()
+    void YoshiEggPhaseSwap()
     {
-        animReady = true;
-    }
-
-
-    void YoshiEggsAttack()
-    {
-        anim.SetTrigger("YoshiAttack");
-        if (animReady && yoshiEggCounter < yoshiEggNumber)
-        {
-            animReady = false;
-            allAudioSources[0].Play();
-
-            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
-            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
-            yoshiEggCounter += 1;
-
-
-            if (yoshiEggCounter == 4)
-            {
-                switch (yoshiEggPhase)
-                {
-                    case 1:
-                        yoshiEggAnimation. = yoshiEggAnimationMultipliers[0];
-                        YoshiEggSwapPhase();
-                        yoshiEggFrequency = yoshiEggFrequencies[1];
-                        break;
-                    case 2:
-                        anim.speed = yoshiEggAnimationMultipliers[1];
-                        YoshiEggSwapPhase();
-                        yoshiEggFrequency = yoshiEggFrequencies[2];
-                        break;
-                    case 3:
-                        anim.speed = yoshiEggAnimationMultipliers[2];
-                        YoshiEggSwapPhase();
-                        yoshiEggFrequency = yoshiEggFrequencies[0];
-                        break;
-                }
-            }
-        }
-
-    }
-
-
-    void YoshiEggSwapPhase()
-    {
-        shootTimer = -1f;
-        yoshiEggCounter = 0;
-
-        if (yoshiEggPhase != 3)
+        if(yoshiEggPhase < 3)
         {
             yoshiEggPhase += 1;
         }
@@ -255,20 +215,66 @@ public class Jussi : MonoBehaviour
         }
     }
 
+    public void AnimTry()
+    {
+        animReady = true;
+    }
+
+    void YoshiEggsAttack()
+    {
+        anim.SetBool("YoshiAttack", true);
+        anim.SetBool("YoshiAttack2", false);
+        anim.SetBool("YoshiAttack3", false);
+
+        if (animReady)
+        {
+            animReady = false;
+            allAudioSources[0].Play();
+
+            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
+        }
+
+    }
+
+    void YoshiEggsAttackSec()
+    {
+        anim.SetBool("YoshiAttack", false);
+        anim.SetBool("YoshiAttack2", true);
+        anim.SetBool("YoshiAttack3", false);
+
+        if (animReady)
+        {
+            animReady = false;
+            allAudioSources[0].Play();
+
+            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
+        }
+
+    }
+
+    void YoshiEggsAttackThird()
+    {
+        anim.SetBool("YoshiAttack", false);
+        anim.SetBool("YoshiAttack2", false);
+        anim.SetBool("YoshiAttack3", true);
+
+        if (animReady)
+        {
+            animReady = false;
+            allAudioSources[0].Play();
+
+            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
+        }
+
+    }
+
     void FlipNormalsAttack()
     {
-        delay += Time.deltaTime;
-        if (delay >= 2f)
-        {
-            flipNormalInstantiate.SetActive(true);
-            //flipNormalsLifeTimeCounter += Time.deltaTime;
-            //if (flipNormalsLifeTimeCounter >= flipNormalsLifeTime)
-            //{
-            //    flipNormalInstantiate.SetActive(false);
-            //    circleLaserLifeTimeCounter = 0;
-            //    delay = 0;
-            //}
-        }
+        anim.SetTrigger("FlipNormals");
+        flipNormalInstantiate.SetActive(true);
     }
 
     void PeanutStreamAttack()
