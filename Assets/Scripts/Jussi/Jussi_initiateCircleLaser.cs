@@ -37,7 +37,7 @@ public class Jussi_initiateCircleLaser : MonoBehaviour
 
             if(circleLaserDelayTimer >= circleLaserDelay && shotCounter <= circleLaserLimit)
             {
-                Instantiate(circleLaser, this.transform.position, this.transform.rotation);
+                Instantiate(circleLaser, this.transform.position, Quaternion.identity);
                 shotCounter += 1;
                 circleLaserDelayTimer -= circleLaserDelay;
             }

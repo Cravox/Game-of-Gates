@@ -207,12 +207,12 @@ public class Player : MonoBehaviour
 
         if (!isDucking && moveX < -0.1f || !isDucking && moveX > 0.1f)
         {
-            anim.SetBool("isWalking", true);
+            //anim.SetBool("isWalking", true);
             this.rb.velocity = new Vector3(this.moveVelocity * moveX, this.rb.velocity.y, 0);
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            //anim.SetBool("isWalking", false);
             this.rb.velocity = new Vector3(0, this.rb.velocity.y, 0);
         }
 
@@ -228,19 +228,14 @@ public class Player : MonoBehaviour
             //anim.SetBool("isWalking", true);
         }
 
-        //if(rb.velocity.x > 0.1f)
-        //{
-        //    anim.SetBool("isWalking", true);
-        //}
-        //else i...
-        // (rb.velocity.x < -0.1f)
-        //{
-        //    anim.SetBool("isWalking", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isWalking", false);
-        //}
+        if(rb.velocity.x > 0 && grounded  || rb.velocity.x < 0 && grounded)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
 
         if (jumping)
         {

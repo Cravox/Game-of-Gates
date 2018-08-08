@@ -29,11 +29,6 @@ public class Player_bullet : MonoBehaviour
         Destroy(this.gameObject, range);
         ultiMeter = GameObject.Find("Ultimeter_" + this.playerIndex).GetComponent<Image>();
     }
-    
-    void Update()
-    {
-
-    }
 
     public enum Type : int
     {
@@ -61,9 +56,6 @@ public class Player_bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        Instantiate(impact, col.gameObject.transform);
-
-
         if (col.gameObject.CompareTag("Enemy"))
         {
             Instantiate(impact, this.transform.position, new Quaternion(0,0,0,0));

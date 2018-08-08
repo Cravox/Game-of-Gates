@@ -6,6 +6,7 @@ public class Player_ultimateBullet : MonoBehaviour
 {
     public int normalDamage;
     public int spreadDamage;
+    public GameObject impact;
     
     private int damage;
 
@@ -38,6 +39,14 @@ public class Player_ultimateBullet : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.CompareTag("Enemy"))
+        {
+            Instantiate(impact, new Vector3(this.transform.position.x - 0.5f, this.transform.position.y, this.transform.position.z), this.transform.rotation);
+        }
     }
 
     void OnTriggerStay(Collider col)

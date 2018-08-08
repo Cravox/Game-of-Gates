@@ -5,7 +5,7 @@ using UnityEngine;
 public class Jussi_initiateFlipNormals : MonoBehaviour
 {
     public float shootFrequency = 1f;
-    public GameObject flipNormal;
+    public GameObject flipNormalCloud;
 
     private float initTimer;
     private Rigidbody rb;
@@ -28,7 +28,7 @@ public class Jussi_initiateFlipNormals : MonoBehaviour
         if(initTimer > shootFrequency)
         {
             this.GetComponent<AudioSource>().Play();
-            Instantiate(flipNormal, this.transform.position, this.transform.rotation);
+            Instantiate(flipNormalCloud, this.transform.position, this.transform.rotation);
 
             initTimer -= shootFrequency;
         }

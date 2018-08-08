@@ -5,13 +5,16 @@ using UnityEngine.Events;
 public class Jussi : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
+    public AudioClip[] audioClips = new AudioClip[16];
+    public Texture[] textures = new Texture[2];
     public Animator mülleimer;
     public Animator anim;
     public GameManager gameManager;
+    public GameObject[] jussiBody = new GameObject[5];
     public GameObject[] bottles = new GameObject[7];
     public GameObject[] cracks = new GameObject[3];
     public GameObject mihawkSword;
-    public GameObject yoshiEgg;
+    public GameObject[] yoshiEggs = new GameObject[3];
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
@@ -26,9 +29,9 @@ public class Jussi : MonoBehaviour
     public bool flipNormals = false;
     public bool peanutPhase = true;
     public bool laserAttackDone = false;
+    public bool peanutAttackDone = false;
 
     public float yoshiEggSpeed = 250f;
-    public int yoshiEggPhase = 0;
 
     public int peanutMissileNumber = 3;
     public float peanutMissileFrequency = 2;
@@ -43,6 +46,8 @@ public class Jussi : MonoBehaviour
     private int yoshiEggCounter = 0;
     private int peanutMissileCounter = 0;
     private int maxHp;
+    private int counter = 1;
+    private int yoshiEggPhase = 0;
     private float yoshiEggFrequency;
     private float circleLaserLifeTimeCounter = 0;
     private float flipNormalsLifeTimeCounter = 0;
@@ -52,6 +57,7 @@ public class Jussi : MonoBehaviour
     private float pauseTimer = 0;
     private float shootTimer;
     private bool blinking;
+    private bool firstPosition = true;
     private bool defaultShot = true;
     private bool triggered = false;
     private int bossHpPercent;
@@ -115,7 +121,6 @@ public class Jussi : MonoBehaviour
             switch (hp)
             {
                 case 2600:
-                    cracks[0].SetActive(true);
                     for (int i = 0; i < bottles.Length; i++)
                     {
                         bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
@@ -124,23 +129,16 @@ public class Jussi : MonoBehaviour
                 case 2300:
                     mülleimer.GetComponent<Animator>().enabled = true;
                     break;
-                case 2100:
-                    cracks[2].SetActive(true);
-                    break;
                 case 2000:
                     mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
                     break;
-                case 1600:
-                    cracks[1].SetActive(true);
-                    break;
             }
-        }                                                                             // is scheiße mach neu
+        }                                                                             // is mir mittlerweile egal
         else
         {
             switch (hp)
             {
                 case 1200:
-                    cracks[0].SetActive(true);
                     for (int i = 0; i < bottles.Length; i++)
                     {
                         bottles[i].GetComponent<Rigidbody>().AddForce(Random.Range(-10, 10), 0, Random.Range(-10, 10));
@@ -152,14 +150,8 @@ public class Jussi : MonoBehaviour
                 case 900:
                     mihawkSword.GetComponent<Rigidbody>().AddForce(Random.Range(0, 10), 0, Random.Range(0, -20));
                     break;
-                case 600:
-                    cracks[1].SetActive(true);
-                    break;
-                case 300:
-                    cracks[2].SetActive(true);
-                    break;
             }
-        }                                                                                                     // is scheiße mach neu
+        }                                                                                                     // is mir mittlerweile egal
     }
 
     void PhaseOne()
@@ -181,6 +173,7 @@ public class Jussi : MonoBehaviour
 
     void PhaseTwo()
     {
+        ChangeColor(0);
         if (!triggered)
         {
             anim.SetBool("YoshiAttack", false);
@@ -195,6 +188,7 @@ public class Jussi : MonoBehaviour
     {
         flipNormalInstantiate.SetActive(false);
 
+        ChangeColor(1);
         if (peanutPhase)
         {
             PeanutStreamAttack();
@@ -222,6 +216,26 @@ public class Jussi : MonoBehaviour
         animReady = true;
     }
 
+    void GenerateCracks()
+    {
+
+        switch(counter)
+        {
+            case 1:
+                cracks[0].SetActive(true);
+                counter += 1;
+                break;
+            case 2:
+                cracks[1].SetActive(true);
+                counter += 1;
+                break;
+            case 3:
+                cracks[2].SetActive(true);
+                counter += 1;
+                break;
+        }
+    }
+
     void YoshiEggsAttack()
     {
         anim.SetBool("YoshiAttack1", true);
@@ -233,7 +247,7 @@ public class Jussi : MonoBehaviour
             animReady = false;
             allAudioSources[0].Play();
 
-            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            GameObject yoshiEggInstance = Instantiate(yoshiEggs[0], yoshiEggSpawnPosition.transform.position, Quaternion.identity);
             yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
         }
 
@@ -250,7 +264,7 @@ public class Jussi : MonoBehaviour
             animReady = false;
             allAudioSources[0].Play();
 
-            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            GameObject yoshiEggInstance = Instantiate(yoshiEggs[1], yoshiEggSpawnPosition.transform.position, Quaternion.identity);
             yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
         }
 
@@ -267,7 +281,7 @@ public class Jussi : MonoBehaviour
             animReady = false;
             allAudioSources[0].Play();
 
-            GameObject yoshiEggInstance = Instantiate(yoshiEgg, yoshiEggSpawnPosition.transform.position, Quaternion.identity);
+            GameObject yoshiEggInstance = Instantiate(yoshiEggs[2], yoshiEggSpawnPosition.transform.position, Quaternion.identity);
             yoshiEggInstance.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * yoshiEggSpeed);
         }
 
@@ -283,38 +297,28 @@ public class Jussi : MonoBehaviour
     {
         anim.SetBool("Peanut", true);
         anim.SetBool("CircleLaser", false);
-        shootTimer += Time.deltaTime;
-        GameObject[] peanutMissiles = new GameObject[2];
         circleLaserInstantiate.SetActive(false);
 
-        bool firstInstantiate = true;
-
-        Vector3[] spawns = new Vector3[2];
-        if (animReady)
+        if (firstPosition && animReady)
         {
-            if (shootTimer >= peanutMissileFrequency)
-            {
-                for (int i = 0; i < 1; i++)
-                {
-                    spawns[i] = peanutMissileSpawnPosition[i].transform.position;
-                    peanutMissiles[i] = Instantiate(peanutMissile, spawns[0], Quaternion.identity);
-                    peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 1, 0) * peanutMissileForce);
-                }
-                allAudioSources[1].Play();
-                peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget = !peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget;
-                peanutMissileCounter += 1;
-                shootTimer -= peanutMissileFrequency;
-            }
-
-            if (peanutMissileCounter == peanutMissileNumber)
-            {
-                shootTimer = -2f;
-                peanutPhase = false;
-                peanutMissileCounter = 0;
-                animReady = false;
-            }
+            Instantiate(peanutMissile, peanutMissileSpawnPosition[0].position, peanutMissileSpawnPosition[0].rotation);
+            peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget = !peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget;
+            firstPosition = false;
+            animReady = false;
+        }
+        else if(!firstPosition && animReady)
+        {
+            Instantiate(peanutMissile, peanutMissileSpawnPosition[1].position, peanutMissileSpawnPosition[1].rotation);
+            peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget = !peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget;
+            firstPosition = true;
+            animReady = false;
         }
 
+    }
+
+    void SwapPhase()
+    {
+        peanutPhase = !peanutPhase;
     }
 
     void LaserAttack()
@@ -358,5 +362,13 @@ public class Jussi : MonoBehaviour
         anim.SetTrigger("Death");
         flipNormalInstantiate.SetActive(false);
         circleLaserInstantiate.SetActive(false);
+    }
+
+    void ChangeColor(int texture)
+    {
+        for (int i = 0; i < jussiBody.Length; i++)
+        {
+            jussiBody[i].GetComponent<SkinnedMeshRenderer>().material.mainTexture = textures[texture];
+        }
     }
 }

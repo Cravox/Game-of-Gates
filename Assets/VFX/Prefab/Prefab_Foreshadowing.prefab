@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4676760827365716}
+  - component: {fileID: 114851588352058344}
   m_Layer: 0
   m_Name: Prefab_Foreshadowing
   m_TagString: Untagged
@@ -68,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 1232994639784238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4642655699449898}
   m_Father: {fileID: 4676760827365716}
@@ -94,13 +95,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037741364426582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.17, y: 3.39, z: -1.168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4525009428268396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114851588352058344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037741364426582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4774ac47b191e2b4d82ec1707102ad5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flipNormal: {fileID: 1654362061080872, guid: afe6240b03e85494fbf59b11e916130a, type: 2}
+  instantiateTime: 1
 --- !u!198 &198026897002268354
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5520,7 +5534,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 0.6329117
           inSlope: 3.5063093
           outSlope: 3.5063093
           tangentMode: 0

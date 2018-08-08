@@ -13,6 +13,7 @@ public class Jussi_peanutMissile : MonoBehaviour
     public float activationTime = 0.2f;
     public int hp = 5;
     public bool defaultTarget = true;
+    public float lifeTime = 10f;
 
     private Color originalColor;
     private float activationTimer = 0;
@@ -29,26 +30,14 @@ public class Jussi_peanutMissile : MonoBehaviour
             target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
         }
 
+
+        Destroy(this.gameObject, lifeTime);
         originalColor = renderer.materials[0].color;
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        //if(target == null)
-        //{
-        //    defaultTarget = !defaultTarget;
-        //}
-
-        //if(defaultTarget)
-        //{
-        //    target = GameObject.Find("hitTarget_0").GetComponent<Transform>();
-        //}else
-        //{
-        //    target = GameObject.Find("hitTarget_1").GetComponent<Transform>();
-        //}
-
-
         activationTimer += Time.deltaTime;
         if (this.hp <= 0) Destroy(this.gameObject);
     }
