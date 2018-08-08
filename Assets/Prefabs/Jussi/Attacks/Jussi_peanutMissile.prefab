@@ -174,11 +174,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 23013596129404764}
   target: {fileID: 0}
-  speed: 2
+  speed: 0.8
   rotateSpeed: 45
   activationTime: 0.2
   hp: 15
-  defaultTarget: 0
+  defaultTarget: 1
 --- !u!136 &136310456863474626
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -7118,7 +7118,7 @@ Prefab:
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
       propertyPath: peanutMissileNumber
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114603611423129646, guid: 3de0d8b8cc1ccd443a1c9b499a340f12,
         type: 2}
@@ -11512,7 +11512,7 @@ Prefab:
     - target: {fileID: 114197066510832372, guid: 627457944070114429723e0fe75df864,
         type: 2}
       propertyPath: speed
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4321020066388834, guid: 627457944070114429723e0fe75df864, type: 2}
       propertyPath: m_LocalScale.x
