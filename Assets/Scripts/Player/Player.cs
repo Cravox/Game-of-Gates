@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(godMode)
+        if (godMode)
         {
             gameObject.layer = 15;
         }
@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonDown("Dash_" + this.playerIndex) && canDash)
             {
+                anim.SetTrigger("Dash");
                 dashing = true;
                 allMyAudioSources[0].Play();
             }
@@ -104,8 +105,8 @@ public class Player : MonoBehaviour
 
             Dash();
         }
-
     }
+
 
     private void OnCollisionEnter(Collision col)
     {
@@ -259,7 +260,7 @@ public class Player : MonoBehaviour
             dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
 
             Vector3 zVector = Vector3.Lerp(dashStart, dashDestination, completion);
-            if(zVector.x < -4.06f + offset || zVector.x > 4.58f - offset)
+            if (zVector.x < -4.06f + offset || zVector.x > 4.58f - offset)
             {
                 completion = 1;
             }

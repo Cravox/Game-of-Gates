@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player_bullet : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
-    //public GameObject impact;
+    public GameObject impact;
     public int normalDamage;
     public float normalRange;
     public float normalUltiProfit;
@@ -61,12 +61,15 @@ public class Player_bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        Instantiate(impact, col.gameObject.transform);
+
+
         if (col.gameObject.CompareTag("Enemy"))
         {
+            Instantiate(impact, this.transform.position, new Quaternion(0,0,0,0));
             ultiMeter.fillAmount += ultiProfit;
             col.gameObject.GetComponent<Jussi>().hp -= damage;
             Destroy(this.gameObject);
-            //Instantiate(impact, this.transform);
         }
 
         if (col.gameObject.CompareTag("PeanutMissile"))

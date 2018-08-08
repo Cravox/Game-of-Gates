@@ -18862,6 +18862,34 @@ AnimationClip:
     path: GEO_GRP/Head_GEO
     classID: 137
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 5.1666665
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: laserAttackDone
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: e550db51c45084646b54c0684982682a, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 24
   m_WrapMode: 0
@@ -19303,6 +19331,13 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 137
       customType: 20
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 4169067650
+      script: {fileID: 11500000, guid: e550db51c45084646b54c0684982682a, type: 3}
+      typeID: 114
+      customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 347664489
@@ -83330,6 +83365,34 @@ AnimationClip:
     path: Root_/Spine_7_/Spine_8_/Spine_9_/Spine_10_/Spine_11_/Spine_12_/Spine_13_/Spine_14_/Spine_15_/Spine_16_/Spine_17_
     classID: 4
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 5.1666665
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: laserAttackDone
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: e550db51c45084646b54c0684982682a, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
@@ -105882,4 +105945,11 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.16666667
+    functionName: AnimTry
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

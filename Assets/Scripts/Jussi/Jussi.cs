@@ -15,6 +15,7 @@ public class Jussi : MonoBehaviour
     public GameObject peanutMissile;
     public GameObject flipNormalInstantiate;
     public GameObject circleLaserInstantiate;
+    public GameObject impact;
     public SkinnedMeshRenderer[] renderer;
     public Transform yoshiEggSpawnPosition;
     public Transform[] peanutMissileSpawnPosition = new Transform[2];
@@ -23,7 +24,8 @@ public class Jussi : MonoBehaviour
     public int thirdPhaseTrigger = 400;
     public float pauseTime = 1f;
     public bool flipNormals = false;
-    public bool firstPhase = true;
+    public bool peanutPhase = true;
+    public bool laserAttackDone = false;
 
     public float yoshiEggSpeed = 250f;
     public int yoshiEggPhase = 0;
@@ -179,21 +181,21 @@ public class Jussi : MonoBehaviour
 
     void PhaseTwo()
     {
-        if(!triggered)
+        if (!triggered)
         {
             anim.SetBool("YoshiAttack", false);
             anim.SetTrigger("Transition");
             triggered = true;
         }
 
-        if(flipNormals) FlipNormalsAttack();
+        if (flipNormals) FlipNormalsAttack();
     }
 
     void PhaseThree()
     {
         flipNormalInstantiate.SetActive(false);
 
-        if (firstPhase)
+        if (peanutPhase)
         {
             PeanutStreamAttack();
         }
@@ -205,7 +207,7 @@ public class Jussi : MonoBehaviour
 
     void YoshiEggPhaseSwap()
     {
-        if(yoshiEggPhase < 3)
+        if (yoshiEggPhase < 3)
         {
             yoshiEggPhase += 1;
         }
@@ -279,57 +281,54 @@ public class Jussi : MonoBehaviour
 
     void PeanutStreamAttack()
     {
-        anim.SetTrigger("Peanut");
+        anim.SetBool("Peanut", true);
+        anim.SetBool("CircleLaser", false);
         shootTimer += Time.deltaTime;
+        GameObject[] peanutMissiles = new GameObject[2];
+        circleLaserInstantiate.SetActive(false);
 
         bool firstInstantiate = true;
 
         Vector3[] spawns = new Vector3[2];
-
-        for(int i = 0; i < 1; i++)
+        if (animReady)
         {
-            spawns[i] = peanutMissileSpawnPosition[i].transform.position;
-        }
-
-        GameObject[] peanutMissiles = new GameObject[peanutMissileNumber];
-        float missileAngle = -0.4f;
-        if (shootTimer >= peanutMissileFrequency)
-        {
-            allAudioSources[1].Play();
-
-            for (int i = 0; i < peanutMissiles.Length; i++)
+            if (shootTimer >= peanutMissileFrequency)
             {
-                peanutMissiles[i] = Instantiate(peanutMissile, spawns[0], Quaternion.identity);
-                peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(missileAngle, 1, 0) * peanutMissileForce);
-                missileAngle += 0.4f;
+                for (int i = 0; i < 1; i++)
+                {
+                    spawns[i] = peanutMissileSpawnPosition[i].transform.position;
+                    peanutMissiles[i] = Instantiate(peanutMissile, spawns[0], Quaternion.identity);
+                    peanutMissiles[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 1, 0) * peanutMissileForce);
+                }
+                allAudioSources[1].Play();
+                peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget = !peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget;
+                peanutMissileCounter += 1;
+                shootTimer -= peanutMissileFrequency;
             }
-            peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget = !peanutMissile.GetComponent<Jussi_peanutMissile>().defaultTarget;
-            peanutMissileCounter += 1;
-            shootTimer -= peanutMissileFrequency;
+
+            if (peanutMissileCounter == peanutMissileNumber)
+            {
+                shootTimer = -2f;
+                peanutPhase = false;
+                peanutMissileCounter = 0;
+                animReady = false;
+            }
         }
 
-        if (peanutMissileCounter == peanutMissileFrequency)
-        {
-            shootTimer = -2f;
-            firstPhase = false;
-            peanutMissileCounter = 0;
-        }
     }
 
     void LaserAttack()
     {
-        anim.SetTrigger("CircleLaser");
-        delay += Time.deltaTime;
-        if (delay >= 2f)
+        anim.SetBool("CircleLaser", true);
+        anim.SetBool("Peanut", false);
+
+        if (animReady)
         {
             circleLaserInstantiate.SetActive(true);
-            circleLaserLifeTimeCounter += Time.deltaTime;
-
-            if (circleLaserLifeTimeCounter >= circleLaserLifeTime)
+            if(laserAttackDone)
             {
-                circleLaserInstantiate.SetActive(false);
-                flipNormalsLifeTimeCounter = 0;
-                firstPhase = true;
+                laserAttackDone = false;
+                peanutPhase = true;
             }
         }
     }

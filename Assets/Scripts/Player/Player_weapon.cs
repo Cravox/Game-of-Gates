@@ -56,6 +56,7 @@ public class Player_weapon : MonoBehaviour
 
         if (Input.GetButtonDown("Ultimate_" + this.playerIndex))
         {
+            anim.SetTrigger("Ultimate");
             UltimateShot();
         }
 
