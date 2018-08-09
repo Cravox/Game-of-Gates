@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Jussi_Multiplayer.unity
     guid: 852f1e2c6c7df8e48afe5395b16d2360
+  - enabled: 1
+    path: Assets/_Scenes/Jussi_Singleplayer.unity
+    guid: 850758baccb6fec4d91be55fbe0297f5
   m_configObjects: {}
