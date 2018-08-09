@@ -2079,6 +2079,7 @@ MonoBehaviour:
   anim: {fileID: 1279118038}
   ren: []
   rb: {fileID: 440799697}
+  Jussi: {fileID: 976674706}
   jumpForce: 400
   dashVelocity: 6
   moveVelocity: 5
@@ -7774,6 +7775,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 114306487026654444, guid: 3bbdd1649b887474fa2848f96bca41be,
+        type: 2}
+      propertyPath: Jussi
+      value: 
+      objectReference: {fileID: 976674706}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bbdd1649b887474fa2848f96bca41be, type: 2}
   m_IsPrefabParent: 0

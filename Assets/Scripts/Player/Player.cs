@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public Animator anim;
     public SkinnedMeshRenderer[] ren;
     public Rigidbody rb;
+    public GameObject Jussi;
     public float jumpForce = 200f;
     public float dashVelocity = 5;
     public float moveVelocity = 5;
@@ -64,6 +65,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(Jussi.GetComponent<Jussi>().hp <= 0 && playerIndex == 0)
+        {
+            anim.SetTrigger("WinRafi");
+        }else if(Jussi.GetComponent<Jussi>().hp <= 0 && playerIndex == 1)
+        {
+            anim.SetTrigger("WinRain");
+        }
+
         if (godMode)
         {
             gameObject.layer = 15;

@@ -33,6 +33,7 @@ public class Jussi : MonoBehaviour
     public bool laserAttackDone = false;
     public bool peanutAttackDone = false;
     public bool dead = false;
+    public bool won = false;
 
     public float yoshiEggSpeed = 250f;
 

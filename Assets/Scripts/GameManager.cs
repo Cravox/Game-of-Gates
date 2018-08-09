@@ -125,16 +125,24 @@ public class GameManager : MonoBehaviour
         {
             if (Players[0].activeSelf == false && Players[1].activeSelf == false)
             {
-                paused = true;
-                loseScreen.SetActive(true);
+                Jussi.GetComponent<Animator>().SetTrigger("Win");
+                if(Jussi.GetComponent<Jussi>().won)
+                {
+                    paused = true;
+                    loseScreen.SetActive(true);
+                }
             }
         }
         else
         {
-            if(Players[0].activeSelf == false)
+            if(Players[0].activeSelf == false && Jussi.GetComponent<Jussi>().won)
             {
-                noInput = true;
-                loseScreen.SetActive(true);
+                Jussi.GetComponent<Animator>().SetTrigger("Win");
+                if(Jussi.GetComponent<Jussi>().won)
+                {
+                    paused = true;
+                    loseScreen.SetActive(true);
+                }
                 if(!soundTriggered)
                 {
                     audiosource.PlayOneShot(audioClips[Random.Range((int)0, (int)1)]);
