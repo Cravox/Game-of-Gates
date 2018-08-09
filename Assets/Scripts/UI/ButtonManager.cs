@@ -60,4 +60,14 @@ public class ButtonManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("levelSelect_Gate2");
     }
+
+    public void OnClickCredits()
+    {
+        SceneManager.LoadScene("credits");
+    }
+
+    public void OnClickStart()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
 }

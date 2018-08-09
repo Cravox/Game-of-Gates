@@ -12,6 +12,7 @@ TagManager:
   - Parry
   - PeanutMissile
   - Ballon
+  - Ultimate
   layers:
   - Default
   - TransparentFX

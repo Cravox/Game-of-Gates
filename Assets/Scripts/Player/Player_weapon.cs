@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Player_weapon : MonoBehaviour
 {
     public AudioSource[] allAudioSources;
+    public AudioClip[] audioClips = new AudioClip[2];
     public Image ultiMeter;
     public Transform shotSpawnPosition;
+    public GameObject[] shotSprites = new GameObject[2];
     public GameObject bullet;
     public GameObject ultimateBullet;
     public GameManager gM;
@@ -34,6 +36,17 @@ public class Player_weapon : MonoBehaviour
 
     void Update()
     {
+        if(defaultFire)
+        {
+            shotSprites[0].SetActive(true);
+            shotSprites[1].SetActive(false);
+        }
+        else
+        {
+            shotSprites[0].SetActive(false);
+            shotSprites[1].SetActive(true);
+        }
+
         if (Input.GetButtonDown("SwitchShot_" + this.playerIndex))
         {
             defaultFire = !defaultFire;
@@ -41,16 +54,10 @@ public class Player_weapon : MonoBehaviour
 
         if (Input.GetButton("Fire_" + this.playerIndex))
         {
-            //if (!allAudioSources[0].isPlaying && defaultFire)
-            //{
-            //    allAudioSources[0].Play();
-            //}else if(!allAudioSources[1].isPlaying && !defaultFire)
-            //{
-            //    allAudioSources[1].Play();
-            //}
             anim.SetBool("isShooting", true);
             Shoot();
         }
+
         if (Input.GetButtonUp("Fire_" + this.playerIndex))
         {
             anim.SetBool("isShooting", false);
@@ -121,6 +128,8 @@ public class Player_weapon : MonoBehaviour
 
     public void UltimateShot()
     {
+        allAudioSources[1].PlayOneShot(audioClips[Random.Range(0, 1)]);
+
         facingRight = gameObject.GetComponentInParent<Player>().FacingRight;
 
         int inv = facingRight ? 1 : -1;

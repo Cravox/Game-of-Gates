@@ -8,6 +8,7 @@ using XInputDotNetPure;
 public class Player : MonoBehaviour
 {
     public AudioSource[] allMyAudioSources;
+    public AudioClip[] audioClips = new AudioClip[8];
     public GameObject gameManager;
     public GameObject landingParticles;
     public GameObject walkingParticles;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     public int hp = 3;
     public bool canDash = true;
     public bool godMode = false;
+    public bool tutorial = false;
 
     private AudioSource audioSource;
     private Vector3 dashStart;
@@ -107,7 +109,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter(Collision col)
     {
         //Grounded check
@@ -133,6 +134,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("deadPlayer") && Input.GetButtonDown("Jump_" + this.playerIndex) && !grounded)
         {
+            allMyAudioSources[2].PlayOneShot(audioClips[Random.Range(4, 5)]);
             spawnPlayer.SetActive(true);
             spawnPlayer.transform.position = this.transform.position;
             spawnPlayer.GetComponent<Player>().hp = 1;
@@ -153,6 +155,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("bulletEnemy") || col.gameObject.CompareTag("PeanutMissile"))
         {
             allMyAudioSources[1].Play();
+            allMyAudioSources[2].PlayOneShot(audioClips[Random.Range(0, 2)]);
             //StartCoroutine("GamePadVibration");
             StartCoroutine("Flash");
             StartCoroutine("InvincibleFrames");
@@ -255,14 +258,18 @@ public class Player : MonoBehaviour
             dashDestination = new Vector3(transform.position.x + inv, transform.position.y, transform.position.z);
 
             Vector3 zVector = Vector3.Lerp(dashStart, dashDestination, completion);
-            if (zVector.x < -4.06f + offset || zVector.x > 4.58f - offset)
+            if(!tutorial)
             {
-                completion = 1;
+                if (zVector.x < -4.06f + offset || zVector.x > 4.58f - offset)
+                {
+                    completion = 1;
+                }
             }
 
             completion += Time.deltaTime * dashVelocity;
             if (completion >= 1)
             {
+                print("hi");
                 completion = 0f;
                 dashing = false;
                 canDash = false;

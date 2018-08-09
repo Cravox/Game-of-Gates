@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_ghost : MonoBehaviour {
 
+    public bool tutorial = false;
 	// Use this for initialization
 	void Start ()
     {
@@ -13,6 +14,6 @@ public class Player_ghost : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y + 1*Time.deltaTime, transform.position.z);
+        if(!tutorial) transform.position = new Vector3(transform.position.x, transform.position.y + 1*Time.deltaTime, transform.position.z);
 	}
 }

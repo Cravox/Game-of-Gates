@@ -11,6 +11,7 @@ public class Jussi_initiateCircleLaser : MonoBehaviour
     public int circleLaserLimit = 3;
     public GameObject circleLaser;
 
+    private AudioSource audio;
     private int shotCounter = 0;
     private float initTimer;
     private float circleLaserDelayTimer;
@@ -20,6 +21,7 @@ public class Jussi_initiateCircleLaser : MonoBehaviour
 
     void Awake()
     {
+        audio = this.GetComponent<AudioSource>();
         initTimer = shootFrequency;
         this.rb = this.gameObject.GetComponent<Rigidbody>();
         startSpeed = speed;
@@ -37,6 +39,7 @@ public class Jussi_initiateCircleLaser : MonoBehaviour
 
             if(circleLaserDelayTimer >= circleLaserDelay && shotCounter <= circleLaserLimit)
             {
+                audio.Play();
                 Instantiate(circleLaser, this.transform.position, Quaternion.identity);
                 shotCounter += 1;
                 circleLaserDelayTimer -= circleLaserDelay;
